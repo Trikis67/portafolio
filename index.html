@@ -6,7 +6,7 @@
 <title>Gabriel Solis</title>
 <link rel="icon" type="image/png" href="logo.png">
 
-<meta name="description" content="Portafolio de Gabriel Solis, estudiante de primer año de Ingeniería en Sistemas." />
+<meta name="description" content="Portafolio de Gabriel Solis, estudiante de Ingeniería en Sistemas en la USAC." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -26,15 +26,102 @@
     --muted:#9aa3c0;
     --radius:14px;
   }
+
+  /* TEMAS DINÁMICOS DESDE LA CONSOLA */
+  body.theme-retro {
+    --bg: #1a0f00;
+    --panel: #2b1800;
+    --panel-2: #3a2200;
+    --border: #553500;
+    --gold: #ffb000;
+    --blue: #ff8c00;
+    --text: #fff3e0;
+    --muted: #cca370;
+  }
+
+  body.theme-cyber {
+    --bg: #0d0221;
+    --panel: #1a0836;
+    --panel-2: #261447;
+    --border: #4d126b;
+    --gold: #00f5d4;
+    --blue: #ff007f;
+    --text: #f7f7ff;
+    --muted: #a288e3;
+  }
+
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-  body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:'Inter',sans-serif;
-    line-height:1.6;
-    overflow-x:hidden;
+  
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
   }
+
+  @keyframes themeFlash {
+    0% { opacity: 0.4; transform: scale(0.995); }
+    50% { opacity: 1; transform: scale(1.002); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  .theme-transition {
+    animation: themeFlash 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* PANTALLA DE CARGA */
+  #loader-wrapper {
+    position: fixed;
+    inset: 0;
+    background: #0b0e1a;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+  }
+  #loader-wrapper.fade-out {
+    opacity: 0;
+    visibility: hidden;
+  }
+  .loader-logo {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    margin-bottom: 24px;
+    animation: logoPulse 1.8s ease-in-out infinite;
+  }
+  @keyframes logoPulse {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(240, 180, 41, 0.2)); }
+    50% { transform: scale(1.08); filter: drop-shadow(0 0 25px rgba(240, 180, 41, 0.6)); }
+  }
+  .loader-bar-bg {
+    width: 180px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+  .loader-bar-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #5b8def, #f0b429);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+  }
+  .loader-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: #9aa3c0;
+    margin-top: 14px;
+    letter-spacing: 0.05em;
+  }
+
   h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-0.02em;}
   .mono{font-family:'JetBrains Mono',monospace;}
   a{color:inherit;text-decoration:none;}
@@ -61,6 +148,7 @@
     backdrop-filter:blur(12px);
     background:rgba(11,14,26,0.8);
     border-bottom:1px solid var(--border);
+    transition: background-color 0.5s ease, border-color 0.5s ease;
   }
   nav{
     max-width:1040px;margin:0 auto;
@@ -78,7 +166,7 @@
     50%{ box-shadow: 0 0 15px var(--gold); }
   }
 
-  .navlinks{display:flex;gap:28px;font-size:14px;color:var(--muted);}
+  .navlinks{display:flex;gap:20px;font-size:14px;color:var(--muted);align-items:center;}
   .navlinks a{transition: color .2s ease;}
   .navlinks a:hover{color:var(--text);}
   .navlinks a.active{color:var(--gold);}
@@ -86,8 +174,17 @@
     font-family:'JetBrains Mono',monospace;font-size:12px;
     border:1px solid var(--border);padding:8px 14px;border-radius:8px;
     color:var(--text);transition: .3s ease;
+    display: inline-flex; align-items: center; gap: 6px;
   }
   .navcta:hover{border-color:var(--gold);color:var(--gold);box-shadow: 0 0 12px rgba(240,180,41,0.2);}
+  .nav-actions{display:flex;align-items:center;gap:10px;}
+  .navcta-cv{
+    font-family:'JetBrains Mono',monospace;font-size:12px;
+    border:1px solid var(--gold);padding:8px 14px;border-radius:8px;
+    color:var(--gold);background:rgba(240,180,41,0.08);transition: .3s ease;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .navcta-cv:hover{background:var(--gold);color:#1a1200;box-shadow: 0 0 12px rgba(240,180,41,0.35);}
   .menu-btn{display:none;background:none;border:none;color:var(--text);font-size:22px;cursor:pointer;}
 
   /* HERO */
@@ -114,6 +211,7 @@
     border:1px solid rgba(240,180,41,0.35);background:rgba(240,180,41,0.08);
     padding:6px 12px;border-radius:999px;margin-bottom:24px;width:fit-content;
     backdrop-filter: blur(4px);
+    transition: color 0.5s ease, border-color 0.5s ease, background-color 0.5s ease;
   }
   .hero-grid{
     display:grid;
@@ -134,6 +232,7 @@
     justify-self: center;
     position: relative;
     animation: float 4s ease-in-out infinite;
+    transition: box-shadow 0.5s ease;
   }
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
@@ -141,7 +240,7 @@
   }
 
   h1.name{font-size:clamp(34px,6vw,58px);font-weight:700;line-height:1.05;margin-bottom:14px;}
-  .role{font-size:18px;color:var(--blue);font-weight:500;margin-bottom:18px;min-height: 28px;}
+  .role{font-size:18px;color:var(--blue);font-weight:500;margin-bottom:18px;min-height: 28px; transition: color 0.5s ease;}
   .typing-cursor{
     display: inline-block; width: 2px; height: 18px; background: var(--gold);
     margin-left: 4px; animation: blink 0.8s infinite; vertical-align: middle;
@@ -154,20 +253,40 @@
     padding:13px 22px;border-radius:10px;font-size:14px;font-weight:600;
     display:inline-flex;align-items:center;gap:8px;transition:.3s ease;cursor: pointer;
   }
-  .btn-primary{background:var(--gold);color:#1a1200;border:none;}
+  .btn-primary{background:var(--gold);color:#1a1200;border:none; transition: background-color 0.5s ease;}
   .btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(240,180,41,0.35);}
-  .btn-ghost{border:1px solid var(--border);color:var(--text);background:transparent;}
+  .btn-ghost{border:1px solid var(--border);color:var(--text);background:transparent; transition: border-color 0.5s ease, color 0.5s ease;}
   .btn-ghost:hover{border-color:var(--text);transform:translateY(-3px);background:rgba(255,255,255,0.03);}
 
   .eyebrow{
     font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--gold);
     text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px;
+    transition: color 0.5s ease;
   }
-  .h2{font-size:clamp(26px,4vw,36px);margin-bottom:46px;}
-  .h2 em{color:var(--gold);font-style:normal;}
+  .h2{font-size:clamp(26px,4vw,36px);margin-bottom:0;}
+  .h2 em{color:var(--gold);font-style:normal; transition: color 0.5s ease;}
 
   .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease;}
   .reveal.show{opacity:1;transform:none;}
+
+  /* ANIMACIÓN DE TÍTULOS AL HACER SCROLL */
+  .section-title-wrap{margin-bottom:46px;overflow:hidden;}
+  .section-title-wrap .eyebrow{
+    opacity:0;transform:translateX(-24px);
+    transition:opacity .6s ease, transform .6s cubic-bezier(.16,1,.3,1);
+  }
+  .section-title-wrap .h2{
+    opacity:0;transform:translateY(26px);
+    transition:opacity .7s ease .15s, transform .7s cubic-bezier(.16,1,.3,1) .15s;
+  }
+  .title-underline{
+    height:3px;width:0;border-radius:3px;margin-top:16px;
+    background:linear-gradient(90deg,var(--blue),var(--gold));
+    transition:width .8s cubic-bezier(.16,1,.3,1) .4s, background 0.5s ease;
+  }
+  .section-title-wrap.show .eyebrow{opacity:1;transform:none;}
+  .section-title-wrap.show .h2{opacity:1;transform:none;}
+  .section-title-wrap.show .title-underline{width:72px;}
 
   /* ABOUT */
   .about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;}
@@ -175,7 +294,7 @@
   .about-text strong{color:var(--text);}
   .quest-card{
     background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
-    padding:24px; transition: transform .3s ease, border-color .3s ease;
+    padding:24px; transition: transform .3s ease, border-color .5s ease, background-color .5s ease;
   }
   .quest-card:hover{transform: translateY(-4px); border-color: rgba(91,141,239,0.4);}
   .quest-card h3{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:16px;font-family:'JetBrains Mono',monospace;font-weight:500;}
@@ -184,27 +303,72 @@
   .quest-list .icon{
     width:34px;height:34px;border-radius:8px;background:var(--panel-2);
     display:flex;align-items:center;justify-content:center;font-size:16px;border:1px solid var(--border);
+    transition: background-color 0.5s ease, border-color 0.5s ease;
   }
+
+  /* EDUCACION Y EXPERIENCIA CARDS */
+  .info-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    margin-bottom: 24px;
+    transition: border-color .5s ease, background-color .5s ease, transform .3s ease;
+  }
+  .info-card:hover {
+    border-color: rgba(240, 180, 41, 0.4);
+    transform: translateY(-3px);
+  }
+  .info-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .info-title { font-size: 20px; font-weight: 700; color: var(--text); display: flex; align-items: center; gap: 10px; }
+  .info-subtitle { color: var(--gold); font-weight: 600; font-size: 15px; transition: color 0.5s ease; }
+  .info-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--panel-2);
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    transition: background-color 0.5s ease, border-color 0.5s ease;
+  }
+  .info-desc { color: var(--muted); font-size: 15px; }
+  .info-bullets {
+    list-style-type: disc;
+    margin-left: 20px;
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .info-bullets li { margin-bottom: 6px; }
 
   /* SKILLS */
   .stat-sheet{
     background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
     padding:32px;
+    transition: background-color 0.5s ease, border-color 0.5s ease;
   }
   .stat-row{margin-bottom:26px;}
   .stat-row:last-child{margin-bottom:0;}
   .stat-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;}
-  .stat-name{font-weight:600;font-size:15px;}
-  .stat-bar{height:8px;border-radius:6px;background:var(--panel-2);overflow:hidden;border:1px solid var(--border);}
-  .stat-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,var(--blue),var(--gold));width:0%;transition:width 1.2s cubic-bezier(0.1, 0.5, 0.1, 1);}
-  .stat-note-bottom{color:var(--muted);font-size:13px;margin-top:24px;padding-top:20px;border-top:1px dashed var(--border);}
+  .stat-name{font-weight:600;font-size:15px;display:flex;align-items:center;gap:8px;}
+  .stat-bar{height:8px;border-radius:6px;background:var(--panel-2);overflow:hidden;border:1px solid var(--border); transition: background-color 0.5s ease, border-color 0.5s ease;}
+  .stat-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,var(--blue),var(--gold));width:0%;transition:width 1.2s cubic-bezier(0.1, 0.5, 0.1, 1), background 0.5s ease;}
+  .stat-note-bottom{color:var(--muted);font-size:13px;margin-top:24px;padding-top:20px;border-top:1px dashed var(--border); transition: border-color 0.5s ease;}
 
   /* PROJECTS GRID */
   .projects-grid{display:grid;grid-template-columns:1fr;gap:32px;}
   .project-card{
     background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
     overflow:hidden;display:grid;grid-template-columns:1fr 1fr;
-    transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+    transition: transform .3s ease, box-shadow .3s ease, border-color .5s ease, background-color .5s ease;
   }
   .project-card:hover{
     transform: translateY(-5px);
@@ -216,27 +380,29 @@
   .tag{
     font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--blue);
     border:1px solid rgba(91,141,239,0.3);background:rgba(91,141,239,0.08);
-    padding:4px 10px;border-radius:6px;
+    padding:4px 10px;border-radius:6px;display:inline-flex;align-items:center;gap:4px;
+    transition: color 0.5s ease, border-color 0.5s ease, background-color 0.5s ease;
   }
   .tag.wip{color:var(--gold);border-color:rgba(240,180,41,0.3);background:rgba(240,180,41,0.08);}
-  .project-info h3{font-size:24px;margin-bottom:12px;}
+  .project-info h3{font-size:24px;margin-bottom:12px;display:flex;align-items:center;gap:10px;}
   .project-info p{color:var(--muted);font-size:15px;margin-bottom:22px;}
   .project-visual{
     background:linear-gradient(160deg,var(--panel-2),var(--bg));
     display:flex;align-items:center;justify-content:center;padding:40px;
     border-left:1px solid var(--border);
+    transition: background 0.5s ease, border-color 0.5s ease;
   }
   .project-visual .mock{
     width:100%;aspect-ratio:4/3;border-radius:10px;
     background:var(--bg);border:1px solid var(--border);
     display:flex;flex-direction:column;overflow:hidden;
-    transition: transform .3s ease;
+    transition: transform .3s ease, background-color 0.5s ease, border-color 0.5s ease;
   }
   .project-card:hover .mock{ transform: scale(1.02); }
-  .mock-bar{height:26px;background:var(--panel-2);display:flex;align-items:center;gap:6px;padding:0 10px;border-bottom:1px solid var(--border);}
-  .mock-bar span{width:8px;height:8px;border-radius:50%;background:var(--border);}
+  .mock-bar{height:26px;background:var(--panel-2);display:flex;align-items:center;gap:6px;padding:0 10px;border-bottom:1px solid var(--border); transition: background-color 0.5s ease, border-color 0.5s ease;}
+  .mock-bar span{width:8px;height:8px;border-radius:50%;background:var(--border); transition: background-color 0.5s ease;}
   .mock-body{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px;}
-  .mock-body div{background:var(--panel-2);border-radius:6px;border:1px solid var(--border);}
+  .mock-body div{background:var(--panel-2);border-radius:6px;border:1px solid var(--border); transition: background-color 0.5s ease, border-color 0.5s ease;}
   
   @media(max-width:760px){
     .project-card{grid-template-columns:1fr;}
@@ -257,7 +423,7 @@
     display: flex;
     align-items: center;
     gap: 16px;
-    transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+    transition: transform .3s ease, border-color .5s ease, background-color .5s ease, box-shadow .3s ease;
   }
   .cert-card:hover {
     transform: translateY(-4px);
@@ -274,6 +440,9 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    font-size: 20px;
+    color: var(--gold);
+    transition: background-color 0.5s ease, border-color 0.5s ease;
   }
   .cert-content h3 {
     font-size: 16px;
@@ -286,6 +455,7 @@
     font-size: 13px;
     color: var(--blue);
     font-weight: 500;
+    transition: color 0.5s ease;
   }
   .cert-date {
     display: block;
@@ -299,26 +469,68 @@
   .terminal-card{
     background:#080a12;border:1px solid var(--border);border-radius:var(--radius);
     overflow:hidden;box-shadow:0 12px 32px rgba(0,0,0,0.5);
+    transition: border-color 0.5s ease;
   }
   .terminal-header{
     background:var(--panel);padding:10px 16px;display:flex;align-items:center;gap:8px;
     border-bottom:1px solid var(--border);font-size:12px;color:var(--muted);
+    transition: background-color 0.5s ease, border-color 0.5s ease;
   }
   .dot-red{width:10px;height:10px;border-radius:50%;background:#ff5f56;}
   .dot-yellow{width:10px;height:10px;border-radius:50%;background:#ffbd2e;}
   .dot-green{width:10px;height:10px;border-radius:50%;background:#27c93f;}
   .terminal-body{
     padding:20px;font-family:'JetBrains Mono',monospace;font-size:13px;
-    color:#d1d5db;min-height:220px;max-height:300px;overflow-y:auto;
+    color:#d1d5db;min-height:220px;max-height:360px;overflow-y:auto;
   }
   .terminal-output p{margin-bottom:8px;line-height:1.4;}
-  .term-user{color:var(--gold);}
-  .term-cmd{color:var(--blue);}
+  .term-user{color:var(--gold); transition: color 0.5s ease;}
+  .term-cmd{color:var(--blue); transition: color 0.5s ease;}
   .term-res{color:var(--muted);}
   .terminal-input-row{display:flex;align-items:center;gap:8px;margin-top:10px;}
   .terminal-input-row input{
     background:transparent;border:none;outline:none;
     color:var(--text);font-family:'JetBrains Mono',monospace;font-size:13px;width:100%;
+  }
+
+  .matrix-text {
+    color: #00ff00 !important;
+    text-shadow: 0 0 5px #00ff00;
+  }
+
+  /* ANIMACIÓN "TRIPLE T" */
+  .tung-container{margin:16px 0;text-align:center;}
+  .tung-img{
+    width:120px;height:auto;display:inline-block;
+    filter:drop-shadow(0 8px 16px rgba(0,0,0,0.45));
+    animation: tungDance .55s ease-in-out infinite;
+    transition: opacity .5s ease;
+  }
+  .tung-text{
+    margin-top:10px;font-family:'JetBrains Mono',monospace;font-weight:700;
+    letter-spacing:.15em;font-size:13px;
+    background:linear-gradient(90deg,var(--blue),var(--gold),var(--blue));
+    background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;
+    animation: tungGlow 1.4s linear infinite, tungShake .5s ease-in-out infinite;
+    transition: opacity .5s ease;
+  }
+  .tung-container.tung-fade .tung-img,
+  .tung-container.tung-fade .tung-text{opacity:0.25;animation-play-state:paused;}
+  @keyframes tungDance{
+    0%{transform:translateY(0) rotate(-8deg) scaleX(1);}
+    25%{transform:translateY(-6px) rotate(-2deg) scaleX(0.96);}
+    50%{transform:translateY(-14px) rotate(8deg) scaleX(1);}
+    75%{transform:translateY(-6px) rotate(2deg) scaleX(0.96);}
+    100%{transform:translateY(0) rotate(-8deg) scaleX(1);}
+  }
+  @keyframes tungShake{
+    0%,100%{transform:translateX(0);}
+    25%{transform:translateX(-3px);}
+    75%{transform:translateX(3px);}
+  }
+  @keyframes tungGlow{
+    0%{background-position:0% center;}
+    100%{background-position:200% center;}
   }
 
   /* MODAL LIGHTBOX */
@@ -331,7 +543,7 @@
   .modal-content {
     background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius);
     max-width: 600px; width: 90%; padding: 32px; position: relative;
-    transform: translateY(20px); transition: transform .3s ease;
+    transform: translateY(20px); transition: transform .3s ease, background-color .5s ease, border-color .5s ease;
     box-shadow: 0 20px 50px rgba(0,0,0,0.6);
   }
   .modal-overlay.open .modal-content { transform: translateY(0); }
@@ -343,10 +555,24 @@
   .modal-title { font-size: 22px; margin-bottom: 12px; }
   .modal-desc { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
 
-  /* CONTACT */
+  /* CONTACTO CON LOGOS E ICONOS */
   .contact-box{
     background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
     padding:48px;text-align:center;
+    transition: background-color 0.5s ease, border-color 0.5s ease;
+  }
+  .contact-avatar {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 16px auto;
+    border-radius: 50%;
+    background: var(--panel-2);
+    border: 1px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    box-shadow: 0 0 15px rgba(240, 180, 41, 0.2);
   }
   .contact-box h2{font-size:clamp(26px,4vw,38px);margin-bottom:14px;}
   .contact-box p{color:var(--muted);margin-bottom:30px;}
@@ -355,6 +581,7 @@
   footer{
     padding:30px 24px;text-align:center;color:var(--muted);
     font-size:13px;border-top:1px solid var(--border);
+    transition: border-color 0.5s ease;
   }
 
   /* BACK TO TOP & MUSIC BUTTONS */
@@ -367,7 +594,7 @@
     background: var(--panel); border: 1px solid var(--border);
     display: flex; align-items: center; justify-content: center;
     cursor: pointer; font-size: 18px; color: var(--text);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.35); transition: .3s ease;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35); transition: .3s ease, background-color .5s ease, border-color .5s ease;
   }
   .floating-btn:hover { border-color: var(--gold); transform: translateY(-3px); color: var(--gold); }
   #backToTop { opacity: 0; pointer-events: none; transition: opacity .3s ease, transform .3s ease; }
@@ -390,13 +617,14 @@
   @keyframes bar2 { 0%,100%{height:8px;}50%{height:14px;} }
   @keyframes bar3 { 0%,100%{height:6px;}50%{height:17px;} }
 
-  /* AJUSTES EXCLUSIVOS PARA PANTALLAS MÓVILES */
+  /* AJUSTES PARA PANTALLAS MÓVILES */
   @media (max-width: 720px) {
     .navlinks{
       position:fixed;top:60px;left:0;right:0;
       background:var(--panel);border-bottom:1px solid var(--border);
       flex-direction:column;padding:20px 24px;gap:16px;
       transform:translateY(-150%);transition:transform .3s ease;
+      align-items:flex-start;
     }
     .navlinks.open{transform:translateY(0);}
     .menu-btn{display:block;}
@@ -412,11 +640,12 @@
 
     .hero-grid { grid-template-columns: 1fr; text-align: left; }
     .avatar {
-      justify-self: start;
-      width: 220px !important;
-      height: 300px !important;
-      min-width: 220px;
-      min-height: 220px;
+      justify-self: center !important;
+      width: 85% !important;
+      max-width: 320px !important;
+      height: 420px !important;
+      object-fit: cover !important;
+      border-radius: 20px !important;
     }
 
     .btn {
@@ -428,7 +657,6 @@
     .cert-content h3 { font-size: 18px !important; }
     .cert-issuer { font-size: 14px !important; }
 
-    /* CONVIERTE LA SECCIÓN "SOBRE MÍ" EN UN ÚNICO CUADRO LARGO INTEGRADO */
     .about-grid {
       grid-template-columns: 1fr !important;
       background: var(--panel) !important;
@@ -454,8 +682,7 @@
       margin-bottom: 14px !important;
     }
 
-    /* AMPLÍA LA ALTURA DE LAS OTRAS TARJETAS EN MÓVIL */
-    .stat-sheet, .project-info, .cert-card, .contact-box {
+    .stat-sheet, .project-info, .cert-card, .contact-box, .info-card {
       padding: 44px 28px !important;
       min-height: 220px;
     }
@@ -475,18 +702,38 @@
 </head>
 <body>
 
+<!-- PANTALLA DE CARGA CON LOGO -->
+<div id="loader-wrapper">
+  <img src="logo.png" alt="Logo Gabriel Solis" class="loader-logo">
+  <div class="loader-bar-bg">
+    <div class="loader-bar-fill" id="loaderFill"></div>
+  </div>
+  <div class="loader-text" id="loaderText">CARGANDO... 0%</div>
+</div>
+
 <header>
   <nav>
     <div class="brand"><span class="dot"></span> GS</div>
     <div class="navlinks" id="navlinks">
       <a href="#about">Sobre mí</a>
+      <a href="#experiencia">Experiencia</a>
+      <a href="#educacion">Educación</a>
       <a href="#skills">Stack</a>
       <a href="#projects">Proyectos</a>
       <a href="#certificaciones">Certificados</a>
       <a href="#terminal">Terminal</a>
       <a href="#contact">Contacto</a>
     </div>
-    <a class="navcta" href="#contact">Contacto</a>
+    <div class="nav-actions">
+      <a class="navcta-cv" href="CV-Luis-Gabriel-Solis-Garcia.pdf" download>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+        Descargar CV
+      </a>
+      <a class="navcta" href="#contact">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        Contacto
+      </a>
+    </div>
     <button class="menu-btn" id="menuBtn">☰</button>
   </nav>
 </header>
@@ -498,13 +745,20 @@
   <div class="hero-overlay"></div>
   <div class="wrap hero-grid">
     <div>
-      <div class="badge mono">● ESTUDIANTE</div>
+      <div class="badge mono">● ESTUDIANTE </div>
       <h1 class="name">Gabriel<br>Solis</h1>
       <div class="role"><span id="typingText"></span><span class="typing-cursor"></span></div>
-      <p class="tagline">Empezando a construir, un commit a la vez. Aprendiendo HTML, Java y Python mientras descubro hacia dónde quiero llevar todo esto.</p>
+      <p class="tagline">Empezando a construir, un commit a la vez. Aprendiendo HTML, CSS, JavaScript, Java y Python mientras descubro hacia dónde quiero llevar todo esto.</p>
       <div class="btn-row">
         <a class="btn btn-primary" href="#projects">Ver proyectos</a>
-        <a class="btn btn-ghost" href="https://github.com/gab123kd" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="btn btn-ghost" href="CV-Luis-Gabriel-Solis-Garcia.pdf" download>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          Descargar CV
+        </a>
+        <a class="btn btn-ghost" href="https://github.com/Trikis67" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+          GitHub ↗
+        </a>
       </div>
     </div>
     <div style="display: flex; justify-content: center; width: 100%;">
@@ -515,11 +769,14 @@
 
 <section id="about">
   <div class="wrap reveal">
-    <div class="eyebrow">01 — Quién soy</div>
-    <h2 class="h2">Aprendiendo a <em>construir</em></h2>
+    <div class="section-title-wrap reveal-title">
+      <div class="eyebrow">01 — Quién soy</div>
+      <h2 class="h2">Aprendiendo a <em>construir</em></h2>
+      <div class="title-underline"></div>
+    </div>
     <div class="about-grid">
       <div class="about-text">
-        <p>Soy <strong>Luis Gabriel Solís García</strong>, estudiante de primer año de Ingeniería en Sistemas. Me apasiona aprender sobre programación y todavía estoy descubriendo qué camino quiero tomar dentro del desarrollo — por ahora, disfruto cada cosa nueva que aprendo.</p>
+        <p>Soy <strong>Luis Gabriel Solís García</strong>, estudiante de primer año de Ingeniería en Sistemas en la <strong>Universidad de San Carlos de Guatemala (USAC)</strong>. Me apasiona aprender sobre programación y todavía estoy descubriendo qué camino quiero tomar dentro del desarrollo — por ahora, disfruto cada cosa nueva que aprendo.</p>
         <p>Fuera del código, me gusta ver películas y series, jugar y aprovechar el tiempo libre explorando cosas nuevas, dentro y fuera de la pantalla.</p>
       </div>
       <div class="quest-card">
@@ -535,32 +792,113 @@
   </div>
 </section>
 
+<section id="experiencia">
+  <div class="wrap reveal">
+    <div class="section-title-wrap reveal-title">
+      <div class="eyebrow">02 — Trayectoria Práctica</div>
+      <h2 class="h2">Mi <em>Experiencia</em></h2>
+      <div class="title-underline"></div>
+    </div>
+
+    <div class="info-card">
+      <div class="info-header">
+        <div>
+          <div class="info-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+            Apoyo en Desarrollo Web & Redes
+          </div>
+          <div class="info-subtitle">Empresa de Servicios de Redes y Telecomunicaciones</div>
+        </div>
+        <span class="info-date">Práctica / Aprendizaje</span>
+      </div>
+      <p class="info-desc">Desempeñé un rol de apoyo en un entorno técnico enfocado en infraestructura de redes, colaborando directamente con un desarrollador experimentado en el diseño y maquetación de una página web.</p>
+      <ul class="info-bullets">
+        <li>Colaboración mano a mano en la estructuración y maquetación de componentes web.</li>
+        <li>Comprensión práctica sobre el flujo de trabajo en proyectos reales y dinámicas de aprendizaje continuo.</li>
+        <li>Contacto directo con el entorno técnico de redes y entornos digitales corporativos.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="educacion">
+  <div class="wrap reveal">
+    <div class="section-title-wrap reveal-title">
+      <div class="eyebrow">03 — Formación Académica</div>
+      <h2 class="h2">Mi <em>Educación</em></h2>
+      <div class="title-underline"></div>
+    </div>
+
+    <div class="info-card">
+      <div class="info-header">
+        <div>
+          <div class="info-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+            Ingeniería en Ciencias y Sistemas
+          </div>
+          <div class="info-subtitle">Universidad de San Carlos de Guatemala (USAC)</div>
+        </div>
+        <span class="info-date">En Curso</span>
+      </div>
+      <p class="info-desc">Estudiante universitario enfocado en fortalecer bases sólidas de lógica, matemáticas y fundamentos de ciencias de la computación.</p>
+    </div>
+
+    <div class="info-card">
+      <div class="info-header">
+        <div>
+          <div class="info-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+            Cursos de Computación Avanzada
+          </div>
+          <div class="info-subtitle">Formación Académica y Complementaria</div>
+        </div>
+        <span class="info-date">Completado</span>
+      </div>
+      <p class="info-desc">Cursos enfocados en habilidades de informática, uso avanzado de software, resolución práctica de problemas técnicos e introducción al desarrollo.</p>
+    </div>
+  </div>
+</section>
+
 <section id="skills">
   <div class="wrap reveal">
-    <div class="eyebrow">02 — Stack</div>
-    <h2 class="h2">Lo que estoy <em>aprendiendo</em></h2>
+    <div class="section-title-wrap reveal-title">
+      <div class="eyebrow">04 — Stack</div>
+      <h2 class="h2">Tecnologías y <em>Lenguajes</em></h2>
+      <div class="title-underline"></div>
+    </div>
     <div class="stat-sheet">
       <div class="stat-row">
-        <div class="stat-top"><span class="stat-name">HTML / CSS / JS</span></div>
-        <div class="stat-bar"><div class="stat-fill" data-fill="45"></div></div>
+        <div class="stat-top"><span class="stat-name">🌐 HTML / CSS / JavaScript</span></div>
+        <div class="stat-bar"><div class="stat-fill" data-fill="50"></div></div>
       </div>
       <div class="stat-row">
-        <div class="stat-top"><span class="stat-name">Java</span></div>
+        <div class="stat-top"><span class="stat-name">📊 Google Apps Script & REST API</span></div>
+        <div class="stat-bar"><div class="stat-fill" data-fill="40"></div></div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-top"><span class="stat-name">☕ Java</span></div>
         <div class="stat-bar"><div class="stat-fill" data-fill="35"></div></div>
       </div>
       <div class="stat-row">
-        <div class="stat-top"><span class="stat-name">Python</span></div>
+        <div class="stat-top"><span class="stat-name">🐍 Python</span></div>
         <div class="stat-bar"><div class="stat-fill" data-fill="30"></div></div>
       </div>
-      <div class="stat-note-bottom mono">// primer año en curso — este panel se irá llenando con el tiempo.</div>
+      <div class="stat-row">
+        <div class="stat-top"><span class="stat-name">🛠️ Herramientas & Despliegue (Git / Vercel)</span></div>
+        <div class="stat-bar"><div class="stat-fill" data-fill="45"></div></div>
+      </div>
+      <div class="stat-note-bottom mono">// tecnologías utilizadas en proyectos reales y formación en curso.</div>
     </div>
   </div>
 </section>
 
 <section id="projects">
   <div class="wrap reveal">
-    <div class="eyebrow">03 — Proyectos</div>
-    <h2 class="h2">Lo que he <em>construido y desarrollo</em></h2>
+    <div class="section-title-wrap reveal-title">
+      <div class="eyebrow">05 — Proyectos</div>
+      <h2 class="h2">Lo que he <em>construido y desarrollo</em></h2>
+      <div class="title-underline"></div>
+    </div>
     <div class="projects-grid">
       
       <!-- Proyecto 1 -->
@@ -570,8 +908,9 @@
             <span class="tag">E-commerce</span>
             <span class="tag">JavaScript</span>
             <span class="tag">Carrito + WhatsApp</span>
+            <span class="tag">Vercel</span>
           </div>
-          <h3>El Rack de las Playeras GT</h3>
+          <h3>🛍️ El Rack de las Playeras GT</h3>
           <p>Catálogo en línea de playeras y gorras con carrito de compras, filtros por talla y categoría, y checkout coordinado por WhatsApp.</p>
           <div class="btn-row">
             <a class="btn btn-primary" href="https://elrackdelasplayerasgt.vercel.app/" target="_blank" rel="noopener">Ver sitio ↗</a>
@@ -594,9 +933,9 @@
           <div class="tag-row">
             <span class="tag wip">⚡ En Desarrollo</span>
             <span class="tag">Google Sheets API</span>
-            <span class="tag">Automation</span>
+            <span class="tag">Apps Script</span>
           </div>
-          <h3>Catálogo Dinámico & Apps Script</h3>
+          <h3>⚙️ Catálogo Dinámico & Apps Script</h3>
           <p>Sistema ligero de gestión de productos conectado con Google Sheets como base de datos en tiempo real.</p>
           <div class="btn-row">
             <a class="btn btn-ghost" style="cursor: default; opacity: 0.8;">Próximamente 🛠️</a>
@@ -617,43 +956,29 @@
   </div>
 </section>
 
-<!-- SECCIÓN DE CERTIFICACIONES Y CURSOS -->
 <section id="certificaciones">
   <div class="wrap reveal">
-    <div class="eyebrow">04 — Logros y Formación</div>
-    <h2 class="h2">Certificaciones y <em>Cursos</em></h2>
-    
+    <div class="section-title-wrap reveal-title">
+      <div class="eyebrow">06 — Logros y Formación</div>
+      <h2 class="h2">Certificaciones y <em>Cursos</em></h2>
+      <div class="title-underline"></div>
+    </div>
+
     <div class="certs-grid">
-      <!-- Tarjeta 1 -->
       <div class="cert-card">
         <div class="cert-icon">
-          <dotlottie-player 
-            src="https://assets10.lottiefiles.com/packages/lf20_u4jjb58y.json" 
-            background="transparent" 
-            speed="1" 
-            style="width: 45px; height: 45px;" 
-            loop 
-            autoplay>
-          </dotlottie-player>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
         </div>
         <div class="cert-content">
           <h3>Excel Inicia - Evaluación Técnica</h3>
-          <span class="cert-issuer">INTECAP</span>
+          <span class="cert-issuer">USAC</span>
           <span class="cert-date">Septiembre 2025</span>
         </div>
       </div>
 
-      <!-- Tarjeta 2 -->
       <div class="cert-card">
         <div class="cert-icon">
-          <dotlottie-player 
-            src="https://assets10.lottiefiles.com/packages/lf20_u4jjb58y.json" 
-            background="transparent" 
-            speed="1" 
-            style="width: 45px; height: 45px;" 
-            loop 
-            autoplay>
-          </dotlottie-player>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
         </div>
         <div class="cert-content">
           <h3>Estrategias de Aprendizaje y Estudio</h3>
@@ -665,11 +990,38 @@
   </div>
 </section>
 
+<!-- SECCIÓN CV -->
+<section id="cv">
+  <div class="wrap reveal">
+    <div class="section-title-wrap reveal-title">
+      <div class="eyebrow">07 — Documento</div>
+      <h2 class="h2">Mi <em>Currículum</em></h2>
+      <div class="title-underline"></div>
+    </div>
+    <div class="contact-box" style="padding:40px;">
+      <div class="contact-avatar">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+      </div>
+      <h2 style="font-size:24px;">¿Buscas mi CV?</h2>
+      <p>Descarga mi currículum en PDF con mi perfil, experiencia, educación y certificaciones.</p>
+      <div class="contact-row">
+        <a class="btn btn-primary" href="CV-Luis-Gabriel-Solis-Garcia.pdf" download>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          Descargar CV (PDF)
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- SECCIÓN TERMINAL INTERACTIVA -->
 <section id="terminal">
   <div class="wrap reveal">
-    <div class="eyebrow">05 — Interactivo</div>
-    <h2 class="h2">Consola de <em>Comandos</em></h2>
+    <div class="section-title-wrap reveal-title">
+      <div class="eyebrow">08 — Interactivo</div>
+      <h2 class="h2">Consola de <em>Comandos</em></h2>
+      <div class="title-underline"></div>
+    </div>
     <div class="terminal-card">
       <div class="terminal-header">
         <span class="dot-red"></span>
@@ -683,20 +1035,38 @@
         </div>
         <div class="terminal-input-row">
           <span class="term-user">guest@gabrielsolis:~$</span>
-          <input type="text" id="termInput" placeholder="escribe un comando..." autofocus autocomplete="off">
+          <input type="text" id="termInput" placeholder="escribe un comando..." autocomplete="off">
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- SECCIÓN CONTACTO CON ICONO DE PERSONA -->
 <section id="contact">
   <div class="wrap reveal">
     <div class="contact-box">
+      <div class="contact-avatar">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </div>
       <h2>¿Hablamos?</h2>
       <p>Estoy abierto a conectar, aprender y colaborar en proyectos.</p>
       <div class="contact-row">
-        <a class="btn btn-primary" href="https://github.com/gab123kd" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="btn btn-primary" href="https://github.com/Trikis67" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+          GitHub ↗
+        </a>
+        <a class="btn btn-ghost" href="mailto:gabrielsolis8002@icloud.com">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          gabrielsolis8002@icloud.com
+        </a>
+        <a class="btn btn-ghost" href="https://wa.me/50234405335" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+          +502 3440-5335
+        </a>
       </div>
     </div>
   </div>
@@ -706,7 +1076,6 @@
   © 2026 Gabriel Solis · Hecho mientras aprendo a construir cosas
 </footer>
 
-<!-- CONTROLES FLOTANTES -->
 <div class="floating-controls">
   <button class="floating-btn" id="backToTop" aria-label="Volver arriba">↑</button>
   <button class="floating-btn music-btn" id="musicBtn" aria-label="Reproducir música">
@@ -714,7 +1083,6 @@
   </button>
 </div>
 
-<!-- MODAL POPUP -->
 <div class="modal-overlay" id="projectModal" onclick="closeModal(event)">
   <div class="modal-content">
     <button class="modal-close" onclick="closeModalForce()">&times;</button>
@@ -729,8 +1097,31 @@
 </audio>
 
 <script>
+  // PANTALLA DE CARGA SIMULADA
+  let progress = 0;
+  const loaderFill = document.getElementById('loaderFill');
+  const loaderText = document.getElementById('loaderText');
+  const loaderWrapper = document.getElementById('loader-wrapper');
+
+  const progressInterval = setInterval(() => {
+    progress += Math.floor(Math.random() * 15) + 5;
+    if (progress >= 100) {
+      progress = 100;
+      clearInterval(progressInterval);
+      loaderFill.style.width = '100%';
+      loaderText.textContent = 'CARGANDO... 100%';
+      
+      setTimeout(() => {
+        loaderWrapper.classList.add('fade-out');
+      }, 300);
+    } else {
+      loaderFill.style.width = progress + '%';
+      loaderText.textContent = `CARGANDO... ${progress}%`;
+    }
+  }, 120);
+
   // TYPING EFFECT
-  const roles = ["Estudiante de Ingeniería en Sistemas", "Desarrollador Web", "Entusiasta del Código"];
+  const roles = ["Estudiante de Ingeniería USAC", "Desarrollador Web", "Entusiasta del Código"];
   let roleIdx = 0, charIdx = 0, isDeleting = false;
   const typingEl = document.getElementById('typingText');
 
@@ -864,38 +1255,270 @@
   }, {threshold:0.15});
   revealEls.forEach(el => io.observe(el));
 
+  // ANIMACIÓN DE TÍTULOS DE SECCIÓN (eyebrow + h2 + línea dorada)
+  const titleEls = document.querySelectorAll('.reveal-title');
+  const titleIo = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('show');
+      }
+    });
+  }, {threshold:0.4});
+  titleEls.forEach(el => titleIo.observe(el));
+
   // TERMINAL INTERACTIVA
   const termInput = document.getElementById('termInput');
   const termOutput = document.getElementById('termOutput');
   const termBody = document.getElementById('termBody');
 
+  let gameActive = false;
+  const boardSize = 5;
+  const totalMines = 3;
+  let board = [];
+  let revealedCount = 0;
+
   const commands = {
-    'help': 'Comandos disponibles: <span class="term-cmd">about</span>, <span class="term-cmd">skills</span>, <span class="term-cmd">projects</span>, <span class="term-cmd">certs</span>, <span class="term-cmd">github</span>, <span class="term-cmd">clear</span>',
-    'about': 'Luis Gabriel Solís García — Estudiante de 1er año de Ingeniería en Sistemas apasionado por el desarrollo.',
-    'skills': 'Stack actual: HTML, CSS, JavaScript, Java y Python.',
-    'projects': '1. El Rack de las Playeras GT (E-commerce)<br>2. Integración Sheets API + Apps Script (En desarrollo)',
-    'certs': '1. Excel Inicia (INTECAP)<br>2. Estrategias de Aprendizaje (USAC)',
-    'github': 'Visita mi perfil en: <a href="https://github.com/gab123kd" target="_blank" style="color:var(--gold);text-decoration:underline;">github.com/gab123kd</a>'
+    'help': 'Comandos: <span class="term-cmd">about</span>, <span class="term-cmd">theme &lt;default|retro|cyber&gt;</span>, <span class="term-cmd">matrix</span>, <span class="term-cmd">buscaminas</span>, <span class="term-cmd">triple t</span>, <span class="term-cmd">github</span>, <span class="term-cmd">cv</span>, <span class="term-cmd">clear</span>',
+    'about': 'Luis Gabriel Solís García — Estudiante de Ingeniería en Sistemas en USAC.',
+    'github': 'Visita mi perfil en: <a href="https://github.com/Trikis67" target="_blank" style="color:var(--gold);text-decoration:underline;">github.com/Trikis67</a>',
+    'cv': 'Descarga mi CV: <a href="CV-Luis-Gabriel-Solis-Garcia.pdf" download style="color:var(--gold);text-decoration:underline;">CV-Luis-Gabriel-Solis-Garcia.pdf</a>'
   };
+
+  function runMatrixEffect() {
+    const resLine = document.createElement('div');
+    resLine.className = 'term-res matrix-text';
+    resLine.innerHTML = 'Entrando en la Matrix...';
+    termOutput.appendChild(resLine);
+    
+    let count = 0;
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()*&^%';
+    
+    const interval = setInterval(() => {
+      let line = '';
+      for (let i = 0; i < 25; i++) {
+        line += chars.charAt(Math.floor(Math.random() * chars.length)) + ' ';
+      }
+      const lineEl = document.createElement('p');
+      lineEl.className = 'matrix-text';
+      lineEl.textContent = line;
+      termOutput.appendChild(lineEl);
+      termBody.scrollTop = termBody.scrollHeight;
+      
+      count++;
+      if (count > 20) {
+        clearInterval(interval);
+        const endLine = document.createElement('p');
+        endLine.className = 'term-res';
+        endLine.innerHTML = 'Conexión Matrix finalizada.';
+        termOutput.appendChild(endLine);
+        termBody.scrollTop = termBody.scrollHeight;
+      }
+    }, 80);
+  }
+
+  function runTungTungEffect() {
+    const container = document.createElement('div');
+    container.className = 'tung-container';
+    container.innerHTML =
+      '<img src="tungtungtungsahur.png" alt="Bailando" class="tung-img">' +
+      '<div class="tung-text">TUNG TUNG TUNG SAHUR</div>';
+    termOutput.appendChild(container);
+    termBody.scrollTop = termBody.scrollHeight;
+
+    setTimeout(() => {
+      container.classList.add('tung-fade');
+      const endLine = document.createElement('p');
+      endLine.className = 'term-res';
+      endLine.textContent = 'El baile ha terminado. 🥁';
+      termOutput.appendChild(endLine);
+      termBody.scrollTop = termBody.scrollHeight;
+    }, 4500);
+  }
+
+  function initMinesweeper() {
+    gameActive = true;
+    revealedCount = 0;
+    board = [];
+
+    for (let r = 0; r < boardSize; r++) {
+      let row = [];
+      for (let c = 0; c < boardSize; c++) {
+        row.push({ isMine: false, revealed: false, flagged: false, count: 0 });
+      }
+      board.push(row);
+    }
+
+    let minesPlaced = 0;
+    while (minesPlaced < totalMines) {
+      let r = Math.floor(Math.random() * boardSize);
+      let c = Math.floor(Math.random() * boardSize);
+      if (!board[r][c].isMine) {
+        board[r][c].isMine = true;
+        minesPlaced++;
+      }
+    }
+
+    for (let r = 0; r < boardSize; r++) {
+      for (let c = 0; c < boardSize; c++) {
+        if (board[r][c].isMine) continue;
+        let count = 0;
+        for (let dr = -1; dr <= 1; dr++) {
+          for (let dc = -1; dc <= 1; dc++) {
+            let nr = r + dr, nc = c + dc;
+            if (nr >= 0 && nr < boardSize && nc >= 0 && nc < boardSize) {
+              if (board[nr][nc].isMine) count++;
+            }
+          }
+        }
+        board[r][c].count = count;
+      }
+    }
+
+    return `<span style="color:var(--gold)">💣 BUSCAMINAS INICIADO (Tablero 5x5, ${totalMines} minas)</span><br>` +
+           `Comandos del juego:<br>` +
+           `• <span class="term-cmd">open X Y</span> (ej: <span class="term-cmd">open 1 2</span> para abrir)<br>` +
+           `• <span class="term-cmd">flag X Y</span> (ej: <span class="term-cmd">flag 1 2</span> marcar/desmarcar)<br>` +
+           `• <span class="term-cmd">quit</span> (para salir del juego)<br><br>` +
+           renderBoard();
+  }
+
+  function renderBoard(showAll = false) {
+    let out = "<pre style='font-family:monospace; line-height:1.2; color:var(--text)'>";
+    out += "    0 1 2 3 4\n";
+    out += "   -----------\n";
+
+    for (let r = 0; r < boardSize; r++) {
+      out += r + " | ";
+      for (let c = 0; c < boardSize; c++) {
+        let cell = board[r][c];
+        if (showAll && cell.isMine) {
+          out += "💣 ";
+        } else if (cell.flagged) {
+          out += "🚩 ";
+        } else if (!cell.revealed) {
+          out += "▪ ";
+        } else if (cell.isMine) {
+          out += "💥 ";
+        } else if (cell.count > 0) {
+          out += cell.count + " ";
+        } else {
+          out += "· ";
+        }
+      }
+      out += "\n";
+    }
+    out += "</pre>";
+    return out;
+  }
+
+  function processGameCommand(cmd) {
+    let parts = cmd.trim().split(/\s+/);
+    let action = parts[0];
+
+    if (action === 'quit') {
+      gameActive = false;
+      return "Has salido del Buscaminas.";
+    }
+
+    if ((action === 'open' || action === 'flag') && parts.length === 3) {
+      let r = parseInt(parts[1]);
+      let c = parseInt(parts[2]);
+
+      if (isNaN(r) || isNaN(c) || r < 0 || r >= boardSize || c < 0 || c >= boardSize) {
+        return "<span style='color:#ff5f56'>Coordenadas inválidas. Usa números de 0 a 4. Ejemplo: 'open 1 2'</span>";
+      }
+
+      let cell = board[r][c];
+
+      if (action === 'flag') {
+        if (cell.revealed) return "No puedes poner bandera en una casilla revelada.";
+        cell.flagged = !cell.flagged;
+        return renderBoard();
+      }
+
+      if (action === 'open') {
+        if (cell.flagged) return "La casilla tiene bandera. Quítala con 'flag " + r + " " + c + "' primero.";
+        if (cell.revealed) return "La casilla ya está abierta.";
+
+        cell.revealed = true;
+
+        if (cell.isMine) {
+          gameActive = false;
+          return renderBoard(true) + "<br><span style='color:#ff5f56'>💥 ¡BOOM! Has tocado una mina. Juego terminado. Escribe 'buscaminas' para reintentar.</span>";
+        }
+
+        revealedCount++;
+
+        if (revealedCount === (boardSize * boardSize) - totalMines) {
+          gameActive = false;
+          return renderBoard(true) + "<br><span style='color:#27c93f'>🎉 ¡FELICIDADES! Despejaste todo el campo minado.</span>";
+        }
+
+        return renderBoard();
+      }
+    }
+
+    return "<span style='color:var(--muted)'>Comando de juego no válido. Usa 'open X Y', 'flag X Y' o 'quit'.</span>";
+  }
 
   termInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
-      const inputVal = termInput.value.trim().toLowerCase();
+      const rawVal = termInput.value.trim();
+      const inputVal = rawVal.toLowerCase();
       if (inputVal === '') return;
 
       const userLine = document.createElement('p');
-      userLine.innerHTML = `<span class="term-user">guest@gabrielsolis:~$</span> ${inputVal}`;
+      userLine.innerHTML = `<span class="term-user">guest@gabrielsolis:~$</span> ${rawVal}`;
       termOutput.appendChild(userLine);
+
+      const parts = inputVal.split(/\s+/);
+      const mainCmd = parts[0];
 
       if (inputVal === 'clear') {
         termOutput.innerHTML = '';
+      } else if (gameActive) {
+        let gameRes = processGameCommand(inputVal);
+        const resLine = document.createElement('div');
+        resLine.className = 'term-res';
+        resLine.innerHTML = gameRes;
+        termOutput.appendChild(resLine);
+      } else if (mainCmd === 'theme') {
+        const themeName = parts[1];
+        if (['default', 'retro', 'cyber'].includes(themeName)) {
+          document.body.className = themeName === 'default' ? '' : `theme-${themeName}`;
+          
+          document.body.classList.add('theme-transition');
+          setTimeout(() => {
+            document.body.classList.remove('theme-transition');
+          }, 500);
+
+          const resLine = document.createElement('p');
+          resLine.className = 'term-res';
+          resLine.innerHTML = `Tema cambiado a: <span style="color:var(--gold)">${themeName}</span>`;
+          termOutput.appendChild(resLine);
+        } else {
+          const resLine = document.createElement('p');
+          resLine.className = 'term-res';
+          resLine.innerHTML = 'Uso: <span class="term-cmd">theme &lt;default|retro|cyber&gt;</span>';
+          termOutput.appendChild(resLine);
+        }
+      } else if (mainCmd === 'matrix') {
+        runMatrixEffect();
+      } else if (inputVal === 'triple t') {
+        runTungTungEffect();
+      } else if (inputVal === 'buscaminas' || inputVal === 'minesweeper') {
+        let gameRes = initMinesweeper();
+        const resLine = document.createElement('div');
+        resLine.className = 'term-res';
+        resLine.innerHTML = gameRes;
+        termOutput.appendChild(resLine);
       } else {
         const resLine = document.createElement('p');
         resLine.className = 'term-res';
         if (commands[inputVal]) {
           resLine.innerHTML = commands[inputVal];
         } else {
-          resLine.innerHTML = `Comando no reconocido: '${inputVal}'. Escribe <span class="term-cmd">'help'</span>.`;
+          resLine.innerHTML = `Comando no reconocido: '${rawVal}'. Escribe <span class="term-cmd">'help'</span>.`;
         }
         termOutput.appendChild(resLine);
       }
