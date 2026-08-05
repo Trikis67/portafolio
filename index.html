@@ -1899,7 +1899,7 @@
   let revealedCount = 0;
 
   const commands = {
-    'help': 'Comandos: <span class="term-cmd">about</span>, <span class="term-cmd">theme &lt;default|retro|cyber&gt;</span>, <span class="term-cmd">matrix</span>, <span class="term-cmd">buscaminas</span>, <span class="term-cmd">triple t</span>, <span class="term-cmd">github</span>, <span class="term-cmd">cv</span>, <span class="term-cmd">clear</span>',
+    'help': 'Comandos: <span class="term-cmd">about</span>, <span class="term-cmd">theme &lt;default|retro|cyber&gt;</span>, <span class="term-cmd">matrix</span>, <span class="term-cmd">buscaminas</span>, <span class="term-cmd">render3d</span>, <span class="term-cmd">triple t</span>, <span class="term-cmd">github</span>, <span class="term-cmd">cv</span>, <span class="term-cmd">clear</span>',
     'about': 'Luis Gabriel Solís García — Estudiante de Ingeniería en Sistemas en USAC.',
     'github': 'Visita mi perfil en: <a href="https://github.com/Trikis67" target="_blank" style="color:var(--gold);text-decoration:underline;">github.com/Trikis67</a>',
     'cv': 'Descarga mi CV: <a href="CV-Luis-Gabriel-Solis-Garcia.pdf" download style="color:var(--gold);text-decoration:underline;">CV-Luis-Gabriel-Solis-Garcia.pdf</a>'
@@ -2082,6 +2082,99 @@
     return "<span style='color:var(--muted)'>Comando de juego no válido. Usa 'open X Y', 'flag X Y' o 'quit'.</span>";
   }
 
+  // ============ ESCENA 3D EN VIVO (ASCII WIREFRAME) ============
+  let scene3DActive = false;
+  let scene3DTimer = null;
+  let scene3DPreEl = null;
+  let angleX = 0.4, angleY = 0.3;
+
+  const cubeVertices = [
+    [-1,-1,-1],[1,-1,-1],[1,1,-1],[-1,1,-1],
+    [-1,-1, 1],[1,-1, 1],[1,1, 1],[-1,1, 1]
+  ];
+  const cubeEdges = [
+    [0,1],[1,2],[2,3],[3,0],
+    [4,5],[5,6],[6,7],[7,4],
+    [0,4],[1,5],[2,6],[3,7]
+  ];
+
+  function rotatePoint([x,y,z], ax, ay) {
+    const cosY = Math.cos(ay), sinY = Math.sin(ay);
+    const x1 = x*cosY - z*sinY;
+    const z1 = x*sinY + z*cosY;
+    const cosX = Math.cos(ax), sinX = Math.sin(ax);
+    const y1 = y*cosX - z1*sinX;
+    const z2 = y*sinX + z1*cosX;
+    return [x1, y1, z2];
+  }
+
+  function drawLine(grid, x0, y0, x1, y1, ch) {
+    x0 = Math.round(x0); y0 = Math.round(y0);
+    x1 = Math.round(x1); y1 = Math.round(y1);
+    const dx = Math.abs(x1-x0), dy = Math.abs(y1-y0);
+    const sx = x0 < x1 ? 1 : -1, sy = y0 < y1 ? 1 : -1;
+    let err = dx - dy;
+    while (true) {
+      if (y0 >= 0 && y0 < grid.length && x0 >= 0 && x0 < grid[0].length) {
+        grid[y0][x0] = ch;
+      }
+      if (x0 === x1 && y0 === y1) break;
+      const e2 = 2*err;
+      if (e2 > -dy) { err -= dy; x0 += sx; }
+      if (e2 < dx) { err += dx; y0 += sy; }
+    }
+  }
+
+  function renderScene3DFrame() {
+    const W = 46, H = 22;
+    const grid = Array.from({length: H}, () => Array(W).fill(' '));
+
+    const projected = cubeVertices.map(v => {
+      const [x, y, z] = rotatePoint(v, angleX, angleY);
+      const scale = 3 / (z + 4);
+      return [W/2 + x*scale*10, H/2 + y*scale*8, z];
+    });
+
+    cubeEdges.forEach(([a,b]) => {
+      const [x0,y0] = projected[a];
+      const [x1,y1] = projected[b];
+      drawLine(grid, x0, y0, x1, y1, '#');
+    });
+
+    if (scene3DPreEl) scene3DPreEl.textContent = grid.map(r => r.join('')).join('\n');
+
+    angleX += 0.04;
+    angleY += 0.03;
+
+    if (scene3DActive) scene3DTimer = setTimeout(renderScene3DFrame, 60);
+  }
+
+  function startScene3D() {
+    scene3DActive = true;
+    angleX = 0.4; angleY = 0.3;
+
+    const info = document.createElement('p');
+    info.className = 'term-res';
+    info.innerHTML = '<span style="color:var(--gold)">🧊 ESCENA 3D EN VIVO — Cubo en rotación</span><br>Escribe <span class="term-cmd">quit</span> para detener.';
+    termOutput.appendChild(info);
+
+    scene3DPreEl = document.createElement('pre');
+    scene3DPreEl.style.fontFamily = "'JetBrains Mono', monospace";
+    scene3DPreEl.style.lineHeight = '1.1';
+    scene3DPreEl.style.color = 'var(--blue)';
+    termOutput.appendChild(scene3DPreEl);
+
+    renderScene3DFrame();
+    termBody.scrollTop = termBody.scrollHeight;
+  }
+
+  function stopScene3D() {
+    scene3DActive = false;
+    if (scene3DTimer) clearTimeout(scene3DTimer);
+    scene3DPreEl = null;
+    return 'Escena 3D detenida.';
+  }
+
   termInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
       const rawVal = termInput.value.trim();
@@ -2104,6 +2197,16 @@
         termOutput.appendChild(resLine);
       } else if (inputVal === 'clear') {
         termOutput.innerHTML = '';
+      } else if (scene3DActive) {
+        const resLine = document.createElement('p');
+        resLine.className = 'term-res';
+        if (inputVal === 'quit') {
+          resLine.textContent = stopScene3D();
+        } else {
+          resLine.style.color = '#ff5f56';
+          resLine.textContent = "Estás dentro de la escena 3D. Escribe 'quit' para salir.";
+        }
+        termOutput.appendChild(resLine);
       } else if (gameActive) {
         let gameRes = processGameCommand(inputVal);
         const resLine = document.createElement('div');
@@ -2137,6 +2240,8 @@
         resLine.className = 'term-res';
         resLine.innerHTML = gameRes;
         termOutput.appendChild(resLine);
+      } else if (inputVal === 'render3d') {
+        startScene3D();
       } else if (commands[inputVal]) {
         const resLine = document.createElement('p');
         resLine.className = 'term-res';
