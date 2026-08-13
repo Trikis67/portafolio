@@ -7,9 +7,23 @@
 <link rel="icon" type="image/png" href="logo.png">
 
 <meta name="description" content="Portafolio de Gabriel Solis, estudiante de Ingeniería en Sistemas en la USAC." />
+
+<!-- OPEN GRAPH / TWITTER CARD: hace que el logo aparezca como imagen de vista previa
+     al buscar o compartir el enlace de la página (Google, WhatsApp, redes sociales, etc.) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Gabriel Solis - Portafolio">
+<meta property="og:description" content="Portafolio de Gabriel Solis, estudiante de Ingeniería en Sistemas en la USAC.">
+<meta property="og:image" content="https://trikis.nl/logo.png">
+<meta property="og:image:alt" content="Logo Gabriel Solis">
+<meta property="og:url" content="https://trikis.nl/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Gabriel Solis - Portafolio">
+<meta name="twitter:description" content="Portafolio de Gabriel Solis, estudiante de Ingeniería en Sistemas en la USAC.">
+<meta name="twitter:image" content="https://trikis.nl/logo.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 
 <!-- Carga de DotLottie para animaciones e iconos animados -->
 <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
@@ -18,15 +32,16 @@
 
 <style>
   :root{
-    --bg:#0b0e1a;
-    --panel:#141a2e;
-    --panel-2:#171f38;
-    --border:#242e4d;
-    --gold:#f0b429;
-    --blue:#5b8def;
-    --text:#edeff7;
-    --muted:#9aa3c0;
-    --radius:14px;
+    --bg:#0a1a2c;
+    --panel:#0f2338;
+    --panel-2:#13293f;
+    --border:#28496b;
+    --gold:#ffb703;
+    --blue:#7fc8f8;
+    --text:#eaf3fb;
+    --muted:#8fadc7;
+    --radius:3px;
+    --line-w:1px;
   }
 
   /* TEMAS DINÁMICOS DESDE LA CONSOLA */
@@ -207,7 +222,7 @@
     letter-spacing: 0.05em;
   }
 
-  h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-0.02em;}
+  h1,h2,h3{font-family:'Big Shoulders Display',sans-serif;letter-spacing:0.01em;text-transform:uppercase;}
   .mono{font-family:'JetBrains Mono',monospace;}
   a{color:inherit;text-decoration:none;}
   img{max-width:100%;display:block;}
@@ -218,14 +233,44 @@
     content:"";
     position:fixed;inset:0;
     background-image:
-      radial-gradient(circle at 15% 20%, rgba(91,141,239,0.12), transparent 40%),
-      radial-gradient(circle at 85% 75%, rgba(240,180,41,0.1), transparent 40%),
-      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-    background-size:auto,auto,42px 42px,42px 42px;
+      radial-gradient(circle at 15% 10%, rgba(127,200,248,0.09), transparent 45%),
+      radial-gradient(circle at 90% 80%, rgba(255,183,3,0.06), transparent 45%),
+      linear-gradient(rgba(127,200,248,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(127,200,248,0.06) 1px, transparent 1px),
+      linear-gradient(rgba(127,200,248,0.13) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(127,200,248,0.13) 1px, transparent 1px);
+    background-size:auto,auto,14px 14px,14px 14px,70px 70px,70px 70px;
     pointer-events:none;
     z-index:0;
   }
+
+  /* MARCAS DE ESCUADRA — esquinas tipo plano técnico, usadas en tarjetas */
+  [data-tilt]{ position:relative; }
+  [data-tilt]::before, [data-tilt]::after,
+  .stat-sheet::before, .stat-sheet::after,
+  .contact-box::before, .contact-box::after,
+  .terminal-card .corner-mark{
+    content:"";
+    position:absolute;
+    width:14px;height:14px;
+    border-top:2px solid rgba(127,200,248,0.55);
+    border-left:2px solid rgba(127,200,248,0.55);
+    top:8px;left:8px;
+    pointer-events:none;
+    opacity:0;
+    transition:opacity .3s ease;
+    z-index:3;
+  }
+  [data-tilt]::after, .stat-sheet::after, .contact-box::after{
+    top:auto;left:auto;bottom:8px;right:8px;
+    border-top:none;border-left:none;
+    border-bottom:2px solid rgba(255,183,3,0.55);
+    border-right:2px solid rgba(255,183,3,0.55);
+  }
+  [data-tilt]:hover::before, [data-tilt]:hover::after,
+  .stat-sheet:hover::before, .stat-sheet:hover::after,
+  .contact-box:hover::before, .contact-box:hover::after{ opacity:1; }
+  .stat-sheet, .contact-box{ position:relative; }
 
   /* NAV */
   header{
@@ -243,9 +288,9 @@
     display:flex;align-items:center;justify-content:space-between;
     padding:16px 24px;
   }
-  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:14px;font-family:'JetBrains Mono',monospace;letter-spacing:.06em;border:1px solid var(--border);padding:6px 10px;border-radius:2px;}
   .brand .dot{
-    width:8px;height:8px;border-radius:50%;background:var(--gold);
+    width:7px;height:7px;border-radius:50%;background:var(--gold);
     box-shadow:0 0 10px var(--gold);
     animation: pulseGlow 2s infinite ease-in-out;
   }
@@ -260,16 +305,16 @@
   .navlinks a.active{color:var(--gold);}
   .navcta{
     font-family:'JetBrains Mono',monospace;font-size:12px;
-    border:1px solid var(--border);padding:8px 14px;border-radius:8px;
+    border:1px solid var(--border);padding:8px 14px;border-radius:2px;
     color:var(--text);transition: .3s ease;
     display: inline-flex; align-items: center; gap: 6px;
   }
-  .navcta:hover{border-color:var(--gold);color:var(--gold);box-shadow: 0 0 12px rgba(240,180,41,0.2);}
+  .navcta:hover{border-color:var(--gold);color:var(--gold);box-shadow: 0 0 12px rgba(255,183,3,0.2);}
   .nav-actions{display:flex;align-items:center;gap:10px;}
   .navcta-cv{
     font-family:'JetBrains Mono',monospace;font-size:12px;
-    border:1px solid var(--gold);padding:8px 14px;border-radius:8px;
-    color:var(--gold);background:rgba(240,180,41,0.08);transition: .3s ease;
+    border:1px solid var(--gold);padding:8px 20px;border-radius:2px;
+    color:var(--gold);background:rgba(255,183,3,0.08);transition: .3s ease;
     display: inline-flex; align-items: center; gap: 6px;
   }
   .navcta-cv:hover{background:var(--gold);color:#1a1200;box-shadow: 0 0 12px rgba(240,180,41,0.35);}
@@ -307,9 +352,10 @@
   .badge{
     display:inline-flex;align-items:center;gap:8px;
     font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--gold);
-    border:1px solid rgba(240,180,41,0.35);background:rgba(240,180,41,0.08);
-    padding:6px 12px;border-radius:999px;margin-bottom:24px;width:fit-content;
+    border:1px solid rgba(255,183,3,0.5);background:rgba(255,183,3,0.06);
+    padding:6px 12px;border-radius:2px;margin-bottom:24px;width:fit-content;
     backdrop-filter: blur(4px);
+    transform:rotate(-1.2deg);
     transition: color 0.5s ease, border-color 0.5s ease, background-color 0.5s ease;
   }
   .hero-grid{
@@ -329,10 +375,11 @@
     height: 390px !important;
     min-width: 280px;
     min-height: 330px;
-    border-radius: 24px;
+    border-radius: 2px;
     object-fit: cover;
     object-position: center top;
-    box-shadow: 0 0 0 4px var(--panel), 0 0 40px rgba(91, 141, 239, 0.3);
+    filter: grayscale(0.15) contrast(1.05);
+    box-shadow: 0 0 0 1px var(--border), 0 18px 40px rgba(0,0,0,0.45);
     justify-self: center;
     position: relative;
     animation: float 4s ease-in-out infinite;
@@ -343,6 +390,7 @@
 
   body.theme-love .avatar {
     box-shadow: 0 0 0 4px var(--panel), 0 0 40px rgba(233, 30, 99, 0.4);
+    filter:none;
   }
 
   @keyframes float {
@@ -351,17 +399,32 @@
   }
 
   .avatar-glow{
-    position:absolute; inset:-2px;
-    border-radius:26px;
-    background:conic-gradient(from var(--spin-angle,0deg), var(--blue), var(--gold), var(--blue));
+    position:absolute; inset:-14px;
     z-index:-1;
-    filter:blur(18px);
-    opacity:0.55;
-    animation: spinGlow 6s linear infinite;
-    transition: background 0.5s ease;
+    pointer-events:none;
+    background:
+      linear-gradient(var(--gold),var(--gold)) top left / 26px 2px no-repeat,
+      linear-gradient(var(--gold),var(--gold)) top left / 2px 26px no-repeat,
+      linear-gradient(var(--gold),var(--gold)) top right / 26px 2px no-repeat,
+      linear-gradient(var(--gold),var(--gold)) top right / 2px 26px no-repeat,
+      linear-gradient(var(--blue),var(--blue)) bottom left / 26px 2px no-repeat,
+      linear-gradient(var(--blue),var(--blue)) bottom left / 2px 26px no-repeat,
+      linear-gradient(var(--blue),var(--blue)) bottom right / 26px 2px no-repeat,
+      linear-gradient(var(--blue),var(--blue)) bottom right / 2px 26px no-repeat;
+    opacity:0.75;
+    transition: opacity 0.5s ease;
   }
-  @keyframes spinGlow{ to{ --spin-angle:360deg; } }
-  @property --spin-angle{ syntax:'<angle>'; initial-value:0deg; inherits:false; }
+  body.theme-love .avatar-glow{
+    background:
+      linear-gradient(var(--gold),var(--gold)) top left / 26px 2px no-repeat,
+      linear-gradient(var(--gold),var(--gold)) top left / 2px 26px no-repeat,
+      linear-gradient(var(--gold),var(--gold)) top right / 26px 2px no-repeat,
+      linear-gradient(var(--gold),var(--gold)) top right / 2px 26px no-repeat,
+      linear-gradient(var(--gold),var(--gold)) bottom left / 26px 2px no-repeat,
+      linear-gradient(var(--gold),var(--gold)) bottom left / 2px 26px no-repeat,
+      linear-gradient(var(--gold),var(--gold)) bottom right / 26px 2px no-repeat,
+      linear-gradient(var(--gold),var(--gold)) bottom right / 2px 26px no-repeat;
+  }
 
   h1.name{font-size:clamp(34px,6vw,58px);font-weight:700;line-height:1.05;margin-bottom:14px;}
   .role{font-size:18px;color:var(--blue);font-weight:500;margin-bottom:18px;min-height: 28px; transition: color 0.5s ease;}
@@ -374,24 +437,35 @@
   .tagline{color:var(--muted);font-size:17px;max-width:520px;margin-bottom:32px;}
   .btn-row{display:flex;gap:14px;flex-wrap:wrap;}
   .btn{
-    padding:13px 22px;border-radius:10px;font-size:14px;font-weight:600;
-    display:inline-flex;align-items:center;gap:8px;transition:transform .25s cubic-bezier(.2,.9,.3,1.4), box-shadow .3s ease, border-color .3s ease, color .3s ease, background-color .3s ease;
+    padding:13px 22px;border-radius:2px;font-size:13px;font-weight:600;
+    font-family:'JetBrains Mono',monospace;letter-spacing:.03em;text-transform:uppercase;
+    display:inline-flex;align-items:center;gap:8px;transition:transform .2s cubic-bezier(.2,.9,.3,1.4), box-shadow .3s ease, border-color .3s ease, color .3s ease, background-color .3s ease;
     cursor: pointer;
     position:relative;
     will-change: transform;
   }
-  .btn-primary{background:var(--gold);color:#ffffff;border:none; transition: background-color 0.5s ease, transform .25s cubic-bezier(.2,.9,.3,1.4), box-shadow .3s ease;}
-  .btn-primary:hover{box-shadow:0 8px 24px rgba(233,30,99,0.35);}
-  .btn-ghost{border:1px solid var(--border);color:var(--text);background:transparent; transition: border-color 0.5s ease, color 0.5s ease, transform .25s cubic-bezier(.2,.9,.3,1.4);}
-  .btn-ghost:hover{border-color:var(--text);background:rgba(0,0,0,0.03);}
+  .btn-primary{background:var(--gold);color:#0a1a2c;border:1px solid var(--gold); transition: background-color 0.5s ease, transform .2s cubic-bezier(.2,.9,.3,1.4), box-shadow .3s ease;}
+  .btn-primary:hover{box-shadow:0 6px 0 0 rgba(255,183,3,0.25); transform:translateY(-2px);}
+  .btn-ghost{border:1px solid var(--border);color:var(--text);background:transparent; transition: border-color 0.5s ease, color 0.5s ease, transform .2s cubic-bezier(.2,.9,.3,1.4);}
+  .btn-ghost:hover{border-color:var(--blue);color:var(--blue);background:rgba(127,200,248,0.05);}
 
   .eyebrow{
     font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--gold);
     text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px;
+    display:flex;align-items:center;gap:10px;
     transition: color 0.5s ease;
+  }
+  .eyebrow::before{
+    content:"◇";
+    font-size:10px;color:var(--blue);
   }
   .h2{font-size:clamp(26px,4vw,36px);margin-bottom:0;}
   .h2 em{color:var(--gold);font-style:normal; transition: color 0.5s ease;}
+  .sheet-tag{
+    font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);
+    letter-spacing:.08em;margin-left:auto;border:1px dashed var(--border);
+    padding:3px 8px;border-radius:2px;white-space:nowrap;
+  }
 
   .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease;}
   .reveal.show{opacity:1;transform:none;}
@@ -436,7 +510,9 @@
     color: var(--gold);
     margin-bottom: 12px;
     font-family: 'Space Grotesk', sans-serif;
+    text-transform: none;
   }
+  .love-banner h2{ text-transform:none; }
   .love-card p {
     color: var(--text);
     font-size: 15px;
@@ -468,10 +544,15 @@
     transition:opacity .7s ease .15s, transform .7s cubic-bezier(.16,1,.3,1) .15s;
   }
   .title-underline{
-    height:3px;width:0;border-radius:3px;margin-top:16px;
-    background:linear-gradient(90deg,var(--blue),var(--gold));
+    height:1px;width:0;margin-top:18px;position:relative;
+    background:var(--blue);
     transition:width .8s cubic-bezier(.16,1,.3,1) .4s, background 0.5s ease;
   }
+  .title-underline::before, .title-underline::after{
+    content:"";position:absolute;top:-4px;width:1px;height:9px;background:var(--blue);
+  }
+  .title-underline::before{ left:0; }
+  .title-underline::after{ right:0; }
   .section-title-wrap.show .eyebrow{opacity:1;transform:none;}
   .section-title-wrap.show .h2{opacity:1;transform:none;}
   .section-title-wrap.show .title-underline{width:72px;}
@@ -490,7 +571,7 @@
   .quest-list{list-style:none;display:flex;flex-direction:column;gap:14px;}
   .quest-list li{display:flex;align-items:center;gap:12px;font-size:15px;}
   .quest-list .icon{
-    width:34px;height:34px;border-radius:8px;background:var(--panel-2);
+    width:34px;height:34px;border-radius:2px;background:var(--panel-2);
     display:flex;align-items:center;justify-content:center;font-size:16px;border:1px solid var(--border);
     transition: background-color 0.5s ease, border-color 0.5s ease;
   }
@@ -557,8 +638,12 @@
   .stat-row:last-child{margin-bottom:0;}
   .stat-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;}
   .stat-name{font-weight:600;font-size:15px;display:flex;align-items:center;gap:8px;}
-  .stat-bar{height:8px;border-radius:6px;background:var(--panel-2);overflow:hidden;border:1px solid var(--border); transition: background-color 0.5s ease, border-color 0.5s ease; position:relative;}
-  .stat-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,var(--blue),var(--gold));width:0%;transition:width 1.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.5s ease; position:relative; overflow:hidden;}
+  .stat-bar{
+    height:10px;border-radius:0;background:var(--panel-2);overflow:hidden;border:1px solid var(--border);
+    background-image:repeating-linear-gradient(90deg, var(--border) 0, var(--border) 1px, transparent 1px, transparent 10%);
+    transition: background-color 0.5s ease, border-color 0.5s ease; position:relative;
+  }
+  .stat-fill{height:100%;border-radius:0;background:repeating-linear-gradient(90deg, var(--blue) 0, var(--blue) 8px, var(--gold) 8px, var(--gold) 9px);width:0%;transition:width 1.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.5s ease; position:relative; overflow:hidden;}
   .stat-fill::after{
     content:"";
     position:absolute; inset:0;
@@ -596,9 +681,9 @@
   .project-info{padding:36px;display:flex;flex-direction:column;justify-content:center;}
   .project-info .tag-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
   .tag{
-    font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--blue);
-    border:1px solid rgba(91,141,239,0.3);background:rgba(91,141,239,0.08);
-    padding:4px 10px;border-radius:6px;display:inline-flex;align-items:center;gap:4px;
+    font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:.03em;
+    border:1px solid rgba(127,200,248,0.3);background:rgba(127,200,248,0.08);
+    padding:4px 10px;border-radius:2px;display:inline-flex;align-items:center;gap:4px;
     transition: color 0.5s ease, border-color 0.5s ease, background-color 0.5s ease;
   }
   .tag.wip{color:var(--gold);border-color:rgba(240,180,41,0.3);background:rgba(240,180,41,0.08);}
@@ -611,7 +696,7 @@
     transition: background 0.5s ease, border-color 0.5s ease;
   }
   .project-visual .mock{
-    width:100%;aspect-ratio:4/3;border-radius:10px;
+    width:100%;aspect-ratio:4/3;border-radius:3px;
     background:var(--bg);border:1px solid var(--border);
     display:flex;flex-direction:column;overflow:hidden;
     transition: transform .3s ease, background-color 0.5s ease, border-color 0.5s ease;
@@ -620,7 +705,7 @@
   .mock-bar{height:26px;background:var(--panel-2);display:flex;align-items:center;gap:6px;padding:0 10px;border-bottom:1px solid var(--border); transition: background-color 0.5s ease, border-color 0.5s ease;}
   .mock-bar span{width:8px;height:8px;border-radius:50%;background:var(--border); transition: background-color 0.5s ease;}
   .mock-body{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px;}
-  .mock-body div{background:var(--panel-2);border-radius:6px;border:1px solid var(--border); transition: background-color 0.5s ease, border-color 0.5s ease;}
+  .mock-body div{background:var(--panel-2);border-radius:2px;border:1px dashed var(--border); transition: background-color 0.5s ease, border-color 0.5s ease;}
   
   @media(max-width:760px){
     .project-card{grid-template-columns:1fr;}
@@ -660,7 +745,7 @@
   .cert-icon {
     width: 50px;
     height: 50px;
-    border-radius: 10px;
+    border-radius: 3px;
     background: var(--panel-2);
     border: 1px solid var(--border);
     display: flex;
@@ -978,14 +1063,22 @@
     background:var(--gold);
   }
   .cursor-ring{
-    width:34px;height:34px;
+    width:26px;height:26px;
     border:1px solid var(--gold);
-    transition:width .2s ease, height .2s ease, border-color .3s ease, opacity .3s ease;
+    border-radius:2px;
+    transform-origin:center;
+    transition:width .2s ease, height .2s ease, border-color .3s ease, opacity .3s ease, transform .2s ease;
     opacity:0.7;
   }
+  .cursor-ring::before, .cursor-ring::after{
+    content:"";position:absolute;background:var(--gold);
+  }
+  .cursor-ring::before{ left:50%;top:-6px;width:1px;height:6px;transform:translateX(-50%); }
+  .cursor-ring::after{ left:50%;bottom:-6px;width:1px;height:6px;transform:translateX(-50%); }
   .cursor-ring.hovering{
-    width:54px;height:54px;
+    width:44px;height:44px;
     border-color:var(--blue);
+    transform:translate(-50%,-50%) rotate(45deg);
     opacity:1;
   }
   @media(hover:none), (pointer:coarse){
@@ -999,6 +1092,64 @@
 
   @media (prefers-reduced-motion: reduce){
     *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+  }
+
+  /* ============ LABORATORIO DE CÓDIGO EN VIVO (NUEVA SECCIÓN) ============ */
+  .lab-wrap{
+    background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+    overflow:hidden;
+    transition: background-color .5s ease, border-color .5s ease;
+  }
+  .lab-tabs{
+    display:flex;gap:0;border-bottom:1px solid var(--border);background:var(--panel-2);
+    transition: background-color .5s ease, border-color .5s ease;
+    overflow-x:auto;
+  }
+  .lab-tab{
+    font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);
+    padding:12px 18px;cursor:pointer;border-right:1px solid var(--border);
+    white-space:nowrap;transition:color .2s ease, background-color .2s ease;
+    background:transparent;
+  }
+  .lab-tab:hover{ color:var(--text); }
+  .lab-tab.active{ color:var(--gold); background:var(--panel); }
+  .lab-body{
+    display:grid;grid-template-columns:1fr 1fr;
+    min-height:340px;
+  }
+  .lab-editor-col{
+    display:flex;flex-direction:column;border-right:1px solid var(--border);
+  }
+  .lab-editor-head{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:8px 14px;font-family:'JetBrains Mono',monospace;font-size:11px;
+    color:var(--muted);background:var(--panel-2);border-bottom:1px solid var(--border);
+  }
+  .lab-run-btn{
+    font-family:'JetBrains Mono',monospace;font-size:11px;color:#0a1a2c;
+    background:var(--gold);border:none;padding:6px 12px;border-radius:2px;
+    cursor:pointer;font-weight:700;letter-spacing:.03em;text-transform:uppercase;
+    transition:transform .15s ease, box-shadow .2s ease;
+  }
+  .lab-run-btn:hover{ transform:translateY(-1px); box-shadow:0 4px 0 0 rgba(255,183,3,0.25); }
+  .lab-textarea{
+    flex:1;width:100%;resize:none;border:none;outline:none;
+    background:#080a12;color:#d1d5db;font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;line-height:1.6;padding:16px;min-height:280px;
+  }
+  .lab-preview-col{ display:flex;flex-direction:column; }
+  .lab-preview-head{
+    padding:8px 14px;font-family:'JetBrains Mono',monospace;font-size:11px;
+    color:var(--muted);background:var(--panel-2);border-bottom:1px solid var(--border);
+  }
+  .lab-iframe{ flex:1;width:100%;min-height:280px;border:none;background:#fff; }
+  .lab-hint{
+    padding:16px 20px;font-size:13px;color:var(--muted);
+    border-top:1px dashed var(--border);
+  }
+  @media(max-width:760px){
+    .lab-body{ grid-template-columns:1fr; }
+    .lab-editor-col{ border-right:none;border-bottom:1px solid var(--border); }
   }
 
   /* AJUSTES PARA PANTALLAS MÓVILES */
@@ -1088,6 +1239,9 @@
       width: auto;
       bottom: 84px;
     }
+
+    .lab-body{ min-height:auto; }
+    .lab-textarea, .lab-iframe{ min-height:220px; }
   }
 </style>
 </head>
@@ -1122,13 +1276,14 @@
       <a href="#skills">Stack</a>
       <a href="#projects">Proyectos</a>
       <a href="#certificaciones">Certificados</a>
+      <a href="#lab">Laboratorio</a>
       <a href="#terminal">Terminal</a>
       <a href="#contact">Contacto</a>
     </div>
     <div class="nav-actions">
-      <a class="navcta-cv" href="CV-Luis-Gabriel-Solis-Garcia.pdf" download>
+      <a class="navcta-cv" href="CV-Luis-Gabriel-Solis-Garcia.pdf" onclick="openPdfModal(); return false;" data-magnetic>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-        Descargar CV
+        Ver CV
       </a>
       <a class="navcta" href="#contact">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
@@ -1153,9 +1308,9 @@
       <p class="tagline">Empezando a construir, un commit a la vez. Aprendiendo HTML, CSS, JavaScript, Java y Python mientras descubro hacia dónde quiero llevar todo esto.</p>
       <div class="btn-row">
         <a class="btn btn-primary" href="#projects" data-magnetic>Ver proyectos</a>
-        <a class="btn btn-ghost" href="CV-Luis-Gabriel-Solis-Garcia.pdf" download data-magnetic>
+        <a class="btn btn-ghost" href="CV-Luis-Gabriel-Solis-Garcia.pdf" onclick="openPdfModal(); return false;" data-magnetic>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-          Descargar CV
+          Ver CV
         </a>
         <a class="btn btn-ghost" href="https://github.com/Trikis67" target="_blank" rel="noopener" data-magnetic>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
@@ -1205,7 +1360,7 @@
 <section id="about">
   <div class="wrap reveal">
     <div class="section-title-wrap reveal-title">
-      <div class="eyebrow">01 — Quién soy</div>
+      <div class="eyebrow">01 — Quién soy<span class="sheet-tag">HOJA 01 / ESC S/E</span></div>
       <h2 class="h2">Aprendiendo a <em>construir</em></h2>
       <div class="title-underline"></div>
     </div>
@@ -1230,7 +1385,7 @@
 <section id="experiencia">
   <div class="wrap reveal">
     <div class="section-title-wrap reveal-title">
-      <div class="eyebrow">02 — Trayectoria Práctica</div>
+      <div class="eyebrow">02 — Trayectoria Práctica<span class="sheet-tag">HOJA 02 / ESC S/E</span></div>
       <h2 class="h2">Mi <em>Experiencia</em></h2>
       <div class="title-underline"></div>
     </div>
@@ -1259,7 +1414,7 @@
 <section id="educacion">
   <div class="wrap reveal">
     <div class="section-title-wrap reveal-title">
-      <div class="eyebrow">03 — Formación Académica</div>
+      <div class="eyebrow">03 — Formación Académica<span class="sheet-tag">HOJA 03 / ESC S/E</span></div>
       <h2 class="h2">Mi <em>Educación</em></h2>
       <div class="title-underline"></div>
     </div>
@@ -1297,7 +1452,7 @@
 <section id="skills">
   <div class="wrap reveal">
     <div class="section-title-wrap reveal-title">
-      <div class="eyebrow">04 — Stack</div>
+      <div class="eyebrow">04 — Stack<span class="sheet-tag">HOJA 04 / ESC S/E</span></div>
       <h2 class="h2">Tecnologías y <em>Lenguajes</em></h2>
       <div class="title-underline"></div>
     </div>
@@ -1330,7 +1485,7 @@
 <section id="projects">
   <div class="wrap reveal">
     <div class="section-title-wrap reveal-title">
-      <div class="eyebrow">05 — Proyectos</div>
+      <div class="eyebrow">05 — Proyectos<span class="sheet-tag">HOJA 05 / ESC S/E</span></div>
       <h2 class="h2">Lo que he <em>construido y desarrollo</em></h2>
       <div class="title-underline"></div>
     </div>
@@ -1394,7 +1549,7 @@
 <section id="certificaciones">
   <div class="wrap reveal">
     <div class="section-title-wrap reveal-title">
-      <div class="eyebrow">06 — Logros y Formación</div>
+      <div class="eyebrow">06 — Logros y Formación<span class="sheet-tag">HOJA 06 / ESC S/E</span></div>
       <h2 class="h2">Certificaciones y <em>Cursos</em></h2>
       <div class="title-underline"></div>
     </div>
@@ -1425,11 +1580,48 @@
   </div>
 </section>
 
+<!-- ============ NUEVA SECCIÓN: LABORATORIO DE CÓDIGO EN VIVO ============ -->
+<section id="lab">
+  <div class="wrap reveal">
+    <div class="section-title-wrap reveal-title">
+      <div class="eyebrow">07 — Interactivo<span class="sheet-tag">HOJA 07 / ESC S/E</span></div>
+      <h2 class="h2">Laboratorio de <em>Código en Vivo</em></h2>
+      <div class="title-underline"></div>
+    </div>
+    <p style="color:var(--muted); margin-bottom:24px; max-width:640px;">
+      Un pequeño editor para que pruebes HTML y CSS directamente aquí, en mi propia página.
+      Elige una plantilla, modifícala como quieras y presiona <strong style="color:var(--text);">Ejecutar</strong> para ver el resultado al instante.
+    </p>
+    <div class="lab-wrap" data-tilt>
+      <div class="lab-tabs" id="labTabs">
+        <button class="lab-tab active" data-template="tarjeta">🃏 Tarjeta de perfil</button>
+        <button class="lab-tab" data-template="boton">🔘 Botón animado</button>
+        <button class="lab-tab" data-template="reloj">⏱️ Reloj en vivo</button>
+        <button class="lab-tab" data-template="vacio">✏️ Lienzo en blanco</button>
+      </div>
+      <div class="lab-body">
+        <div class="lab-editor-col">
+          <div class="lab-editor-head">
+            <span>index.html</span>
+            <button class="lab-run-btn" id="labRunBtn">▶ Ejecutar</button>
+          </div>
+          <textarea class="lab-textarea" id="labEditor" spellcheck="false"></textarea>
+        </div>
+        <div class="lab-preview-col">
+          <div class="lab-preview-head">Vista previa en vivo</div>
+          <iframe class="lab-iframe" id="labPreview" title="Vista previa del código" sandbox="allow-scripts"></iframe>
+        </div>
+      </div>
+      <div class="lab-hint mono">// tip: presiona "Ejecutar" o Ctrl+Enter para actualizar la vista previa.</div>
+    </div>
+  </div>
+</section>
+
 <!-- SECCIÓN CV -->
 <section id="cv">
   <div class="wrap reveal">
     <div class="section-title-wrap reveal-title">
-      <div class="eyebrow">07 — Documento</div>
+      <div class="eyebrow">08 — Documento<span class="sheet-tag">HOJA 08 / ESC S/E</span></div>
       <h2 class="h2">Mi <em>Currículum</em></h2>
       <div class="title-underline"></div>
     </div>
@@ -1440,9 +1632,9 @@
       <h2 style="font-size:24px;">¿Buscas mi CV?</h2>
       <p>Descarga mi currículum en PDF con mi perfil, experiencia, educación y certificaciones.</p>
       <div class="contact-row">
-        <a class="btn btn-primary" href="CV-Luis-Gabriel-Solis-Garcia.pdf" download data-magnetic>
+        <a class="btn btn-primary" href="CV-Luis-Gabriel-Solis-Garcia.pdf" onclick="openPdfModal(); return false;" data-magnetic>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-          Descargar CV (PDF)
+          Ver CV (PDF)
         </a>
       </div>
     </div>
@@ -1453,7 +1645,7 @@
 <section id="terminal">
   <div class="wrap reveal">
     <div class="section-title-wrap reveal-title">
-      <div class="eyebrow">08 — Interactivo</div>
+      <div class="eyebrow">09 — Interactivo<span class="sheet-tag">HOJA 09 / ESC S/E</span></div>
       <h2 class="h2">Consola de <em>Comandos</em></h2>
       <div class="title-underline"></div>
     </div>
@@ -1552,6 +1744,30 @@
   </div>
 </div>
 
+<!-- MODAL VISOR DE PDF: muestra el CV directamente en la página, sin forzar la descarga -->
+<div class="modal-overlay" id="pdfModal" onclick="closePdfModal(event)">
+  <div class="modal-content" style="max-width:920px; width:95%; padding:20px 20px 24px;">
+    <button class="modal-close" onclick="closePdfModalForce()">&times;</button>
+    <h3 class="modal-title" style="margin-bottom:16px; font-size:18px;">Mi Currículum</h3>
+    <div id="pdfViewerArea" style="width:100%; height:70vh; min-height:320px; border:1px solid var(--border); border-radius:2px; background:#fff; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;">
+      <iframe id="pdfFrame" src="" title="Vista previa del CV de Gabriel Solis" style="width:100%; height:100%; border:none; display:none;"></iframe>
+      <div id="pdfFallback" style="display:none; flex-direction:column; align-items:center; gap:14px; text-align:center; padding:24px; color:#333;">
+        <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#8fadc7" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+        <p style="max-width:340px; font-size:14px; color:#555;">Tu navegador no puede mostrar el PDF directamente aquí. Ábrelo en una pestaña nueva o descárgalo con los botones de abajo.</p>
+      </div>
+    </div>
+    <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:16px; flex-wrap:wrap;">
+      <a class="btn btn-ghost" href="CV-Luis-Gabriel-Solis-Garcia.pdf" target="_blank" rel="noopener" data-magnetic>
+        Abrir en pestaña nueva ↗
+      </a>
+      <a class="btn btn-primary" href="CV-Luis-Gabriel-Solis-Garcia.pdf" download data-magnetic>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+        Descargar CV
+      </a>
+    </div>
+  </div>
+</div>
+
 <audio id="bgMusic" preload="auto">
   <source src="musica.mp3" type="audio/mpeg">
 </audio>
@@ -1644,6 +1860,48 @@
   }
   function closeModalForce() {
     document.getElementById('projectModal').classList.remove('open');
+  }
+
+  // VISOR DE PDF (CV) — corregido para no quedar en blanco.
+  // Detecta si el navegador puede embeber PDFs (la mayoría de móviles no pueden).
+  // Si no puede, muestra un mensaje con botones para abrir/descargar en vez de un iframe vacío.
+  const PDF_PATH = 'CV-Luis-Gabriel-Solis-Garcia.pdf';
+
+  function canEmbedPdf() {
+    const ua = navigator.userAgent || '';
+    const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(ua);
+    // navigator.pdfViewerEnabled existe en navegadores modernos de escritorio (Chrome/Edge/Firefox)
+    const hasNativeViewer = ('pdfViewerEnabled' in navigator) ? navigator.pdfViewerEnabled : !isMobile;
+    return !isMobile && hasNativeViewer;
+  }
+
+  function openPdfModal() {
+    const modal = document.getElementById('pdfModal');
+    const frame = document.getElementById('pdfFrame');
+    const fallback = document.getElementById('pdfFallback');
+
+    modal.classList.add('open');
+
+    if (canEmbedPdf()) {
+      // Escritorio: muestra el PDF embebido dentro de la página.
+      // OJO: frame.src SIEMPRE se reasigna aquí (antes se comprobaba "!frame.src",
+      // pero un src="" vacío en el HTML se resuelve como la URL de la propia página,
+      // así que esa comprobación nunca dejaba pasar la asignación real).
+      fallback.style.display = 'none';
+      frame.style.display = 'block';
+      frame.src = PDF_PATH;
+    } else {
+      // Móvil o navegador sin visor nativo: evita el iframe en blanco
+      // y ofrece directamente el mensaje + botones de abrir/descargar.
+      frame.style.display = 'none';
+      fallback.style.display = 'flex';
+    }
+  }
+  function closePdfModal(e) {
+    if (e.target.id === 'pdfModal') closePdfModalForce();
+  }
+  function closePdfModalForce() {
+    document.getElementById('pdfModal').classList.remove('open');
   }
 
   // BACK TO TOP
@@ -1887,6 +2145,104 @@
   }, {threshold:0.4});
   titleEls.forEach(el => titleIo.observe(el));
 
+  // ============ LABORATORIO DE CÓDIGO EN VIVO ============
+  const labTemplates = {
+    tarjeta: `<div style="font-family:sans-serif; display:flex; align-items:center; justify-content:center; height:100%; background:linear-gradient(135deg,#0a1a2c,#13293f);">
+  <div style="background:#0f2338; border:1px solid #28496b; border-radius:12px; padding:28px; width:220px; text-align:center; box-shadow:0 10px 30px rgba(0,0,0,0.4);">
+    <img src="logo.png" alt="Logo" style="width:64px; height:64px; border-radius:50%; margin:0 auto 14px; display:block; object-fit:cover; border:2px solid #ffb703;">
+    <h3 style="color:#eaf3fb; margin:0 0 4px;">Gabriel</h3>
+    <p style="color:#7fc8f8; font-size:13px; margin:0 0 12px;">Desarrollador Web</p>
+    <button style="background:#ffb703; border:none; padding:8px 16px; border-radius:6px; cursor:pointer; font-weight:bold;">Seguir</button>
+  </div>
+</div>`,
+    boton: `<div style="display:flex; align-items:center; justify-content:center; height:100%; background:#0a1a2c;">
+  <button id="miBoton" style="background:linear-gradient(90deg,#7fc8f8,#ffb703); border:none; color:#0a1a2c; font-weight:bold; padding:16px 32px; border-radius:8px; cursor:pointer; font-size:15px; transition:transform .2s ease;">
+    Haz clic aquí 🚀
+  </button>
+</div>
+<script>
+  const btn = document.getElementById('miBoton');
+  let clicks = 0;
+  btn.addEventListener('click', () => {
+    clicks++;
+    btn.style.transform = 'scale(0.92) rotate(-2deg)';
+    btn.textContent = 'Clics: ' + clicks + ' 🎉';
+    setTimeout(() => btn.style.transform = 'scale(1)', 150);
+  });
+<\/script>`,
+    reloj: `<div style="display:flex; align-items:center; justify-content:center; height:100%; background:#080a12; font-family:monospace;">
+  <div id="reloj" style="color:#ffb703; font-size:38px; letter-spacing:2px;">00:00:00</div>
+</div>
+<script>
+  function actualizarReloj(){
+    const ahora = new Date();
+    const hh = String(ahora.getHours()).padStart(2,'0');
+    const mm = String(ahora.getMinutes()).padStart(2,'0');
+    const ss = String(ahora.getSeconds()).padStart(2,'0');
+    document.getElementById('reloj').textContent = hh + ':' + mm + ':' + ss;
+  }
+  actualizarReloj();
+  setInterval(actualizarReloj, 1000);
+<\/script>`,
+    vacio: `<!-- Escribe aquí tu propio HTML, CSS y JavaScript -->
+<div style="font-family:sans-serif; padding:20px; color:#333;">
+  <h2>¡Hola!</h2>
+  <p>Empieza a escribir tu código aquí y presiona "Ejecutar".</p>
+</div>`
+  };
+
+  const labEditor = document.getElementById('labEditor');
+  const labPreview = document.getElementById('labPreview');
+  const labRunBtn = document.getElementById('labRunBtn');
+  const labTabs = document.getElementById('labTabs');
+
+  function runLabPreview() {
+    // Se usa "srcdoc" en vez de contentDocument.write().
+    // El iframe tiene sandbox="allow-scripts" SIN "allow-same-origin",
+    // así que su origen queda "opaco" (distinto al de esta página) y
+    // el navegador bloquea el acceso a labPreview.contentDocument desde aquí
+    // (por política de mismo origen). "srcdoc" sí funciona porque no
+    // necesita entrar al documento del iframe desde fuera.
+    labPreview.srcdoc = labEditor.value;
+  }
+
+  function loadLabTemplate(key) {
+    if (!labTemplates[key]) return;
+    labEditor.value = labTemplates[key];
+    runLabPreview();
+  }
+
+  labTabs.addEventListener('click', (e) => {
+    const tab = e.target.closest('.lab-tab');
+    if (!tab) return;
+    labTabs.querySelectorAll('.lab-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    loadLabTemplate(tab.dataset.template);
+  });
+
+  labRunBtn.addEventListener('click', runLabPreview);
+  labEditor.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.key === 'Enter') {
+      e.preventDefault();
+      runLabPreview();
+    }
+  });
+
+  // Carga la primera plantilla apenas la sección entra en pantalla (evita ejecutar antes de tiempo)
+  let labInitialized = false;
+  const labSection = document.getElementById('lab');
+  if (labSection) {
+    const labIo = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !labInitialized) {
+          labInitialized = true;
+          loadLabTemplate('tarjeta');
+        }
+      });
+    }, {threshold:0.2});
+    labIo.observe(labSection);
+  }
+
   // TERMINAL INTERACTIVA
   const termInput = document.getElementById('termInput');
   const termOutput = document.getElementById('termOutput');
@@ -1902,7 +2258,7 @@
     'help': 'Comandos: <span class="term-cmd">about</span>, <span class="term-cmd">theme &lt;default|retro|cyber&gt;</span>, <span class="term-cmd">matrix</span>, <span class="term-cmd">buscaminas</span>, <span class="term-cmd">render3d</span>, <span class="term-cmd">triple t</span>, <span class="term-cmd">github</span>, <span class="term-cmd">cv</span>, <span class="term-cmd">clear</span>',
     'about': 'Luis Gabriel Solís García — Estudiante de Ingeniería en Sistemas en USAC.',
     'github': 'Visita mi perfil en: <a href="https://github.com/Trikis67" target="_blank" style="color:var(--gold);text-decoration:underline;">github.com/Trikis67</a>',
-    'cv': 'Descarga mi CV: <a href="CV-Luis-Gabriel-Solis-Garcia.pdf" download style="color:var(--gold);text-decoration:underline;">CV-Luis-Gabriel-Solis-Garcia.pdf</a>'
+    'cv': 'Mi CV: <a href="#" onclick="openPdfModal(); return false;" style="color:var(--gold);text-decoration:underline;">Ver CV-Luis-Gabriel-Solis-Garcia.pdf</a>'
   };
 
   function runMatrixEffect() {
