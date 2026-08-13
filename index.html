@@ -299,7 +299,8 @@
     50%{ box-shadow: 0 0 15px var(--gold); }
   }
 
-  .navlinks{display:flex;gap:20px;font-size:14px;color:var(--muted);align-items:center;}
+  .navlinks{display:flex;gap:38px;font-size:14px;color:var(--muted);align-items:center;margin-left:36px;}
+  .navlinks a{white-space:nowrap;}
   .navlinks a{transition: color .2s ease;}
   .navlinks a:hover{color:var(--text);}
   .navlinks a.active{color:var(--gold);}
@@ -1153,7 +1154,7 @@
   }
 
   /* AJUSTES PARA PANTALLAS MÓVILES */
-  @media (max-width: 720px) {
+  @media (max-width: 900px) {
     .navlinks{
       position:fixed;top:60px;left:0;right:0;
       background:var(--panel);border-bottom:1px solid var(--border);
@@ -2150,7 +2151,7 @@
     tarjeta: `<div style="font-family:sans-serif; display:flex; align-items:center; justify-content:center; height:100%; background:linear-gradient(135deg,#0a1a2c,#13293f);">
   <div style="background:#0f2338; border:1px solid #28496b; border-radius:12px; padding:28px; width:220px; text-align:center; box-shadow:0 10px 30px rgba(0,0,0,0.4);">
     <img src="logo.png" alt="Logo" style="width:64px; height:64px; border-radius:50%; margin:0 auto 14px; display:block; object-fit:cover; border:2px solid #ffb703;">
-    <h3 style="color:#eaf3fb; margin:0 0 4px;">Gabriel</h3>
+    <h3 style="color:#eaf3fb; margin:0 0 4px;">Tu Nombre</h3>
     <p style="color:#7fc8f8; font-size:13px; margin:0 0 12px;">Desarrollador Web</p>
     <button style="background:#ffb703; border:none; padding:8px 16px; border-radius:6px; cursor:pointer; font-weight:bold;">Seguir</button>
   </div>
