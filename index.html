@@ -332,11 +332,11 @@ section.foc.hero h1 .ch{animation:chIn .9s cubic-bezier(.16,1,.3,1) both;animati
 <!-- ENTRADA: telón de teatro -->
 <div id="intro" role="presentation" aria-hidden="true">
   <div class="in-spot"></div>
-  <div class="in-cap">ACTO I · GS-TEATRO · GUATEMALA</div>
+  <div class="in-cap">ACTO I · BIENVENIDOS</div>
   <div class="in-card" id="inC">
-    <div class="ic-top">★ USAC PRODUCCIONES ★</div>
-    <div class="ic-fr"><i></i><i></i><i></i><i></i><small>Un portafolio de</small><h2>Gabriel Solís</h2><div class="ic-rule"></div><p>Ingeniería en Ciencias y Sistemas</p><div class="ic-t" id="inTy"></div></div>
-    <div class="ic-bot">— ESTRENO MMXXVI —</div>
+    <div class="ic-top">★ PRESENTA ★</div>
+    <div class="ic-fr"><i></i><i></i><i></i><i></i><small>Un portafolio de</small><h2>Gabriel Solís</h2><div class="ic-rule"></div><p>Desarrollador web en formación</p><div class="ic-t" id="inTy"></div></div>
+    <div class="ic-bot">— GRAN ESTRENO —</div>
   </div>
   <div class="in-cur l"></div><div class="in-cur r"></div><div class="in-val"></div>
   <button class="btn" id="inSkip" type="button">Saltar ▸</button>
@@ -367,7 +367,7 @@ section.foc.hero h1 .ch{animation:chIn .9s cubic-bezier(.16,1,.3,1) both;animati
   await wait(1000);if(skip)return;
   Cd.classList.add('on');                 /* aparece la tarjeta de título en el escenario */
   await wait(1500);
-  var line='commit a commit · Guatemala · MMXXVI';for(const ch of line){if(skip)break;Ty.textContent+=ch;await wait(38)}
+  var line='commit a commit';for(const ch of line){if(skip)break;Ty.textContent+=ch;await wait(38)}
   await wait(1600);finish()}
  run().catch(finish);
 })();
