@@ -22,7 +22,7 @@ if('serviceWorker' in navigator)navigator.serviceWorker.getRegistrations().then(
 <title>Gabriel Solis — Portafolio</title>
 <link rel="icon" type="image/png" href="logo.png">
 <link rel="canonical" href="https://trikis.nl/">
-<meta name="description" content="Portafolio de Gabriel Solis, estudiante de Ingeniería en Sistemas en la USAC. Sitios web, tiendas con carrito por WhatsApp y panel de administrador con Supabase.">
+<meta name="description" content="Portafolio de Gabriel Solis, estudiante de Ingeniería en Sistemas en la USAC. Sitios web, tiendas con carrito por WhatsApp, panel de administrador con Supabase y apps de escritorio con Tauri y Rust.">
 <meta property="og:type" content="website"><meta property="og:locale" content="es_GT"><meta property="og:title" content="Gabriel Solis — Portafolio">
 <meta property="og:description" content="Portafolio de Gabriel Solis, estudiante de Ingeniería en Sistemas en la USAC.">
 <meta property="og:image" content="https://trikis.nl/logo.png"><meta property="og:url" content="https://trikis.nl/">
@@ -295,6 +295,21 @@ html #term.min{width:46px;height:46px;border-radius:50%;transform:none;overflow:
 html.touch .gtc{display:flex}
 @media(max-width:760px){.gtc{display:flex}.gw{aspect-ratio:4/3}}
 body.gplay .fl,body.gplay #term{opacity:0;pointer-events:none}
+
+/* ===== Optimizador: vista previa ilustrativa y aprendizajes ===== */
+.app{width:100%;max-width:440px;background:#15130f;color:#efe8d6;border:3px solid var(--ink);border-radius:10px;box-shadow:6px 6px 0 var(--ink);overflow:hidden;font:11px var(--d)}
+.app-bar{display:flex;align-items:center;gap:5px;background:#26221b;padding:7px 10px;border-bottom:2px solid var(--ink)}.app-bar i{width:8px;height:8px;border-radius:50%;background:#6b6252}.app-bar b{margin-left:8px;font:400 11px var(--m);color:#bdb39d}
+.app-body{display:grid;grid-template-columns:104px 1fr;min-height:230px}
+.app-nav{background:#1c1913;border-right:2px solid #000;padding:8px 0;display:flex;flex-direction:column}.app-nav u{text-decoration:none;padding:6px 12px;color:#9a907a;font-size:11px}.app-nav u.on{background:#d19a3c22;color:#d19a3c;box-shadow:inset 3px 0 0 #d19a3c}
+.app-main{padding:12px;display:flex;flex-direction:column;gap:12px}
+.app-g{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.app-g>div{background:#201d17;border:1px solid #3a352b;border-radius:6px;padding:7px}.app-g small{display:block;color:#9a907a;font-size:9px;letter-spacing:.1em;margin-bottom:6px}
+.app-g span{display:block;height:7px;border-radius:99px;background:#000;position:relative;overflow:hidden}.app-g span::after{content:"";position:absolute;inset:0;width:var(--w);background:linear-gradient(90deg,#86a35e,#d19a3c)}
+.app-tm{flex:1;min-height:110px;display:grid;gap:3px;grid-template-columns:2fr 1.2fr 1fr;grid-template-rows:1fr 1fr;grid-template-areas:"a a b" "c d e"}
+.app-tm i{font-style:normal;font-size:9.5px;color:#14100a;padding:5px 6px;border-radius:3px;font-weight:700;opacity:.92}
+.app-cap{padding:6px 10px;border-top:2px solid #000;background:#1c1913;color:#8f8571;font:10px var(--m);letter-spacing:.1em;text-transform:uppercase;text-align:center}
+.learn{margin-top:22px}.lg2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;margin:14px 0 14px}.lg2 h4{font:400 15px var(--h);margin-bottom:6px}.lg2 ul{margin-top:6px}.learn code{font:12px var(--m);background:var(--panel2);padding:1px 6px;border-radius:4px;border:1px solid var(--border)}
+@media(max-width:560px){.app-body{grid-template-columns:84px 1fr}}
+.tg.w{position:static;border-radius:99px;box-shadow:none;transition:none;max-width:none;background:var(--accent);border:2px solid var(--ink);color:var(--btnp)}
 </style>
 </head>
 <body>
@@ -353,7 +368,7 @@ body.gplay .fl,body.gplay #term{opacity:0;pointer-events:none}
     <span class="badge">Estudiante · USAC</span><span class="badge g">● Disponible para proyectos</span>
     <h1 class="x3d">Gabriel<br><em>Solís</em></h1>
     <div class="role"><span class="ty"><span id="typing"></span><span class="cur"></span></span><span class="lv">❤️ Modo Especial Activado ❤️</span></div>
-    <p class="tag-line"><span class="ty">Diseño y programo tiendas en línea y catálogos con carrito por WhatsApp y un panel para administrarlos. Estudio Ingeniería en Sistemas y sigo aprendiendo HTML, CSS, JavaScript, Java y Python.</span><span class="lv">Esta vista fue personalizada para ti. Pulsa → para ver lo que preparé.</span></p>
+    <p class="tag-line"><span class="ty">Diseño y programo tiendas en línea y catálogos con carrito por WhatsApp y un panel para administrarlos. Estudio Ingeniería en Sistemas y sigo aprendiendo HTML, CSS, JavaScript, Java, Python y Rust.</span><span class="lv">Esta vista fue personalizada para ti. Pulsa → para ver lo que preparé.</span></p>
     <div class="row">
       <a class="btn p" href="#contact">Pedir cotización</a>
       <a class="btn" href="#projects">Ver proyectos</a>
@@ -394,6 +409,18 @@ body.gplay .fl,body.gplay #term{opacity:0;pointer-events:none}
       <div class="shop-f"><u class="on">Todas</u><u>Náutica</u><u>XL</u><u>L</u><u>M</u></div>
       <div class="shop-g"><div><span class="im"></span><b>Náutica</b><small>L · XL</small></div><div><span class="im"></span><b>Marca</b><small>M</small></div><div><span class="im"></span><b>Marca</b><small>XL</small></div><div><span class="im"></span><b>Náutica</b><small>L</small></div></div>
       <div class="shop-w">💬 Pedir por WhatsApp</div></div></div>
+  </div>
+  <div class="card pc feat opt">
+    <div><span class="tg w">● v0.2</span><span class="tg">App de escritorio</span><span class="tg">Tauri 2</span><span class="tg">Rust</span><span class="tg">JavaScript</span>
+      <h3>⚡ Optimizador para Windows</h3><p>App de escritorio para ver qué ocupa espacio, vigilar el rendimiento y optimizar la PC. Todo lo que cambia se puede deshacer.</p>
+      <ul class="fl2"><li>Monitor en tiempo real: CPU por núcleo, memoria, GPU, disco y red</li><li>Analizador de disco tipo WizTree (mapa de archivos más grandes)</li><li>Limpieza de temporales, caché de shaders y navegadores, sin tocar tu historial ni contraseñas</li><li>Ajustes de juegos, sistema y privacidad con respaldo para revertirlos</li><li>Instala con winget herramientas como Mem Reduct, HWiNFO y CrystalDiskInfo</li></ul>
+      <div class="row"><a class="btn p" href="https://github.com/Trikis67/Optimizador" target="_blank" rel="noopener">Ver en GitHub ↗</a><button class="btn" onclick="openModal('opt')">Detalles</button></div></div>
+    <div class="vis"><div class="app" aria-hidden="true">
+      <div class="app-bar"><i></i><i></i><i></i><b>Optimizador</b></div>
+      <div class="app-body"><div class="app-nav"><u class="on">Monitor</u><u>RAM</u><u>Optimización</u><u>Disco</u><u>Limpieza</u><u>Drivers</u><u>Herramientas</u></div>
+       <div class="app-main"><div class="app-g"><div><small>CPU</small><span style="--w:62%"></span></div><div><small>RAM</small><span style="--w:48%"></span></div><div><small>GPU</small><span style="--w:35%"></span></div></div>
+        <div class="app-tm"><i style="grid-area:a;background:#c4573a">Juegos</i><i style="grid-area:b;background:#d19a3c">Videos</i><i style="grid-area:c;background:#6f9a3a">Windows</i><i style="grid-area:d;background:#4a7fb0">Apps</i><i style="grid-area:e;background:#8c6fb0">Otros</i></div></div></div>
+      <div class="app-cap">Vista previa ilustrativa</div></div></div>
   </div>
   <div class="pj">
     <div class="card" data-tilt>
@@ -445,6 +472,7 @@ body.gplay .fl,body.gplay #term{opacity:0;pointer-events:none}
     <div class="bar"><b>☕ Java</b><div><i data-f="35"></i></div></div>
     <div class="bar"><b>🐍 Python</b><div><i data-f="30"></i></div></div>
     <div class="bar"><b>🛠️ Herramientas &amp; Despliegue (Git / Vercel)</b><div><i data-f="45"></i></div></div>
+    <div style="margin:2px 0 16px"><small style="color:var(--muted2);font:11px var(--m);letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:8px">Nuevo en mi stack</small><span class="tg w">🦀 Rust</span><span class="tg w">Tauri 2 · apps de escritorio</span><span class="tg">Supabase</span><span class="tg">GitHub Pages</span></div>
     <div class="note">// tecnologías utilizadas en proyectos reales y formación en curso.</div>
   </div>
   <div class="grid">
@@ -460,6 +488,27 @@ body.gplay .fl,body.gplay #term{opacity:0;pointer-events:none}
     <div class="ih"><div><div class="it">Apoyo en Desarrollo Web &amp; Redes</div><div class="is">Empresa de Servicios de Redes y Telecomunicaciones</div></div><span class="pill">Práctica / Aprendizaje</span></div><div style="margin:2px 0 12px"><span class="tg">Maquetación web</span><span class="tg">Redes y telecomunicaciones</span><span class="tg">Trabajo en equipo</span></div>
     <p>Desempeñé un rol de apoyo en un entorno técnico enfocado en infraestructura de redes, colaborando directamente con un desarrollador experimentado en el diseño y maquetación de una página web.</p>
     <ul><li>Colaboración mano a mano en la estructuración y maquetación de componentes web.</li><li>Comprensión práctica sobre el flujo de trabajo en proyectos reales y dinámicas de aprendizaje continuo.</li><li>Contacto directo con el entorno técnico de redes y entornos digitales corporativos.</li></ul>
+  </div>
+
+  <div class="card learn" data-tilt>
+    <div class="ih"><div><div class="it">Lo que aprendí construyendo mis proyectos</div><div class="is">Optimizador · Tienda en línea · Portafolio</div></div><span class="pill">Proyectos propios</span></div>
+    <div class="lg2">
+      <div><h4>⚡ Optimizador (Tauri 2 + Rust)</h4><ul>
+        <li>Armar una app de escritorio: interfaz web comunicada con un motor en Rust mediante comandos.</li>
+        <li>Leer métricas reales de Windows (CPU por núcleo, memoria, GPU, disco y red) con contadores de rendimiento.</li>
+        <li>Tocar el sistema con cuidado: registro, PowerShell y winget, siempre con respaldo para poder deshacer.</li>
+        <li>Manejar permisos de administrador y pedirlos con un botón en la propia app.</li>
+        <li>Escribir pruebas del lado de Rust con <code>cargo test</code> y organizar el código en módulos.</li></ul></div>
+      <div><h4>🛍️ Tienda en línea</h4><ul>
+        <li>Base de datos y almacenamiento de fotos con Supabase, y publicación en GitHub Pages con dominio propio.</li>
+        <li>Pensar el producto desde quien compra: filtros por marca y talla, carrito y pedido por WhatsApp.</li>
+        <li>Construir un panel de administración para que el negocio se actualice solo.</li></ul></div>
+      <div><h4>🧰 En general</h4><ul>
+        <li>Dividir un proyecto grande en piezas pequeñas y probarlas una por una.</li>
+        <li>Usar Git y GitHub como diario del trabajo, commit a commit.</li>
+        <li>Pensar en el usuario: avisos claros, ayudas y cambios reversibles.</li></ul></div>
+    </div>
+    <div style="margin-top:6px"><span class="tg w">Rust</span><span class="tg w">Tauri 2</span><span class="tg">Windows (PDH, registro)</span><span class="tg">PowerShell</span><span class="tg">winget</span><span class="tg">Supabase</span><span class="tg">GitHub Pages</span></div>
   </div>
 </div></section>
 
@@ -552,6 +601,7 @@ const roles=["Desarrollador web","Tiendas y catálogos con WhatsApp","Estudiante
 
 /* Modales */
 const MD={rack:['El Rack de las Playeras','Tienda en línea pensada para vender por WhatsApp: catálogo con filtros por marca y talla (las marcas se agrupan juntas), publicaciones con varias fotos, una misma foto disponible en varias tallas, y un carrito que arma el pedido y lo envía por WhatsApp. Solo hay envío a domicilio. Publicada en GitHub Pages con dominio propio.',['HTML5','CSS3','JavaScript','Supabase','GitHub Pages','WhatsApp']],
+ opt:['Optimizador para Windows','App de escritorio hecha con Tauri 2: la interfaz es HTML, CSS y JavaScript y el motor está en Rust. Mide el rendimiento en tiempo real, analiza el disco con un mapa tipo WizTree, limpia archivos temporales y cachés, y aplica ajustes de juegos, sistema, privacidad y servicios con ayudas (?) y recomendaciones según tu equipo. Guarda un respaldo en %LOCALAPPDATA% para deshacerlo todo. Necesita permisos de administrador para muchas funciones. Versión actual: v0.2.',['Tauri 2','Rust','JavaScript','sysinfo + PDH','PowerShell','winget']],
  admin:['Panel de administración','Zona privada para subir y gestionar camisas: marca (escrita o elegida de las existentes), precio, talla y varias fotos por publicación. Productos y fotos viven en Supabase, así que la tienda se actualiza sin tocar el código.',['Supabase','JavaScript','Storage de fotos','Códigos #']]};
 function openModal(k){const d=MD[k];$('#mt').textContent=d[0];$('#md').textContent=d[1];$('#mg').innerHTML=d[2].map(t=>`<span class="tg">${t}</span>`).join('');$('#pm').classList.add('open')}
 function openCv(){const f=$('#cvf'),ok=!/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)&&navigator.pdfViewerEnabled!==false;
@@ -1065,7 +1115,7 @@ try{(function(){
  let q=0;const upd=()=>{q=0;const h=H.scrollHeight-innerHeight;bar.style.transform='scaleX('+(h>0?Math.min(1,scrollY/h):0).toFixed(4)+')'};
  addEventListener('scroll',()=>{if(!q)q=requestAnimationFrame(upd)},{passive:true});upd();
  const st=document.createElement('div');st.className='stats';
- st.innerHTML=[[1,'año en la USAC'],[5,'lenguajes'],[3,'proyectos'],[2,'certificados']].map(a=>`<div><b data-n="${a[0]}">0</b><small>${a[1]}</small></div>`).join('');$('.hero .row').after(st);
+ st.innerHTML=[[1,'año en la USAC'],[6,'lenguajes'],[4,'proyectos'],[2,'certificados']].map(a=>`<div><b data-n="${a[0]}">0</b><small>${a[1]}</small></div>`).join('');$('.hero .row').after(st);
  const count=el=>{const n=+el.dataset.n,s=performance.now();(function f(){const k=Math.min(1,(performance.now()-s)/1200);el.textContent=Math.round(n*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})()};
  const run=()=>{st.querySelectorAll('[data-n]').forEach(count)};
  if(H.classList.contains('bb'))new MutationObserver((m,o)=>{if(!H.classList.contains('bb')){o.disconnect();setTimeout(run,300)}}).observe(H,{attributes:true,attributeFilter:['class']});else setTimeout(run,300);

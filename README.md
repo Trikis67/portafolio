@@ -3,7 +3,7 @@
 Portafolio personal en una sola página (HTML, CSS y JavaScript, sin build).
 
 - **Sitio:** https://trikis.nl
-- **Proyectos destacados:** tienda "El Rack de las Playeras" (https://elrackdelasplayerasgt.lat) y su panel de administración.
+- **Proyectos destacados:** Optimizador para Windows (https://github.com/Trikis67/Optimizador), tienda "El Rack de las Playeras" (https://elrackdelasplayerasgt.lat) y su panel de administración.
 - **Extras:** GS-OS (mini sistema operativo 3D), Lab Binario, Galería 3D (raycaster estilo Doom con mis proyectos en las paredes) y terminal con comandos.
 
 ## Estructura
