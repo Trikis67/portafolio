@@ -4,14 +4,15 @@
    - La lámpara sigue al ratón y proyecta sombras; los objetos cercanos se levantan.
    - La aguja de la brújula apunta al cursor y los engranes giran engranados.
    - Incluye el comando 'bigbang' de la terminal (window.bigBang).
-   Solo se carga en computadoras (ver el <head> de index.html); en celulares queda el fondo CSS. */
+   En celulares va en versión ligera: objetos más chicos al borde, la lámpara sigue al dedo o se pasea sola,
+   y la cámara se inclina con el teléfono (Android). Sin Three.js queda el fondo CSS. */
 (function(){
 const cv=document.getElementById('bg'),H=document.documentElement;
 if(!cv||typeof THREE==='undefined'){H.classList.remove('bb');return}
 try{
-const T=THREE,TAU=Math.PI*2,lite=!!window.LITE,still=typeof reduced!=='undefined'&&reduced;
+const T=THREE,TAU=Math.PI*2,touch=!!window.TOUCH,lite=!!window.LITE||touch,still=typeof reduced!=='undefined'&&reduced;
 const R=new T.WebGLRenderer({canvas:cv,alpha:true,antialias:!lite,powerPreference:'high-performance'});
-R.setPixelRatio(Math.min(devicePixelRatio,lite?1:1.5));R.setSize(innerWidth,innerHeight);
+R.setPixelRatio(Math.min(devicePixelRatio,touch?1.25:lite?1:1.5));R.setSize(innerWidth,innerHeight);
 R.outputEncoding=T.sRGBEncoding;R.toneMapping=T.ACESFilmicToneMapping;R.toneMappingExposure=1.08;
 R.shadowMap.enabled=true;R.shadowMap.type=T.PCFSoftShadowMap;
 H.classList.add('has3d');
@@ -165,10 +166,12 @@ station('status',150,s=>{const b=grp(box(3.2,.1,2.2,M(0x1d5a3a,.5)),topPlane(3.2
 station('contact',90,s=>{put(s,sheet(3.6,2.4,envTex,.03),6.0,-.2,-.12);put(s,pencil(),3.6,.9,.4)});
 
 /* Coloca cada estación a la altura de su sección: la cámara retrocede con el scroll, así la mesa sube con la página (un poco más lento: profundidad) */
-const K=.0105;let pageH=0;
-function layout(){pageH=H.scrollHeight;stations.forEach(st=>{const el=document.getElementById(st.id);
+const K=.0105;let pageH=0,mob=false;
+function layout(){pageH=H.scrollHeight;mob=innerWidth<760;stations.forEach(st=>{const el=document.getElementById(st.id);
  if(!el||!el.offsetParent&&st.id!=='hero'){st.g.visible=false;return}st.g.visible=true;
- const y=st.dy<1&&st.dy>0?el.offsetTop+el.offsetHeight*st.dy:el.offsetTop+st.dy,s=st.id==='hero'?0:Math.max(0,y-innerHeight/2);st.g.position.z=s*K})}
+ /* celular: objetos a la mitad y pegados al borde derecho; en el hero, debajo de los botones */
+ const hero=st.id==='hero',y=hero?(mob?el.offsetHeight-90:0):st.dy<1&&st.dy>0?el.offsetTop+el.offsetHeight*st.dy:el.offsetTop+st.dy,s=hero&&!mob?0:Math.max(0,y-innerHeight/2);
+ st.g.position.z=s*K;st.g.scale.setScalar(mob?.5:1);st.g.position.x=mob?(hero?-1.6:-1.15):0})}
 layout();addEventListener('load',layout);if(document.fonts)document.fonts.ready.then(layout);
 
 /* ---------- motas de polvo en el haz de la lámpara ---------- */
@@ -194,7 +197,7 @@ function bang(now){let e=(now-bt)/1000;if(skip)e=Math.max(e,5.4);const u=e-1.8;
  if(u>2.6){world.visible=desk.visible=dust.visible=true;world.scale.setScalar(Math.max(.001,ease(Math.min((u-2.6)/2,1))))}
  capf(u>3.4?'hola, soy gabriel solís':u>1.6?'t + 13.800.000.000 años':u>.2?'BIG BANG':'');if(u>3.6)H.classList.remove('bb');
  if(u>5){bt=-1;bang0.visible=false;world.scale.setScalar(1);if(FLs)FLs.style.opacity=0;capf('')}}
-if(still||lite)H.classList.remove('bb');
+if(still||window.LITE)H.classList.remove('bb');
 addEventListener('pointerdown',()=>{skip=true});addEventListener('keydown',()=>{skip=true});
 
 /* ---------- tema: el color de la mesa sigue al tema elegido ---------- */
@@ -205,7 +208,11 @@ readTheme();
 
 /* ---------- entrada: ratón, scroll, tamaño ---------- */
 let mx=0,my=0,hasMouse=false;const ndc=new T.Vector2(),ray=new T.Raycaster(),plane=new T.Plane(new T.Vector3(0,1,0),0),hit=new T.Vector3();
-addEventListener('mousemove',e=>{mx=e.clientX/innerWidth*2-1;my=-(e.clientY/innerHeight*2-1);hasMouse=true},{passive:true});
+let sx=0,lastTouch=-1e9;
+addEventListener('mousemove',e=>{if(touch)return;mx=e.clientX/innerWidth*2-1;my=-(e.clientY/innerHeight*2-1);sx=mx;hasMouse=true},{passive:true});
+const onT=e=>{const p=e.touches&&e.touches[0];if(!p)return;mx=p.clientX/innerWidth*2-1;my=-(p.clientY/innerHeight*2-1);lastTouch=performance.now()};
+addEventListener('touchstart',onT,{passive:true});addEventListener('touchmove',onT,{passive:true});
+addEventListener('deviceorientation',e=>{if(e.gamma!=null)sx=Math.max(-1,Math.min(1,e.gamma/28))},{passive:true});
 {let lw=innerWidth,lh=innerHeight,tm;addEventListener('resize',()=>{clearTimeout(tm);tm=setTimeout(()=>{if(innerWidth===lw&&Math.abs(innerHeight-lh)<150)return;lw=innerWidth;lh=innerHeight;C.aspect=lw/lh;C.updateProjectionMatrix();R.setSize(lw,lh);layout()},120)})}
 
 /* ---------- bucle ---------- */
@@ -214,10 +221,12 @@ function loop(){raf=requestAnimationFrame(loop);const now=performance.now();if(l
  const os=document.getElementById('os');if(os&&os.classList.contains('on'))return;
  const raw=Math.min(1,(now-lt)/1e3),dt=Math.min(.05,raw),kf=r=>1-Math.exp(-raw*r);lt=now;
  const sy=scrollY;vel+=((sy-lastY)/Math.max(dt,.001)/2000-vel)*.1;lastY=sy;
- camZ+=(sy*K-camZ)*kf(5.5);camX+=(mx*.7-camX)*kf(3);
+ camZ+=(sy*K-camZ)*kf(5.5);camX+=(sx*(mob?.35:.7)-camX)*kf(3);
  C.position.set(camX,13.6,camZ+9.6);C.lookAt(camX*.4,0,camZ-.4);
  /* la lámpara apunta a donde está el ratón sobre la mesa */
- if(hasMouse){ndc.set(mx,my);ray.setFromCamera(ndc,C);if(ray.ray.intersectPlane(plane,hit))lampT.lerp(hit,kf(8))}else lampT.z+=((camZ-2.7)-lampT.z)*kf(6);
+ const tt=now/1e3,idle=touch&&now-lastTouch>2500;
+ if(hasMouse||(touch&&!idle))ndc.set(mx,my);else ndc.set(.45*Math.sin(tt*.45),.3*Math.sin(tt*.33+1)-.05);   /* sin ratón ni dedo: la lámpara se pasea sola */
+ ray.setFromCamera(ndc,C);if(ray.ray.intersectPlane(plane,hit))lampT.lerp(hit,kf(idle||!hasMouse&&!touch?2.5:8));
  lamp.position.set(lampT.x-1.6,9.5,lampT.z+2.6);lamp.target.position.copy(lampT);lamp.target.updateMatrixWorld();
  const t=now/1e3;
  if(!still){spin+=dt*(.35+Math.min(3,Math.abs(vel))*1.5);

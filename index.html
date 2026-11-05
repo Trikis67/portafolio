@@ -30,8 +30,8 @@ if('serviceWorker' in navigator)navigator.serviceWorker.getRegistrations().then(
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Luis Gabriel Solís García","alternateName":"Gabriel Solís","url":"https://trikis.nl/","email":"mailto:gabrielsolis8002@icloud.com","jobTitle":"Estudiante de Ingeniería en Ciencias y Sistemas","alumniOf":{"@type":"CollegeOrUniversity","name":"Universidad de San Carlos de Guatemala"},"sameAs":["https://github.com/Trikis67"]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@400;500;700&family=Alfa+Slab+One&family=Rye&family=Special+Elite&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-<script>/* three.js solo en computadoras: ahorra ~600 KB y batería en celulares */
-if((!window.TOUCH&&!window.LITE)||/[?&]full/.test(location.search))document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"><\/script>')</script>
+<script>/* three.js para el taller 3D (también en celulares); se omite solo en equipos muy débiles o con ?lite */
+if(!window.LITE||/[?&]full/.test(location.search))document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"><\/script>')</script>
 <style>
 /* ===== TEMA POR DEFECTO: "TALLER" — vintage industrial (cuero, latón y acero) ===== */
 :root{--bg:#1a1916;--panel:#24221de8;--panel2:#2d2a24;--card:#2a2722;--border:#5b5244;--soft:#8c8068;--accent:#d19a3c;--ar:209 154 60;--text:#efe8d6;--muted:#bdb39d;--muted2:#8f8571;--ok:#86a35e;--dust:#cdb88a;--hdr:#1a1916ea;--grid:rgb(209 154 60 / .12);--np-bg:#d8cdb0;--np-ink:#2e271a;--tk-bg:#b8862f;--tk-ink:#1c1306;--vig:#000000b0;--tint1:#00000008;--tint2:#00000055;--ink:#0a0806;--btnp:#1b1307;--ttl:#f1e9d3;--ttl2:#e0a845;--ext:#7a5820;--d:'Alegreya Sans',system-ui,sans-serif;--s:'Newsreader',Georgia,serif;--m:'Special Elite','Courier New',monospace;--h:'Alfa Slab One','Arial Black',sans-serif;--sc:'Rye',Georgia,serif}
@@ -338,6 +338,8 @@ html{-webkit-tap-highlight-color:transparent}
 html.has3d .collage{display:none!important}   /* los objetos del hero ahora son 3D reales (taller3d.js) */
 html.has3d section:nth-of-type(even):not(#hero){background:none!important}
 html.has3d .shade::after{opacity:.1}
+/* celular con 3D: el texto del hero va sobre una hoja para leerse encima de la mesa */
+@media(max-width:760px){html.has3d .hero .hg>div:first-child{background:var(--panel);border:1px solid rgb(60 35 10/.2);border-radius:4px;padding:22px 18px;box-shadow:0 6px 12px -4px rgb(40 22 6/.26),0 24px 44px -20px rgb(40 22 6/.5)}}
 /* sin 3D (celulares): vetas de madera en CSS */
 html:not(.has3d) body{background-image:radial-gradient(ellipse at 75% 8%,rgb(255 236 200/.35),transparent 55%),repeating-linear-gradient(90deg,rgb(80 45 15/.022) 0 2px,transparent 2px 11px,rgb(80 45 15/.012) 11px 12px,transparent 12px 29px),repeating-linear-gradient(91deg,transparent 0 17px,rgb(80 45 15/.018) 17px 19px,transparent 19px 47px)}
 /* tarjetas = hojas de papel con sombra real */
