@@ -11,6 +11,7 @@ Portafolio personal en una sola página (HTML, CSS y JavaScript, sin build).
 | Archivo | Para qué sirve |
 |---|---|
 | `index.html` | Toda la página (estilos y scripts incluidos) |
+| `taller3d.js` | Fondo 3D: escritorio de taller en Three.js (lámpara que sigue al ratón, objetos por sección, comando `bigbang`). Solo en computadoras |
 | `logo.png` | Ícono de pestaña e imagen al compartir |
 | `CV-Luis-Gabriel-Solis-Garcia.pdf` | Currículum |
 | `CNAME` | Dominio personalizado de GitHub Pages |
