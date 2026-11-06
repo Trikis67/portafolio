@@ -29,18 +29,24 @@ if('serviceWorker' in navigator)navigator.serviceWorker.getRegistrations().then(
 <meta name="twitter:card" content="summary">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Luis Gabriel Solís García","alternateName":"Gabriel Solís","url":"https://trikis.nl/","email":"mailto:gabrielsolis8002@icloud.com","jobTitle":"Estudiante de Ingeniería en Ciencias y Sistemas","alumniOf":{"@type":"CollegeOrUniversity","name":"Universidad de San Carlos de Guatemala"},"sameAs":["https://github.com/Trikis67"]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@400;500;700&family=Alfa+Slab+One&family=Rye&family=Special+Elite&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@400;500;700&family=Alfa+Slab+One&family=Rye&family=Sancreek&family=Special+Elite&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <script>/* three.js para el taller 3D (también en celulares); se omite solo en equipos muy débiles o con ?lite */
 if(!window.LITE||/[?&]full/.test(location.search))document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"><\/script>')</script>
 <style>
 /* ===== TEMA POR DEFECTO: "TALLER" — vintage industrial (cuero, latón y acero) ===== */
 :root{--bg:#1a1916;--panel:#24221de8;--panel2:#2d2a24;--card:#2a2722;--border:#5b5244;--soft:#8c8068;--accent:#d19a3c;--ar:209 154 60;--text:#efe8d6;--muted:#bdb39d;--muted2:#8f8571;--ok:#86a35e;--dust:#cdb88a;--hdr:#1a1916ea;--grid:rgb(209 154 60 / .12);--np-bg:#d8cdb0;--np-ink:#2e271a;--tk-bg:#b8862f;--tk-ink:#1c1306;--vig:#000000b0;--tint1:#00000008;--tint2:#00000055;--ink:#0a0806;--btnp:#1b1307;--ttl:#f1e9d3;--ttl2:#e0a845;--ext:#7a5820;--d:'Alegreya Sans',system-ui,sans-serif;--s:'Newsreader',Georgia,serif;--m:'Special Elite','Courier New',monospace;--h:'Alfa Slab One','Arial Black',sans-serif;--sc:'Rye',Georgia,serif}
-body.theme-kraft{--bg:#d8c29d;--panel:#e7d5b4ee;--panel2:#dfc9a3;--card:#ecdcbd;--border:#8a6a42;--soft:#a07c4c;--accent:#9c4a1a;--ar:156 74 26;--text:#2a1c0f;--muted:#5a4530;--muted2:#664d30;--ok:#4f6b2a;--dust:#6b4f2e;--hdr:#d8c29def;--grid:rgb(90 60 30 / .14);--np-bg:#f3e6c8;--np-ink:#2e271a;--tk-bg:#c07a2a;--tk-ink:#1c1306;--vig:#5a3a1a55;--tint1:#ffffff0a;--tint2:#3a220a14;--ink:#2a1c0f;--btnp:#fff6e2;--ttl:#f7ead0;--ttl2:#c8561f;--ext:#8a6a42}
-body.theme-kraft .shade::before{display:none}body.theme-kraft .shade::after{opacity:.2;mix-blend-mode:multiply}
-body.theme-kraft .badge.g,body.theme-kraft .tg.w{color:#fff6e2}
-body.theme-kraft section:nth-of-type(even):not(#hero){background:linear-gradient(#0000,rgb(90 50 10 / .07) 30%,rgb(90 50 10 / .07) 70%,#0000)}
-body.theme-kraft .card::after{display:none}
-body.theme-kraft .bar i{background:repeating-linear-gradient(135deg,var(--accent) 0 10px,#7d3a12 10px 20px)}
+body.theme-kraft,
+body.theme-oeste{--bg:#d8c29d;--panel:#e7d5b4ee;--panel2:#dfc9a3;--card:#ecdcbd;--border:#8a6a42;--soft:#a07c4c;--accent:#9c4a1a;--ar:156 74 26;--text:#2a1c0f;--muted:#5a4530;--muted2:#664d30;--ok:#4f6b2a;--dust:#6b4f2e;--hdr:#d8c29def;--grid:rgb(90 60 30 / .14);--np-bg:#f3e6c8;--np-ink:#2e271a;--tk-bg:#c07a2a;--tk-ink:#1c1306;--vig:#5a3a1a55;--tint1:#ffffff0a;--tint2:#3a220a14;--ink:#2a1c0f;--btnp:#fff6e2;--ttl:#f7ead0;--ttl2:#c8561f;--ext:#8a6a42}
+body.theme-kraft .shade::before,
+body.theme-oeste .shade::before{display:none}body.theme-kraft .shade::after,body.theme-oeste .shade::after{opacity:.2;mix-blend-mode:multiply}
+body.theme-kraft .badge.g,body.theme-kraft .tg.w,
+body.theme-oeste .badge.g,body.theme-oeste .tg.w{color:#fff6e2}
+body.theme-kraft section:nth-of-type(even):not(#hero),
+body.theme-oeste section:nth-of-type(even):not(#hero){background:linear-gradient(#0000,rgb(90 50 10 / .07) 30%,rgb(90 50 10 / .07) 70%,#0000)}
+body.theme-kraft .card::after,
+body.theme-oeste .card::after{display:none}
+body.theme-kraft .bar i,
+body.theme-oeste .bar i{background:repeating-linear-gradient(135deg,var(--accent) 0 10px,#7d3a12 10px 20px)}
 body.theme-cine{--bg:#1a0b0d;--panel:#2a1114e8;--panel2:#3a171b;--card:#2f1316;--border:#7a3b2a;--soft:#b98a4a;--accent:#e6b450;--ar:230 180 80;--text:#f6e7cf;--muted:#d9bfa0;--muted2:#a98b70;--ok:#9fbf6a;--dust:#e6b450;--hdr:#1a0b0dee;--grid:rgb(230 180 80/.12);--np-bg:#f3e6c8;--np-ink:#2e271a;--tk-bg:#c9302c;--tk-ink:#fff2df;--vig:#000000a0;--tint1:#00000010;--tint2:#00000060;--ink:#050203;--btnp:#1a0b0d;--ttl:#f6e7cf;--ttl2:#e6b450;--ext:#7a1d22;--h:'Rye',Georgia,serif;--sc:'Rye',Georgia,serif}
 body.theme-pc{--bg:#cfd6e2;--panel:#ece9d8ee;--panel2:#e3e8f0;--card:#ece9d8;--border:#7f9db9;--soft:#8a9bb5;--accent:#0a58ca;--ar:10 88 202;--text:#14171f;--muted:#3e4656;--muted2:#4c5566;--ok:#3c9a2e;--dust:#5a6478;--hdr:#cfd6e2ef;--grid:rgb(10 88 202/.12);--np-bg:#fffef7;--np-ink:#14171f;--tk-bg:#3c9a2e;--tk-ink:#fff;--vig:#20304a33;--tint1:#ffffff0a;--tint2:#00000012;--ink:#14171f;--btnp:#ffffff;--ttl:#f6f8fc;--ttl2:#0a58ca;--ext:#7f9db9;--d:Tahoma,Verdana,'Segoe UI',sans-serif;--m:'Courier New',Courier,monospace}
 body.theme-hacker{--bg:#05090a;--panel:#0b1412e8;--panel2:#0f1c18;--card:#0c1714;--border:#1f4d3a;--soft:#2f8a5e;--accent:#39ff88;--ar:57 255 136;--text:#c8ffe0;--muted:#7fd4a6;--muted2:#4f9a74;--ok:#39ff88;--dust:#39ff88;--hdr:#05090aee;--grid:rgb(57 255 136/.1);--np-bg:#0f1c18;--np-ink:#7fd4a6;--tk-bg:#0f1c18;--tk-ink:#c8ffe0;--vig:#000000aa;--tint1:#00000020;--tint2:#00000080;--ink:#000;--btnp:#021008;--ttl:#c8ffe0;--ttl2:#39ff88;--ext:#0f5a34;--d:ui-monospace,Consolas,'Cascadia Mono','Courier New',monospace;--m:ui-monospace,Consolas,'Courier New',monospace}
@@ -338,7 +344,8 @@ section:not(#hero) .deco,.stamp,.collage .c-wrench,.collage .c-nut,.collage .sc-
 .btn:active{translate:3px 3px;box-shadow:0 0 0 var(--ink);transition-duration:.08s}
 /* Contraste del título en la sección especial */
 .lb h2{color:#a8325a}
-body.theme-kraft .eyebrow{color:#73300c}
+body.theme-kraft .eyebrow,
+body.theme-oeste .eyebrow{color:#73300c}
 .stats small{font-size:11px}
 /* Móvil: sin destello al tocar, sin zoom en campos, sin selección accidental en botones */
 html{-webkit-tap-highlight-color:transparent}
@@ -613,11 +620,18 @@ body.finale header,body.finale .fl,body.finale #chap,body.finale #term,body.fina
 header,.fl,#chap,#term,#hud{transition:opacity .45s}
 /* ===== CURSORES POR MUNDO ===== */
 /* taller: retícula de latón punteada que se cierra sobre lo que se puede pulsar */
-body.theme-kraft .cr{width:32px;height:32px;margin:-16px 0 0 -16px;border:1.5px dashed var(--accent);border-radius:50%;box-shadow:none}
-body.theme-kraft .cr::before,body.theme-kraft .cr::after{content:"";position:absolute;left:50%;top:50%;background:var(--accent)}
-body.theme-kraft .cr::before{width:1.5px;height:44px;margin:-22px 0 0 -.75px;clip-path:polygon(0 0,100% 0,100% 18%,0 18%,0 82%,100% 82%,100% 100%,0 100%)}
-body.theme-kraft .cr::after{height:1.5px;width:44px;margin:-.75px 0 0 -22px;clip-path:polygon(0 0,18% 0,18% 100%,0 100%,0 0,82% 0,100% 0,100% 100%,82% 100%)}
-body.theme-kraft .cr.h{width:22px;height:22px;margin:-11px 0 0 -11px;border-style:solid;background:rgb(var(--ar)/.12)}
+body.theme-kraft .cr,
+/* ===== CURSORES POR MUNDO ===== */
+/* taller: retícula de latón punteada que se cierra sobre lo que se puede pulsar */
+body.theme-oeste .cr{width:32px;height:32px;margin:-16px 0 0 -16px;border:1.5px dashed var(--accent);border-radius:50%;box-shadow:none}
+body.theme-kraft .cr::before,body.theme-kraft .cr::after,
+body.theme-oeste .cr::before,body.theme-oeste .cr::after{content:"";position:absolute;left:50%;top:50%;background:var(--accent)}
+body.theme-kraft .cr::before,
+body.theme-oeste .cr::before{width:1.5px;height:44px;margin:-22px 0 0 -.75px;clip-path:polygon(0 0,100% 0,100% 18%,0 18%,0 82%,100% 82%,100% 100%,0 100%)}
+body.theme-kraft .cr::after,
+body.theme-oeste .cr::after{height:1.5px;width:44px;margin:-.75px 0 0 -22px;clip-path:polygon(0 0,18% 0,18% 100%,0 100%,0 0,82% 0,100% 0,100% 100%,82% 100%)}
+body.theme-kraft .cr.h,
+body.theme-oeste .cr.h{width:22px;height:22px;margin:-11px 0 0 -11px;border-style:solid;background:rgb(var(--ar)/.12)}
 /* cine: un foco de luz que sigue al ratón */
 body.theme-cine .cr{width:190px;height:190px;margin:-95px 0 0 -95px;border:0;border-radius:50%;box-shadow:none;mix-blend-mode:screen;
  background:radial-gradient(circle,rgb(255 226 160/.24),rgb(255 210 140/.09) 42%,#0000 70%);transition:width .3s,height .3s,margin .3s}
@@ -648,9 +662,13 @@ body.finale .map-lb{pointer-events:auto}
 body:not(.finale) .map-cap,body:not(.finale) .map-lb{opacity:0!important;pointer-events:none!important}
 body.map-pt,body.map-pt *{cursor:pointer!important}
 /* taller: marbetes de papel colgados de un hilo */
-body.theme-kraft .map-lb span{background:#f3e6c8;color:#2a1c0f;border:1px dashed #8a6a42;rotate:-3deg;box-shadow:0 4px 8px -4px rgb(40 22 6/.45)}
-body.theme-kraft .map-lb.on span{background:#9c4a1a;color:#fff6e2}
-body.theme-kraft .map-cap{background:#f3e6c8;color:#2a1c0f;border:1px dashed #8a6a42;rotate:-1deg}
+body.theme-kraft .map-lb span,
+/* taller: marbetes de papel colgados de un hilo */
+body.theme-oeste .map-lb span{background:#f3e6c8;color:#2a1c0f;border:1px dashed #8a6a42;rotate:-3deg;box-shadow:0 4px 8px -4px rgb(40 22 6/.45)}
+body.theme-kraft .map-lb.on span,
+body.theme-oeste .map-lb.on span{background:#9c4a1a;color:#fff6e2}
+body.theme-kraft .map-cap,
+body.theme-oeste .map-cap{background:#f3e6c8;color:#2a1c0f;border:1px dashed #8a6a42;rotate:-1deg}
 /* cine: marquesinas con focos */
 body.theme-cine .map-lb span{background:#1b0f08;color:#ffe7b0;outline:2px dotted #ffd98a;outline-offset:-5px;padding:7px 13px;box-shadow:0 0 18px -4px rgb(255 200 110/.6)}
 body.theme-cine .map-lb b{color:#e6b450;text-shadow:0 0 12px rgb(255 200 110/.7)}
@@ -707,23 +725,36 @@ body.finale #snd{opacity:.85}
 @keyframes bulbSw{0%,100%{rotate:-2deg}50%{rotate:2deg}}
 @media(prefers-reduced-motion:reduce){.in-tag,#intro.w-kraft .in-bulb{animation:none}}
 /* el taller vintage: viñeta cálida fija sobre la escena (no se anima: no cuesta rendimiento) */
-html.has3d body.theme-kraft::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 50% 46%,#0000 52%,rgb(46 24 6/.34))}
+html.has3d body.theme-kraft::after,
+/* el taller vintage: viñeta cálida fija sobre la escena (no se anima: no cuesta rendimiento) */
+html.has3d body.theme-oeste::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 50% 46%,#0000 52%,rgb(46 24 6/.34))}
 /* ===== TERMINAL AMBIENTADA EN CADA MUNDO ===== */
 #term .th span{font-size:0!important}#term .th span::after{font-size:12px;content:"guest@gabrielsolis:~"}
 #term .tu{font-size:0}#term .tu::after{font-size:12px;content:"$"}
 #term::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0}#term>*{position:relative;z-index:1}
 /* taller: máquina de escribir de los 80 */
-body.theme-kraft #term{background:#f3ead4;border:2px solid #2a1c0f;border-radius:4px;box-shadow:0 14px 30px rgb(40 22 6/.45),3px 3px 0 #2a1c0f}
-body.theme-kraft #term .th{background:linear-gradient(#5a554d,#1c1a17 55%,#3a3631);color:#e9dcc0;border-bottom:2px solid #2a1c0f}
-body.theme-kraft #term .th i{display:none}body.theme-kraft #term .th span{margin-left:0!important}
-body.theme-kraft #term .th span::after{content:"Remington · taller de G. Solís";font-family:'Special Elite',monospace}
-body.theme-kraft #term .tb{background:repeating-linear-gradient(#0000 0 21px,rgb(156 74 26/.13) 21px 22px),#f3ead4;font-family:'Special Elite',monospace}
-body.theme-kraft #term .tr{color:#3a2a18}body.theme-kraft #term .tc{color:#9c4a1a}body.theme-kraft #term input{color:#2a1c0f;caret-color:#9c4a1a;font-family:'Special Elite',monospace}
-body.theme-kraft #term .tu::after{content:"»";color:#9c4a1a}body.theme-kraft #term a{color:#9c4a1a!important}
-body.theme-kraft #term:not(.min){animation:tkPaper .5s cubic-bezier(.23,1,.32,1)}
+body.theme-kraft #term,
+/* taller: máquina de escribir de los 80 */
+body.theme-oeste #term{background:#f3ead4;border:2px solid #2a1c0f;border-radius:4px;box-shadow:0 14px 30px rgb(40 22 6/.45),3px 3px 0 #2a1c0f}
+body.theme-kraft #term .th,
+body.theme-oeste #term .th{background:linear-gradient(#5a554d,#1c1a17 55%,#3a3631);color:#e9dcc0;border-bottom:2px solid #2a1c0f}
+body.theme-kraft #term .th i,
+body.theme-oeste #term .th i{display:none}body.theme-kraft #term .th span,body.theme-oeste #term .th span{margin-left:0!important}
+body.theme-kraft #term .th span::after,
+body.theme-oeste #term .th span::after{content:"Remington · taller de G. Solís";font-family:'Special Elite',monospace}
+body.theme-kraft #term .tb,
+body.theme-oeste #term .tb{background:repeating-linear-gradient(#0000 0 21px,rgb(156 74 26/.13) 21px 22px),#f3ead4;font-family:'Special Elite',monospace}
+body.theme-kraft #term .tr,
+body.theme-oeste #term .tr{color:#3a2a18}body.theme-kraft #term .tc,body.theme-oeste #term .tc{color:#9c4a1a}body.theme-kraft #term input,body.theme-oeste #term input{color:#2a1c0f;caret-color:#9c4a1a;font-family:'Special Elite',monospace}
+body.theme-kraft #term .tu::after,
+body.theme-oeste #term .tu::after{content:"»";color:#9c4a1a}body.theme-kraft #term a,body.theme-oeste #term a{color:#9c4a1a!important}
+body.theme-kraft #term:not(.min),
+body.theme-oeste #term:not(.min){animation:tkPaper .5s cubic-bezier(.23,1,.32,1)}
 @keyframes tkPaper{from{clip-path:inset(0 0 100% 0);translate:0 24px}to{clip-path:inset(0);translate:0 0}}
-body.theme-kraft #term.min{background:radial-gradient(circle at 50% 40%,#3a3631,#141210);border:3px solid #c9cdd1;box-shadow:0 4px 0 #6b6760,0 8px 14px rgb(0 0 0/.4)}
-body.theme-kraft #term.min #ttg::before{content:"T";font:400 21px 'Special Elite',monospace;color:#f2ead6}
+body.theme-kraft #term.min,
+body.theme-oeste #term.min{background:radial-gradient(circle at 50% 40%,#3a3631,#141210);border:3px solid #c9cdd1;box-shadow:0 4px 0 #6b6760,0 8px 14px rgb(0 0 0/.4)}
+body.theme-kraft #term.min #ttg::before,
+body.theme-oeste #term.min #ttg::before{content:"T";font:400 21px 'Special Elite',monospace;color:#f2ead6}
 /* cine: guion de rodaje con marco dorado */
 body.theme-cine #term{background:#fbfaf4;border:3px solid #d4a84a;border-radius:2px;box-shadow:0 0 0 6px #1a0b0d,0 18px 40px #000a}
 body.theme-cine #term .th{background:radial-gradient(circle,#fbfaf4 3px,#0000 3.6px) 6px 50%/16px 100% repeat-x,#1a0b0d;color:#e6b450}
@@ -775,7 +806,8 @@ section .h2>.ltw{text-shadow:1px 1px 0 var(--ext),2px 2px 0 var(--ink)}
 .eyebrow i{display:grid;place-items:center;flex:none;width:42px;height:42px;margin:0;border:2px solid var(--accent);border-radius:50%;color:var(--accent);font:400 14px var(--h);font-style:normal;rotate:-10deg;box-shadow:inset 0 0 0 3px var(--card),inset 0 0 0 4.5px var(--accent)}
 /* subrayado propio de cada mundo */
 section .h2::after{content:"";display:block;margin-top:14px;box-shadow:none;border-radius:0}
-body.theme-kraft section .h2::after,body:not([class*=theme-]) section .h2::after{width:min(240px,62%);height:14px;background:var(--accent);
+body.theme-kraft section .h2::after,body:not([class*=theme-]) section .h2::after,
+body.theme-oeste section .h2::after{width:min(240px,62%);height:14px;background:var(--accent);
  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 14' preserveAspectRatio='none'%3E%3Cpath d='M3 9c30-6 62-7 96-4s70 5 110-2c10-2 20-2 28 1' fill='none' stroke='%23000' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E") 0 0/100% 100%;
  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 14' preserveAspectRatio='none'%3E%3Cpath d='M3 9c30-6 62-7 96-4s70 5 110-2c10-2 20-2 28 1' fill='none' stroke='%23000' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E") 0 0/100% 100%}
 body.theme-cine section .h2::after{width:min(260px,66%);height:7px;background:linear-gradient(#e6b450 0 2px,#0000 2px 5px,#e6b450 5px 7px)}
@@ -799,12 +831,19 @@ body.theme-cine .eyebrow i{box-shadow:inset 0 0 0 3px var(--card),inset 0 0 0 4.
 .ix a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 @media(max-width:560px){.ix{grid-template-columns:1fr}.ix a{min-height:0}}
 /* taller: fichas de un fichero con su pestaña */
-body.theme-kraft .ix{gap:26px 16px;padding-top:12px}
-body.theme-kraft .ix a{background:repeating-linear-gradient(#0000 0 25px,rgb(156 74 26/.12) 25px 26px) 0 44px/100% 100% no-repeat,#fbf3e0;border-radius:0 6px 6px 6px;color:#2a1c0f}
-body.theme-kraft .ix a i{position:absolute;left:0;top:-22px;height:22px;padding:4px 14px 0;border-radius:6px 6px 0 0;background:#fbf3e0;color:#9c4a1a;font-weight:700}
-body.theme-kraft .ix a:nth-child(4n+2) i,body.theme-kraft .ix a:nth-child(4n+3) i{left:auto;right:18px}
-body.theme-kraft .ix a small{color:#5a4530}
-body.theme-kraft .ix a:nth-child(odd){rotate:-.6deg}body.theme-kraft .ix a:nth-child(even){rotate:.5deg}
+body.theme-kraft .ix,
+/* taller: fichas de un fichero con su pestaña */
+body.theme-oeste .ix{gap:26px 16px;padding-top:12px}
+body.theme-kraft .ix a,
+body.theme-oeste .ix a{background:repeating-linear-gradient(#0000 0 25px,rgb(156 74 26/.12) 25px 26px) 0 44px/100% 100% no-repeat,#fbf3e0;border-radius:0 6px 6px 6px;color:#2a1c0f}
+body.theme-kraft .ix a i,
+body.theme-oeste .ix a i{position:absolute;left:0;top:-22px;height:22px;padding:4px 14px 0;border-radius:6px 6px 0 0;background:#fbf3e0;color:#9c4a1a;font-weight:700}
+body.theme-kraft .ix a:nth-child(4n+2) i,body.theme-kraft .ix a:nth-child(4n+3) i,
+body.theme-oeste .ix a:nth-child(4n+2) i,body.theme-oeste .ix a:nth-child(4n+3) i{left:auto;right:18px}
+body.theme-kraft .ix a small,
+body.theme-oeste .ix a small{color:#5a4530}
+body.theme-kraft .ix a:nth-child(odd),
+body.theme-oeste .ix a:nth-child(odd){rotate:-.6deg}body.theme-kraft .ix a:nth-child(even),body.theme-oeste .ix a:nth-child(even){rotate:.5deg}
 /* cine: boletos con talón */
 body.theme-cine .ix a{background:radial-gradient(circle at 0 50%,#1a0b0d 9px,#0000 9.5px) 100% 50%/18px 100% no-repeat,#f3e6c8;border-left:26px solid #b3261e;border-radius:4px;color:#2a1c0f}
 body.theme-cine .ix a i{position:absolute;left:-26px;top:0;bottom:0;width:26px;display:grid;place-items:center;color:#fff2df;writing-mode:vertical-rl;font-size:12px;letter-spacing:.2em}
@@ -879,8 +918,11 @@ body.theme-pc .tl-r{border-color:#aca899}
 .sg-k::before{content:"Firmado por"}.sg-f::before{content:"Guatemala · 2026"}
 @media(prefers-reduced-motion:reduce){.sign text{stroke-dashoffset:0;fill:var(--text);animation:none!important}.sign path{stroke-dashoffset:0;animation:none!important}}
 /* taller: pluma en tinta color óxido */
-body.theme-kraft .sign text{stroke:#7a2e10}body.theme-kraft .sign path{stroke:#7a2e10}
-body.theme-kraft .sg-k::before{content:"De puño y letra"}body.theme-kraft .sg-f::before{content:"Hecho a mano en Guatemala · commit a commit"}
+body.theme-kraft .sign text,
+/* taller: pluma en tinta color óxido */
+body.theme-oeste .sign text{stroke:#7a2e10}body.theme-kraft .sign path,body.theme-oeste .sign path{stroke:#7a2e10}
+body.theme-kraft .sg-k::before,
+body.theme-oeste .sg-k::before{content:"De puño y letra"}body.theme-kraft .sg-f::before,body.theme-oeste .sg-f::before{content:"Hecho a mano en Guatemala · commit a commit"}
 /* cine: créditos finales en dorado */
 body.theme-cine .sign text{stroke:#e6b450;filter:drop-shadow(0 0 8px rgb(230 180 80/.45))}body.theme-cine .sign path{stroke:#e6b450}
 @keyframes sgDrawCine{80%{stroke-dashoffset:0;fill:#0000}100%{stroke-dashoffset:0;fill:#f6e7cf}}
@@ -907,7 +949,8 @@ section .h2{margin-bottom:24px}section .h2 em{font-size:clamp(34px,3.8vw,56px)}
 .rw{padding:11px 0;grid-template-columns:36px 1fr;gap:10px}.rw i{font-size:22px}.rw h3{font-size:clamp(16px,1.45vw,19px);margin-bottom:3px}.rw p{font-size:14px}
 #about .lead{font-size:clamp(17px,1.5vw,21px)}#about p{font-size:15px}
 .ix{gap:10px}.ix a{min-height:112px;padding:14px 16px}.ix a b{font-size:clamp(19px,1.7vw,25px)}
-body.theme-kraft .ix{gap:24px 12px}
+body.theme-kraft .ix,
+body.theme-oeste .ix{gap:24px 12px}
 .steps{gap:10px;margin-top:18px}.steps div{padding:12px 12px 12px 50px;font-size:13px}
 /* entradas desplegables de la línea de tiempo */
 .tl-r.tg-on{cursor:pointer}
@@ -982,7 +1025,8 @@ body.theme-hacker #ward .wr button{background:none;border:1px solid #1f4d3a;colo
 body.theme-hacker #wardB{border:1px solid #39ff88;background:#020604;box-shadow:0 0 16px rgb(57 255 136/.5)}
 body.theme-cine #ward{background:#1b0f08;border:3px solid #d4a84a;box-shadow:0 0 0 4px #1a0b0d,0 14px 30px #000a}
 body.theme-cine #wardB{border-color:#d4a84a;background:#1b0f08}
-body.theme-kraft #ward{background:repeating-linear-gradient(#0000 0 25px,rgb(156 74 26/.1) 25px 26px),#f3ead4}
+body.theme-kraft #ward,
+body.theme-oeste #ward{background:repeating-linear-gradient(#0000 0 25px,rgb(156 74 26/.1) 25px 26px),#f3ead4}
 @media(prefers-reduced-motion:reduce){#ward{transition:opacity .1s}}
 /* probador 3D del armario */
 #ward .wpv{position:relative;height:190px;margin:0 0 12px;border-radius:8px;overflow:hidden;background:radial-gradient(ellipse at 50% 35%,color-mix(in srgb,var(--accent) 22%,var(--card)),var(--card) 70%);border:2px solid color-mix(in srgb,var(--ink) 40%,#0000)}
@@ -992,10 +1036,102 @@ body.theme-kraft #ward{background:repeating-linear-gradient(#0000 0 25px,rgb(156
 body.theme-cine #ward .wpv{background:radial-gradient(ellipse at 50% 20%,rgb(255 220 150/.35),#1a0b0d 70%)}
 body.theme-pc #ward .wpv{background:linear-gradient(#2a6fd6,#9fd0ff 70%,#4fa83a 70%);border-radius:3px}
 body.theme-hacker #ward .wpv{background:radial-gradient(ellipse at 50% 40%,rgb(57 255 136/.18),#020604 70%);border-color:#1f4d3a}
+/* ===== Agenda de citas: chat de WhatsApp ilustrativo que se escribe solo ===== */
+.wa{width:100%;max-width:310px;background:#efeae2;color:#111b21;border:3px solid var(--ink);border-radius:26px;box-shadow:6px 6px 0 var(--ink);overflow:hidden;font:12.5px/1.4 "Segoe UI",Roboto,Helvetica,Arial,sans-serif;display:flex;flex-direction:column}
+.wa-top{display:flex;align-items:center;gap:10px;background:#0f766e;color:#fff;padding:12px 14px}.wa-top b{display:block;font-size:14px}.wa-top small{color:#ccfbf1;font-size:11px}
+.wa-av{width:34px;height:34px;border-radius:50%;background:#5eead4;color:#0f766e;display:grid;place-items:center;font-weight:700;font-size:12px;flex:none}
+.wa-chat{height:330px;padding:10px 10px 6px;display:flex;flex-direction:column;justify-content:flex-end;gap:5px;overflow:hidden;background:radial-gradient(#e2d9cc 1.2px,#0000 1.4px) 0 0/22px 22px,#efeae2}
+.wa-w{display:grid;grid-template-rows:1fr}
+.wa-w p{margin:0;min-height:0;overflow:hidden;max-width:84%;padding:6px 9px 15px;border-radius:9px;position:relative;box-shadow:0 1px .5px rgb(0 0 0/.14)}
+.wa-w.in p{background:#fff;border-top-left-radius:2px}.wa-w.out{justify-items:end}.wa-w.out p{background:#d9fdd3;border-top-right-radius:2px}
+.wa-w.note{justify-items:center}.wa-w.note p{max-width:94%;padding:5px 10px;background:#fff7d6;color:#5b4a12;font-size:11px;border-radius:8px;text-align:center}
+.wa-w i{position:absolute;right:8px;bottom:3px;font:normal 9.5px sans-serif;color:#667781}.wa-w.out i{color:#53bdeb}
+.wa-cal{display:block;margin-top:5px;padding:4px 7px;border-radius:6px;background:#e8f0fe;color:#1a56c4;font-size:11px}
+.wa-in{display:flex;align-items:center;gap:8px;padding:8px 10px;background:#f0f2f5}.wa-in span{flex:1;background:#fff;border-radius:99px;padding:6px 12px;color:#8696a0;font-size:11.5px}.wa-in em{font-style:normal;width:30px;height:30px;border-radius:50%;background:#0f766e;color:#fff;display:grid;place-items:center;font-size:12px}
+.wa .app-cap{background:#f0f2f5;color:#667781;border-top:1px solid #d6d9dc}
+/* animación: cada burbuja crece desde cero, una tras otra, y el chat sube como uno real */
+@media (prefers-reduced-motion:no-preference){
+ .wa.play .wa-w{grid-template-rows:0fr;opacity:0;animation:waIn .42s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i)*1.05s + .3s)}
+ .wa.play .wa-w p{transform-origin:left bottom}.wa.play .wa-w.out p{transform-origin:right bottom}
+}
+@keyframes waIn{from{grid-template-rows:0fr;opacity:0;translate:0 8px}to{grid-template-rows:1fr;opacity:1;translate:0 0}}
+body.theme-cine .wa,body.theme-hacker .wa{box-shadow:6px 6px 0 #000}
+@media(max-width:560px){.wa-chat{height:300px}.wa{font-size:12px}}
+/* ===== MUNDO OESTE: madera de granero, cuero, papel de "Se busca" y polvo del desierto ===== */
+body.theme-oeste{--bg:#e2bd88;--panel:#f1dcb0ee;--panel2:#e8cd9c;--card:#f4e2bc;--border:#8a5a32;--soft:#b07a44;--accent:#a8401c;--ar:168 64 28;--text:#2e1a0e;--muted:#5e3f24;--muted2:#6e4a2a;--ok:#5a6e2a;--dust:#7a4e28;--hdr:#e2bd88ef;--grid:rgb(110 60 20/.14);--np-bg:#efdcb0;--np-ink:#2e1a0e;--tk-bg:#a8401c;--tk-ink:#fff3dc;--vig:#6a3a1255;--tint1:#ffffff0a;--tint2:#4a2a0a18;--ink:#2e1a0e;--btnp:#fff3dc;--ttl:#f7e6c4;--ttl2:#b8461f;--ext:#8a5a32;--h:'Sancreek','Rye',Georgia,serif;--sc:'Rye',Georgia,serif}
+body.theme-oeste section:not(#hero):not(#love) .wrap{box-shadow:inset 0 0 0 2px rgb(90 50 20/.25),inset 0 0 46px rgb(120 60 10/.32),6px 6px 0 var(--ink)}
+body.theme-oeste section .h2::after{height:9px;border-radius:5px;background:repeating-linear-gradient(-60deg,#b27a42 0 5px,#7a4e28 5px 10px);box-shadow:0 1px 0 #3b2314}
+body.theme-oeste .eyebrow i{border-radius:50%;background:radial-gradient(circle at 35% 30%,#f1cf7a,#c9973f 60%,#9a6e22);color:#3b2314;box-shadow:0 0 0 3px #7a5212,0 2px 0 3px #3b2314;rotate:0deg}
+body.theme-oeste .h2 em,body.theme-oeste h1 em{font-family:'Sancreek','Rye',serif;color:#a8401c}
+body.theme-oeste .card{box-shadow:inset 0 0 26px rgb(120 60 10/.2),6px 6px 0 var(--ink)}
+body.theme-oeste .tg{border-style:dashed}
+/* cursor: estrella de sheriff */
+body.theme-oeste .cr{width:42px;height:42px;margin:-21px 0 0 -21px;border:0;border-radius:0;box-shadow:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M20 2l4.9 11.3 12.2 1-9.3 8 2.8 12L20 28l-10.6 6.3 2.8-12-9.3-8 12.2-1z' fill='none' stroke='%23a8401c' stroke-width='2.4' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;transition:width .2s,height .2s,margin .2s,rotate .4s}
+body.theme-oeste .cr.h{width:58px;height:58px;margin:-29px 0 0 -29px;rotate:36deg}
+body.theme-oeste .cd{width:6px;height:6px;margin:-3px 0 0 -3px;border-radius:50%;background:#3b2314;box-shadow:none}
+/* terminal: telégrafo de la oficina */
+body.theme-oeste #term{background:#f4e2bc;border:3px solid #3b2314;border-radius:4px;box-shadow:0 0 0 5px #8a5a32,0 0 0 8px #3b2314,0 18px 40px #0006}
+body.theme-oeste #term .th{background:repeating-linear-gradient(90deg,#7a4a26 0 30px,#6b4022 30px 32px);color:#f7e6c4;border-bottom:3px solid #3b2314}
+body.theme-oeste #term .th span::after{content:"TELÉGRAFO · Oficina de G. Solís";font-family:'Rye',serif;letter-spacing:.06em}
+body.theme-oeste #term .tb{background:none;font-family:'Special Elite','Courier New',monospace}
+body.theme-oeste #term .tr{color:#2e1a0e}body.theme-oeste #term .tc{color:#a8401c;font-weight:700}
+body.theme-oeste #term input{color:#2e1a0e;caret-color:#a8401c;font-family:'Special Elite','Courier New',monospace}
+body.theme-oeste #term .tu::after{content:"STOP ›";color:#a8401c;font-weight:700}body.theme-oeste #term a{color:#a8401c!important}
+body.theme-oeste #term.min{background:radial-gradient(circle at 35% 30%,#f1cf7a,#c9973f 60%,#9a6e22);border:3px solid #3b2314}
+body.theme-oeste #term.min #ttg::before{content:"★";color:#3b2314;font-size:22px}
+/* mapa final: letreros de madera */
+body.theme-oeste .map-lb span{background:#8a5a32;color:#f7e6c4;font-family:'Rye',serif;border:2px solid #3b2314;border-radius:2px 10px 10px 2px;padding:6px 14px;box-shadow:3px 3px 0 #3b2314}
+body.theme-oeste .map-lb b{color:#a8401c}body.theme-oeste .map-lb.on span{background:#a8401c}
+body.theme-oeste .map-cap{font:400 26px 'Sancreek','Rye',serif;letter-spacing:.06em;color:#3b2314}
+/* firma, logo, armario */
+body.theme-oeste .sg-k::before{content:"Firmado en el Oeste por"}body.theme-oeste .sg-f::before{content:"Guatemala · 2026 · buen camino, forastero"}
+body.theme-oeste .logo{filter:sepia(.55) saturate(1.35) hue-rotate(-8deg)}
+body.theme-oeste #ward{background:#f4e2bc;border:3px solid #3b2314;box-shadow:0 0 0 4px #8a5a32,6px 10px 0 4px #3b2314}
+body.theme-oeste #wardB{border-color:#3b2314;background:radial-gradient(circle at 35% 30%,#f1cf7a,#c9973f 60%,#9a6e22)}
+body.theme-oeste #ward .wpv{background:linear-gradient(#f7b165,#e8743f 62%,#a8582c 62%,#7a3e1e);border-color:#3b2314}
+/* intro: puertas de cantina que se abren al atardecer */
+.ow-sky{position:absolute;inset:0;background:radial-gradient(circle at 50% 72%,#ffe29a 0 7%,#ffc46a55 7.5%,#0000 16%),linear-gradient(#f7b165,#ea7a42 50%,#a24a22 50.2%,#5a2412)}
+.ow-mesa{position:absolute;left:0;right:0;top:41%;height:10%;background:linear-gradient(90deg,#0000 0 6%,#7a3a1c 6% 22%,#0000 22% 64%,#7a3a1c 64% 70%,#0000 70%);clip-path:polygon(0 100%,6% 100%,8% 0,20% 0,22% 100%,64% 100%,65% 20%,69% 20%,70% 100%,100% 100%)}
+.ow-d{position:absolute;top:26%;height:50%;width:24%;z-index:5;background:linear-gradient(#0000 0 14%,#3b2314 14% 17%,#0000 17%),repeating-linear-gradient(90deg,#8a5a32 0 20px,#6b4022 20px 23px);border:7px solid #3b2314;box-shadow:inset 0 0 0 9px #a06a3a,0 24px 34px #0007;transition:transform 1.25s cubic-bezier(.3,1.55,.45,1)}
+.ow-d.l{right:50%;transform-origin:0 50%;border-radius:0 46% 0 0/0 22% 0 0}.ow-d.r{left:50%;transform-origin:100% 50%;border-radius:46% 0 0 0/22% 0 0 0}
+.ow-sg{position:absolute;left:50%;top:7%;translate:-50% 0;z-index:7;text-align:center;padding:14px 38px 12px;background:repeating-linear-gradient(#8a5a32 0 22px,#7a4c28 22px 24px);color:#f7e6c4;border:5px solid #3b2314;border-radius:6px;box-shadow:0 12px 0 -5px #3b2314,0 18px 30px #0006;white-space:nowrap}
+.ow-sg .in-logo{width:54px;height:54px;margin:0 auto 4px;display:block}
+.ow-sg small{display:block;font:400 12px 'Special Elite',monospace;letter-spacing:.45em;margin-right:-.45em;color:#f1cf7a}.ow-sg b{display:block;font:400 clamp(28px,5.4vw,56px)/1.1 'Sancreek','Rye',serif;margin:4px 0;text-shadow:3px 3px 0 #3b2314}
+.ow-tw{position:absolute;bottom:13%;left:-12%;width:64px;height:64px;z-index:6;border-radius:50%;border:3px dashed #6b4a2a;background:radial-gradient(#0000 34%,#8a6a3a66 36%,#0000 64%);opacity:0}
+#intro.w-oeste.cover .ow-sky,#intro.w-oeste.cover .ow-mesa{animation:owFade .45s both}@keyframes owFade{from{opacity:0}}
+#intro.w-oeste.cover .ow-d.l{animation:owInL .75s cubic-bezier(.3,1.4,.5,1) both}#intro.w-oeste.cover .ow-d.r{animation:owInR .75s cubic-bezier(.3,1.4,.5,1) both}
+@keyframes owInL{from{transform:perspective(900px) rotateY(85deg)}}@keyframes owInR{from{transform:perspective(900px) rotateY(-85deg)}}
+#intro.w-oeste.cover .ow-sg{animation:owSg .6s .2s cubic-bezier(.3,1.5,.5,1) both}@keyframes owSg{from{translate:-50% -140%}}
+#intro.w-oeste.open .ow-d.l{transform:perspective(900px) rotateY(-108deg)}#intro.w-oeste.open .ow-d.r{transform:perspective(900px) rotateY(108deg)}
+#intro.w-oeste.open .ow-tw{animation:owRoll 2.2s .2s linear both}@keyframes owRoll{0%{opacity:1;left:-12%;rotate:0deg;translate:0 0}25%{translate:0 -26px}50%{translate:0 0}75%{translate:0 -14px}100%{opacity:1;left:112%;rotate:900deg;translate:0 0}}
+@media(prefers-reduced-motion:reduce){.ow-d{transition:none}#intro.w-oeste.open .ow-tw{animation:none}}
+/* ===== CELULAR: una sola barra abajo para los botones flotantes, encabezado más ligero ===== */
+.wa-w p{min-width:62px}
+@media(max-width:760px){
+ body{padding-bottom:calc(60px + env(safe-area-inset-bottom))}
+ .fl::before{content:"";position:fixed;z-index:0;left:0;right:0;bottom:0;height:calc(58px + env(safe-area-inset-bottom));pointer-events:none;background:color-mix(in srgb,var(--bg) 88%,#0000);border-top:2px solid color-mix(in srgb,var(--ink) 70%,#0000);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+ .fl{z-index:56;left:auto;right:10px;bottom:calc(9px + env(safe-area-inset-bottom));flex-direction:row;gap:8px}
+ .fb{position:relative;z-index:1;width:40px;height:40px;font-size:16px;box-shadow:2px 2px 0 var(--ink)}
+ html #term.min,html #term.min .th,html #term.min #ttg{width:40px;height:40px}
+ #term.min{left:10px;bottom:calc(9px + env(safe-area-inset-bottom))}
+ #term:not(.min){bottom:calc(66px + env(safe-area-inset-bottom));left:10px;width:calc(100vw - 20px)}
+ #wardB,#wardB:hover{left:58px;bottom:calc(9px + env(safe-area-inset-bottom));width:40px;height:40px;font-size:17px}
+ #snd{left:106px;bottom:calc(9px + env(safe-area-inset-bottom));width:40px;height:40px;padding:0;justify-content:center;border-radius:50%;border:3px solid var(--ink);background:var(--panel2);box-shadow:2px 2px 0 var(--ink)}
+ #snd span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+ #ward{bottom:calc(66px + env(safe-area-inset-bottom));max-height:calc(100vh - 150px)}
+ #wpick{bottom:calc(66px + env(safe-area-inset-bottom))}
+ header [data-cv]{padding:8px 14px;font-size:12px;box-shadow:3px 3px 0 var(--ink)}
+ .hero .badge,.hero .pill{letter-spacing:.08em}
+ section:not(#hero):not(#love) .wrap{border-radius:6px}
+ .pc.feat .vis{padding:18px 12px}
+}
+@media(max-width:560px){#wardB{left:58px}}
+/* Oeste: el texto del inicio sobre una hoja para que se lea encima de la madera */
+html.has3d body.theme-oeste .hero .hg>div:first-child{background:color-mix(in srgb,var(--panel) 92%,#0000);border:2px solid #3b2314;border-radius:6px;padding:26px 26px 22px;box-shadow:inset 0 0 40px rgb(120 60 10/.25),6px 6px 0 #3b2314}
 </style>
 </head>
 <body>
-<script>try{var s=localStorage.getItem("gsTheme");document.body.className=["night","retro","cyber","kraft","cine","pc","hacker"].indexOf(s)>-1?"theme-"+s:s==="default"?"":"theme-kraft"}catch(e){document.body.className="theme-kraft"}</script>
+<script>try{var s=localStorage.getItem("gsTheme");document.body.className=["night","retro","cyber","kraft","cine","pc","hacker","oeste"].indexOf(s)>-1?"theme-"+s:s==="default"?"":"theme-kraft"}catch(e){document.body.className="theme-kraft"}</script>
 <a class="skip" href="#about">Saltar al contenido</a>
 <noscript><div style="position:relative;z-index:99;padding:90px 24px;text-align:center;font:16px sans-serif;color:#fff;background:#1a1916">Este portafolio necesita JavaScript. Gabriel Solís — Estudiante de Ingeniería en Sistemas (USAC) · <a href="https://github.com/Trikis67" style="color:#d19a3c">github.com/Trikis67</a> · gabrielsolis8002@icloud.com</div></noscript>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -1016,17 +1152,18 @@ body.theme-hacker #ward .wpv{background:radial-gradient(ellipse at 50% 40%,rgb(5
 
 <script>
 /* INTRO: cada mundo tiene la suya. Al cargar se muestra una vez por sesión; al cambiar de mundo hace de transición.
-   taller = persiana metálica · cine = telón y marquesina · computadora = arranque de BIOS en CRT · hacker = conexión SSH */
+   taller = persiana metálica · cine = telón y marquesina · computadora = arranque de BIOS en CRT · hacker = conexión SSH · oeste = puertas de cantina */
 (function(){
  var H=document.documentElement,I=document.getElementById('intro'),St=document.getElementById('inStage'),Sk=document.getElementById('inSkip');if(!I)return;
  var TPL={
   kraft:'<div class="in-glow"></div><div class="in-sh"><div class="in-sign"><img class="in-logo" src="logo-160.png" alt=""><small>TALLER</small><b>GABRIEL SOLÍS</b><em>Reparaciones de código · desde 2026</em></div><div class="in-tag">ABIERTO</div><i class="in-hd"></i></div><div class="in-dark"></div><div class="in-bulb"></div>',
   cine:'<div class="ci-cur l"></div><div class="ci-cur r"></div><div class="ci-val"></div><div class="ci-mq"><img class="in-logo" src="logo-160.png" alt=""><small>ESTRENO</small><b>GABRIEL SOLÍS</b><small>PORTAFOLIO · 2026</small></div>',
   pc:'<div class="pc-scr"><pre class="in-txt"></pre><div class="pc-boot"><img class="in-logo" src="logo-160.png" alt=""><b>Gabriel<span>Solís</span></b><small>Portafolio · edición 2000</small><i><u></u></i></div></div>',
-  hacker:'<div class="hk-scr"><pre class="in-txt"></pre></div>'};
+  hacker:'<div class="hk-scr"><pre class="in-txt"></pre></div>',
+  oeste:'<div class="ow-sky"></div><div class="ow-mesa"></div><div class="ow-d l"></div><div class="ow-d r"></div><div class="ow-sg"><img class="in-logo" src="logo-160.png" alt=""><small>SALOON</small><b>Gabriel Solís</b><small>BIENVENIDO, FORASTERO</small></div><i class="ow-tw"></i>'};
  var LINES={pc:['GS BIOS 2000   (C) 2026 Gabriel Solís','','Procesador: Estudiante de Ingeniería USAC ...... OK','Memoria: 6 lenguajes ............................ OK','Unidad C: 4 proyectos ........................... OK','','C:\\> PORTAFOLIO.EXE_'],
   hacker:['$ ssh gabriel@trikis.nl','> conectando al taller............ ok','> descifrando portafolio  [██████████] 100%','> acceso concedido. bienvenido._']};
- var worldOf=function(n){return n==='cine'||n==='pc'||n==='hacker'?n:'kraft'};
+ var worldOf=function(n){return n==='cine'||n==='pc'||n==='hacker'||n==='oeste'?n:'kraft'};
  var busy=false,skip=false,timers=[];
  function wait(ms){return new Promise(function(r){if(skip)return r();var id=setTimeout(r,ms);timers.push(id)})}
  var curW='kraft',sfx=function(ph){if(window.gsSfx)window.gsSfx(curW,ph)};
@@ -1036,10 +1173,10 @@ body.theme-hacker #ward .wpv{background:radial-gradient(ellipse at 50% 40%,rgb(5
  /* first: la página arranca tapada · mid: cambia el mundo mientras la intro tapa la pantalla */
  async function play(name,mid,first){if(busy)return;busy=true;skip=false;var w=worldOf(name);
   curW=w;I.className='w-'+w;St.innerHTML=TPL[w];I.style.display='block';Sk.style.display='';void I.offsetWidth;
-  if(!first){I.classList.add('cover');sfx('cover');await wait(w==='kraft'?700:w==='cine'?850:520);if(mid)mid()}
+  if(!first){I.classList.add('cover');sfx('cover');await wait(w==='kraft'?700:w==='cine'?850:w==='oeste'?800:520);if(mid)mid()}
   if(LINES[w]){await wait(first?250:120);await type(LINES[w]);await wait(320);if(w==='pc'){I.classList.add('boot');sfx('boot');await wait(1300)}}else await wait(first?450:250);
   if(first)H.classList.remove('bb');I.classList.remove('cover');I.classList.add('open');sfx('open');
-  await wait(w==='kraft'?2600:w==='cine'?2100:700);
+  await wait(w==='kraft'?2600:w==='cine'?2100:w==='oeste'?1900:700);
   I.classList.add('out');Sk.style.display='none';await new Promise(function(r){setTimeout(r,skip?300:650)});
   I.style.display='none';I.className='';St.innerHTML='';busy=false;timers.forEach(clearTimeout);timers=[]}
  window.playIntro=function(n,mid){play(n,mid,false)};
@@ -1131,6 +1268,25 @@ body.theme-hacker #ward .wpv{background:radial-gradient(ellipse at 50% 40%,rgb(5
         <div class="app-tm"><i style="grid-area:a;background:#c4573a">Juegos</i><i style="grid-area:b;background:#d19a3c">Videos</i><i style="grid-area:c;background:#6f9a3a">Windows</i><i style="grid-area:d;background:#4a7fb0">Apps</i><i style="grid-area:e;background:#8c6fb0">Otros</i></div></div></div>
       <div class="app-cap">Vista previa ilustrativa</div></div></div>
   </div>
+  <div class="card pc feat agd">
+    <div><span class="tg w">● Nuevo</span><span class="tg">Bot de WhatsApp</span><span class="tg">Node.js</span><span class="tg">Google Calendar</span><span class="tg">WhatsApp Cloud API</span>
+      <h3>📅 Agenda de citas por WhatsApp</h3><p>Un bot que atiende a los clientes por WhatsApp, les muestra los horarios libres y agenda la cita en Google Calendar. Sirve para cualquier negocio: barbería, clínica, taller o consultorio.</p>
+      <ul class="fl2"><li>Menú numerado: agendar, ver mis citas, cancelar o hablar con una persona</li><li>Horarios libres leídos del Google Calendar del encargado</li><li>Aviso al encargado por WhatsApp con cada cita nueva o cancelada</li><li>Recordatorio al cliente 24 h antes, con CONFIRMAR o CANCELAR</li><li>Simulador para probarlo sin conectar nada</li></ul>
+      <div class="row"><a class="btn p" href="https://github.com/Trikis67/Agenda-de-citas-por-whatsapp" target="_blank" rel="noopener">Ver en GitHub ↗</a><button class="btn" onclick="openModal('agenda')">Detalles</button></div></div>
+    <div class="vis"><div class="wa" aria-hidden="true">
+      <div class="wa-top"><span class="wa-av">MN</span><div><b>Mi Negocio</b><small>Bot de citas · en línea</small></div></div>
+      <div class="wa-chat">
+        <div class="wa-w out" style="--i:0"><p>Hola<i>10:02 ✓✓</i></p></div>
+        <div class="wa-w in" style="--i:1"><p>¡Hola, Ana! 👋 ¿Qué deseas hacer?<br><b>1.</b> Agendar una cita<br><b>2.</b> Ver mis citas<br><b>3.</b> Cancelar una cita<i>10:02</i></p></div>
+        <div class="wa-w out" style="--i:2"><p>1<i>10:02 ✓✓</i></p></div>
+        <div class="wa-w in" style="--i:3"><p>Horarios del <b>jueves 12</b>:<br><b>1.</b> 9:00 a. m. &nbsp;<b>2.</b> 10:30 a. m.<br><b>3.</b> 3:00 p. m.<i>10:03</i></p></div>
+        <div class="wa-w out" style="--i:4"><p>2<i>10:03 ✓✓</i></p></div>
+        <div class="wa-w in" style="--i:5"><p>✅ <b>¡Cita agendada!</b><br>Jueves 12 · 10:30 a. m.<span class="wa-cal">📅 Guardada en Google Calendar</span><i>10:03</i></p></div>
+        <div class="wa-w note" style="--i:6"><p>⏰ Un día antes: recordatorio con CONFIRMAR o CANCELAR</p></div>
+      </div>
+      <div class="wa-in"><span>Escribe un mensaje</span><em>➤</em></div>
+      <div class="app-cap">Vista previa ilustrativa</div></div></div>
+  </div>
   <div class="pj">
     <div class="card" data-tilt>
       <span class="tg w">● En uso</span><span class="tg">Supabase</span><span class="tg">Panel admin</span><span class="tg">Fotos</span>
@@ -1174,7 +1330,7 @@ body.theme-hacker #ward .wpv{background:radial-gradient(ellipse at 50% 40%,rgb(5
   <div class="eyebrow"><i>🐾</i>— El guardián del taller</div><h2 class="h2 x3d">Te presento a mi <em>compañero</em></h2>
   <p class="pet-lead">Es el perro de mi logo. Vigila la mesa, sigue tu cursor con la mirada y te acompaña por cada capítulo del portafolio. En cada mundo se viste distinto.</p>
   <div class="pet"><button class="btn p" id="petB" type="button">🐾 Acariciarlo</button><span class="pet-c">Caricias: <b id="petN">0</b></span></div>
-  <ul class="pet-w"><li><span>🔧</span>Taller · casco, pañuelo y chaleco</li><li><span>🎬</span>Cine · boina, lentes y chamarra de cuero</li><li><span>💾</span>Computadora · audífonos, gafete y camiseta</li><li><span>💻</span>Hacker · máscara anónima y sudadera</li></ul>
+  <ul class="pet-w"><li><span>🔧</span>Taller · casco, pañuelo y chaleco</li><li><span>🎬</span>Cine · boina, lentes y chamarra de cuero</li><li><span>💾</span>Computadora · audífonos, gafete y camiseta</li><li><span>💻</span>Hacker · máscara anónima y sudadera</li><li><span>🤠</span>Oeste · sombrero, bandana y chaleco de sheriff</li></ul>
   <p class="pet-tip">¿Quieres vestirlo tú? Usa el botón 🐾 de abajo a la izquierda, junto a la terminal.</p>
 </div></section>
 
@@ -1210,12 +1366,18 @@ body.theme-hacker #ward .wpv{background:radial-gradient(ellipse at 50% 40%,rgb(5
       <li>Manejar permisos de administrador y pedirlos con un botón en la propia app.</li>
       <li>Escribir pruebas del lado de Rust con <code>cargo test</code> y organizar el código en módulos.</li></ul>
       <div class="tl-g"><span class="tg w">Rust</span><span class="tg w">Tauri 2</span><span class="tg">Windows (PDH, registro)</span><span class="tg">PowerShell</span><span class="tg">winget</span></div></div></article>
+    <article class="tl-r"><div class="tl-d">Proyecto<br>propio</div><div class="tl-b"><h3 class="tl-t">📅 Agenda de citas · bot de WhatsApp</h3><div class="tl-o">Lo que aprendí construyéndolo</div><ul>
+      <li>Recibir mensajes con un webhook y validar la firma que manda Meta.</li>
+      <li>Leer los horarios ocupados de Google Calendar y crear eventos con una cuenta de servicio.</li>
+      <li>Programar recordatorios automáticos y manejar zonas horarias sin errores.</li>
+      <li>Diseñar una conversación por pasos que no se pierde si el cliente responde mal.</li></ul>
+      <div class="tl-g"><span class="tg w">Node.js</span><span class="tg">WhatsApp Cloud API</span><span class="tg">Google Calendar</span></div></div></article>
     <article class="tl-r"><div class="tl-d">Proyecto<br>propio</div><div class="tl-b"><h3 class="tl-t">🛍️ Tienda en línea</h3><div class="tl-o">Lo que aprendí construyéndola</div><ul>
       <li>Base de datos y almacenamiento de fotos con Supabase, y publicación en GitHub Pages con dominio propio.</li>
       <li>Pensar el producto desde quien compra: filtros por marca y talla, carrito y pedido por WhatsApp.</li>
       <li>Construir un panel de administración para que el negocio se actualice solo.</li></ul>
       <div class="tl-g"><span class="tg">Supabase</span><span class="tg">GitHub Pages</span></div></div></article>
-    <article class="tl-r"><div class="tl-d">En<br>general</div><div class="tl-b"><h3 class="tl-t">🧰 Cómo trabajo</h3><div class="tl-o">Optimizador · Tienda en línea · Portafolio</div><ul>
+    <article class="tl-r"><div class="tl-d">En<br>general</div><div class="tl-b"><h3 class="tl-t">🧰 Cómo trabajo</h3><div class="tl-o">Optimizador · Bot de citas · Tienda en línea · Portafolio</div><ul>
       <li>Dividir un proyecto grande en piezas pequeñas y probarlas una por una.</li>
       <li>Usar Git y GitHub como diario del trabajo, commit a commit.</li>
       <li>Pensar en el usuario: avisos claros, ayudas y cambios reversibles.</li></ul></div></article>
@@ -1351,6 +1513,7 @@ const roles=["Desarrollador web","Tiendas y catálogos con WhatsApp","Estudiante
 
 /* Modales */
 const MD={rack:['El Rack de las Playeras','Tienda en línea pensada para vender por WhatsApp: catálogo con filtros por marca y talla (las marcas se agrupan juntas), publicaciones con varias fotos, una misma foto disponible en varias tallas, y un carrito que arma el pedido y lo envía por WhatsApp. Solo hay envío a domicilio. Publicada en GitHub Pages con dominio propio.',['HTML5','CSS3','JavaScript','Supabase','GitHub Pages','WhatsApp']],
+ agenda:['Agenda de citas por WhatsApp','Bot hecho en Node.js con la API oficial de WhatsApp (Meta) y Google Calendar. El cliente escribe "hola", elige servicio, día y hora con números, y la cita queda en el calendario del encargado. Si el encargado bloquea un horario en su calendario, el bot ya no lo ofrece. Avisa al encargado de cada cita nueva o cancelada y manda un recordatorio al cliente antes de la cita. Todo el negocio (nombre, horario, servicios y duración) se cambia en un solo archivo.',['Node.js','Express','WhatsApp Cloud API','Google Calendar API','Luxon','node-cron']],
  opt:['Optimizador para Windows','App de escritorio hecha con Tauri 2: la interfaz es HTML, CSS y JavaScript y el motor está en Rust. Mide el rendimiento en tiempo real, analiza el disco con un mapa tipo WizTree, limpia archivos temporales y cachés, y aplica ajustes de juegos, sistema, privacidad y servicios con ayudas (?) y recomendaciones según tu equipo. Guarda un respaldo en %LOCALAPPDATA% para deshacerlo todo. Necesita permisos de administrador para muchas funciones. Versión actual: v0.2.',['Tauri 2','Rust','JavaScript','sysinfo + PDH','PowerShell','winget']],
  admin:['Panel de administración','Zona privada para subir y gestionar camisas: marca (escrita o elegida de las existentes), precio, talla y varias fotos por publicación. Productos y fotos viven en Supabase, así que la tienda se actualiza sin tocar el código.',['Supabase','JavaScript','Storage de fotos','Códigos #']]};
 function openModal(k){const d=MD[k];$('#mt').textContent=d[0];$('#md').textContent=d[1];$('#mg').innerHTML=d[2].map(t=>`<span class="tg">${t}</span>`).join('');$('#pm').classList.add('open')}
@@ -1395,10 +1558,10 @@ function _setTheme(n){document.body.className=(n==='default'?'':'theme-'+n)+(coa
  try{if(n!=='love')localStorage.setItem('gsTheme',n)}catch(e){}
  const m=document.querySelector('meta[name=theme-color]');if(m)m.content=getComputedStyle(document.body).getPropertyValue('--bg').trim()||'#1a1916';
  window.NAVrefresh&&NAVrefresh()}
-try{const sv=localStorage.getItem('gsTheme');if(['night','retro','cyber','kraft','cine','pc','hacker'].includes(sv))document.body.className='theme-'+sv;else if(sv==='default')document.body.className='';else document.body.className='theme-kraft'}catch(e){document.body.className='theme-kraft'}
+try{const sv=localStorage.getItem('gsTheme');if(['night','retro','cyber','kraft','cine','pc','hacker','oeste'].includes(sv))document.body.className='theme-'+sv;else if(sv==='default')document.body.className='';else document.body.className='theme-kraft'}catch(e){document.body.className='theme-kraft'}
 const m0=document.querySelector('meta[name=theme-color]');if(m0)m0.content=getComputedStyle(document.body).getPropertyValue('--bg').trim()||'#d8c29d';
 /* Selector de mundos: cada uno cambia colores, papeles, escena 3D e intro */
-{const W=[['kraft','🔧','Taller','Madera, corcho y papel kraft'],['cine','🎬','Cine','Terciopelo, dorado y película'],['pc','💾','Computadora','Ventanas y papel de impresora'],['hacker','💻','Hacker','Terminal verde sobre negro']];
+{const W=[['kraft','🔧','Taller','Madera, corcho y papel kraft'],['cine','🎬','Cine','Terciopelo, dorado y película'],['pc','💾','Computadora','Ventanas y papel de impresora'],['hacker','💻','Hacker','Terminal verde sobre negro'],['oeste','🤠','Oeste','Madera, cuero y polvo del desierto']];
  const pk=document.createElement('div');pk.id='wpick';pk.setAttribute('role','menu');pk.innerHTML='<b>Elige un mundo</b>'+W.map(([k,i,n,d])=>`<button type="button" role="menuitemradio" data-w="${k}"><i>${i}</i><span><strong>${n}</strong><small>${d}</small></span></button>`).join('');document.body.append(pk);
  const cur=()=>(document.body.className.match(/theme-(\w+)/)||[,'default'])[1],mark=()=>pk.querySelectorAll('button').forEach(b=>b.setAttribute('aria-checked',String(b.dataset.w===cur())));
  $('#thm').onclick=e=>{e.stopPropagation();mark();pk.classList.toggle('on')};
@@ -1430,7 +1593,7 @@ ti.addEventListener('keydown',e=>{if(e.key!=='Enter')return;const raw=ti.value.t
  add(`<span class="tu">guest@gabrielsolis:~$</span> ${raw.replace(/</g,'&lt;')}`,'');const [c,a]=v.split(/\s+/);
  if(v==='te amo'){love();add('❤️ Modo Romántico Activado.','tr')}
  else if(v==='clear')out.innerHTML='';
- else if(c==='theme'){if(['kraft','cine','pc','hacker','default','retro','cyber','night'].includes(a)){setTheme(a);add(`Mundo cambiado a '${a}'.`)}else add('Uso: theme &lt;kraft|cine|pc|hacker&gt; (también: default, retro, cyber, night)')}
+ else if(c==='theme'){if(['kraft','cine','pc','hacker','oeste','default','retro','cyber','night'].includes(a)){setTheme(a);add(`Mundo cambiado a '${a}'.`)}else add('Uso: theme &lt;kraft|cine|pc|hacker|oeste&gt; (también: default, retro, cyber, night)')}
  else if(v==='doom'){add('Cargando la galería… <b>que no te alcancen los bugs</b>.');setTimeout(()=>window.doomOpen&&doomOpen(),350)}
  else if(v==='intro'){add('Subiendo la persiana del taller...');setTimeout(()=>{location.search='?intro'},400)}
  else if(v==='bigbang'){add('Reiniciando el universo...');window.bigBang&&window.bigBang()}
@@ -1576,7 +1739,7 @@ ti.addEventListener('keydown',e=>{if(e.key!=='Enter')return;const raw=ti.value.t
  let q=0;const upd=()=>{q=0;const h=H.scrollHeight-innerHeight;bar.style.transform='scaleX('+(h>0?Math.min(1,scrollY/h):0).toFixed(4)+')'};
  addEventListener('scroll',()=>{if(!q)q=requestAnimationFrame(upd)},{passive:true});upd();
  const st=document.createElement('div');st.className='stats';
- st.innerHTML=[[1,'año en la USAC'],[6,'lenguajes'],[4,'proyectos'],[2,'certificados']].map(a=>`<div><b data-n="${a[0]}">0</b><small>${a[1]}</small></div>`).join('');$('.hero .row').after(st);
+ st.innerHTML=[[1,'año en la USAC'],[6,'lenguajes'],[5,'proyectos'],[2,'certificados']].map(a=>`<div><b data-n="${a[0]}">0</b><small>${a[1]}</small></div>`).join('');$('.hero .row').after(st);
  const count=el=>{const n=+el.dataset.n,s=performance.now();(function f(){const k=Math.min(1,(performance.now()-s)/1200);el.textContent=Math.round(n*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})()};
  const run=()=>{st.querySelectorAll('[data-n]').forEach(count)};
  if(H.classList.contains('bb'))new MutationObserver((m,o)=>{if(!H.classList.contains('bb')){o.disconnect();setTimeout(run,300)}}).observe(H,{attributes:true,attributeFilter:['class']});else setTimeout(run,300);
@@ -1676,7 +1839,7 @@ ti.addEventListener('keydown',e=>{if(e.key!=='Enter')return;const raw=ti.value.t
 /* ===== El guardián: botón de caricias (salta, mueve la cola y ladra) ===== */
 (function(){const b=document.getElementById('petB'),n=document.getElementById('petN');if(!b)return;let c=0;try{c=+localStorage.getItem('gsPet')||0}catch(e){}n.textContent=c;
  b.addEventListener('click',e=>{c++;n.textContent=c;try{localStorage.setItem('gsPet',c)}catch(x){}n.classList.remove('bump');void n.offsetWidth;n.classList.add('bump');b.classList.remove('pp');void b.offsetWidth;b.classList.add('pp');
-  window.gsPet&&gsPet();const w=(document.body.className.match(/theme-(\w+)/)||[])[1];window.gsSfx&&gsSfx(['cine','pc','hacker'].includes(w)?w:'kraft','bark');
+  window.gsPet&&gsPet();const w=(document.body.className.match(/theme-(\w+)/)||[])[1];window.gsSfx&&gsSfx(['cine','pc','hacker','oeste'].includes(w)?w:'kraft','bark');
   const r=b.getBoundingClientRect();for(let i=0;i<3;i++){const p=document.createElement('span');p.className='paw';p.textContent='🐾';p.style.left=(r.left+r.width/2-11+(i-1)*18)+'px';p.style.top=(r.top-6)+'px';p.style.setProperty('--dx',((i-1)*26)+'px');p.style.animationDelay=(i*90)+'ms';document.body.append(p);setTimeout(()=>p.remove(),1300)}})})();
 </script>
 <script>
@@ -1686,7 +1849,7 @@ ti.addEventListener('keydown',e=>{if(e.key!=='Enter')return;const raw=ti.value.t
   ['face','Cara',[['none','Nada'],['anon','🎭 Máscara anónima'],['cubrebocas','😷 Cubrebocas'],['bandana','🤠 Bandana'],['payaso','🔴 Nariz de payaso']]],
   ['eyes','Ojos',[['none','Nada'],['redondos','👓 Redondos'],['sol','🕶️ De sol'],['monoculo','🧐 Monóculo'],['visor','🟩 Visor'],['lentes3d','🎬 Lentes 3D'],['pixel','👾 Pixelados'],['vr','🥽 Realidad virtual']]],
   ['neck','Cuello',[['none','Nada'],['panuelo','🔺 Pañuelo'],['bufanda','🧣 Bufanda'],['corbatin','🎀 Corbatín'],['cadena','📿 Cadena'],['gafete','🪪 Gafete'],['medalla','🏅 Medalla'],['picos','⛓️ Collar de picos']]],
-  ['body','Cuerpo',[['none','Nada'],['hoodie','🧥 Sudadera'],['bata','🥼 Bata'],['chaleco','🦺 Chaleco'],['chamarra','🧥 Chamarra de cuero'],['camiseta','👕 Camiseta GS'],['capa','🦸 Capa']]]];
+  ['body','Cuerpo',[['none','Nada'],['hoodie','🧥 Sudadera'],['bata','🥼 Bata'],['chaleco','🦺 Chaleco'],['chamarra','🧥 Chamarra de cuero'],['camiseta','👕 Camiseta GS'],['sheriff','⭐ Chaleco de sheriff'],['capa','🦸 Capa']]]];
  const b=document.createElement('button');b.id='wardB';b.type='button';b.setAttribute('aria-label','Vestir al guardián');b.setAttribute('aria-expanded','false');b.textContent='🐾';
  const p=document.createElement('div');p.id='ward';p.setAttribute('role','dialog');p.setAttribute('aria-label','Armario del guardián');
  p.innerHTML='<h4>Vestir al guardián<button type="button" data-x>cerrar</button></h4><div class="wpv"><canvas id="wpvC" aria-hidden="true"></canvas><small>Gira solo · elige abajo</small></div>'+SLOTS.map(([k,n,items])=>`<fieldset><legend>${n}</legend><div class="wr" data-s="${k}">${items.map(([id,l])=>`<button type="button" data-id="${id}" aria-pressed="false">${l}</button>`).join('')}</div></fieldset>`).join('')+'<button type="button" class="wauto" aria-pressed="true">↺ Ropa del mundo (automática)</button>';
@@ -1702,5 +1865,11 @@ ti.addEventListener('keydown',e=>{if(e.key!=='Enter')return;const raw=ti.value.t
 </script>
 <script src="sonido.js"></script>
 <script src="taller3d.js"></script>
+<script>
+/* chat del bot de citas: se escribe cuando se ve y se repite cada tanto */
+(function(){const w=document.querySelector('.wa');if(!w||!('IntersectionObserver' in window))return;let t=0,vis=false;
+ const run=()=>{w.classList.remove('play');void w.offsetWidth;w.classList.add('play');clearTimeout(t);t=setTimeout(()=>{if(vis)run()},11000)};
+ new IntersectionObserver(e=>{vis=e[0].isIntersecting;if(vis)run();else clearTimeout(t)},{threshold:.35}).observe(w)})();
+</script>
 </body>
 </html>
