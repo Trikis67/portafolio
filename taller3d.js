@@ -338,7 +338,7 @@ const radar=new T.Group();
 {radar.add(box(2.6,.5,2.6,M(0x2a2622,.5,.3)));const bz=new T.Mesh(new T.CylinderGeometry(1.15,1.2,.16,48),M(0xb9bec4,.3,.85));bz.position.y=.58;radar.add(bz);
  const sc=new T.Mesh(new T.CircleGeometry(1.02,48),M(0xffffff,.4,0,{map:scopeTex,emissive:0xffffff,emissiveMap:scopeTex,emissiveIntensity:.9}));sc.rotation.x=-Math.PI/2;sc.position.y=.665;sc.userData.ns=true;radar.add(sc);
  const sw=new T.Group();sw.position.y=.672;const wd=new T.Mesh(new T.CircleGeometry(1.0,32,0,.75),new T.MeshBasicMaterial({color:0x5dffa8,transparent:true,opacity:.32,depthWrite:false,blending:T.AdditiveBlending,side:T.DoubleSide}));wd.rotation.x=-Math.PI/2;wd.userData.ns=true;sw.add(wd);radar.add(sw);radar.userData.spin=sw;
- [-.7,.7].forEach(x=>{const k=cyl(.13,.14,.12,M(0x111,.4),0,20);k.rotation.x=Math.PI/2;k.position.set(x,.28,1.32);radar.add(k)});
+ [-.7,.7].forEach(x=>{const k=new T.Mesh(new T.CylinderGeometry(.13,.14,.12,20),M(0x111,.4));k.rotation.x=Math.PI/2;k.position.set(x,.28,1.32);radar.add(k)});
  const led=new T.Mesh(new T.SphereGeometry(.06,10,8),M(0xe8613a,.3,0,{emissive:0xe8613a,emissiveIntensity:1.4}));led.position.set(0,.3,1.31);led.userData.ns=true;radar.add(led);leds.push(led)}
 put(PRD,radar,0,0,.2).userData.key='radar';spinners.push([radar,1.4]);
 put(PRD,sheet(1.9,2.6,basesTex,.06,.03),2.4,.5,-.3);
