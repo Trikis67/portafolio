@@ -763,6 +763,235 @@ body.theme-hacker #term:not(.min){animation:hkTerm .4s steps(4)}
 body.theme-hacker #term.min{background:#020604;border:1px solid #39ff88;box-shadow:0 0 18px rgb(57 255 136/.6)}
 body.theme-hacker #term.min #ttg::before{content:">_";font:700 15px var(--m);color:#39ff88;animation:hkBlink 1s steps(1) infinite}
 @media(prefers-reduced-motion:reduce){#term,#term::before,#term #ttg::before{animation:none!important}}
+/* ===== ESTRUCTURA DE TEXTOS (nov 2026): títulos grandes, índice, líneas de tiempo y contacto ===== */
+/* títulos: palabra pequeña arriba y la palabra clave en grande */
+section .h2{font-size:clamp(15px,1.45vw,20px);line-height:1.15;text-transform:uppercase;letter-spacing:.05em;margin:8px 0 34px}
+section .h2 em{display:block;font-size:clamp(40px,4.5vw,68px);line-height:.98;margin-top:4px;letter-spacing:0;text-transform:none}
+@media(max-width:560px){section .h2 em{font-size:clamp(32px,9.6vw,48px)}}
+/* la palabra pequeña del título: sombra fina (la gruesa queda para la palabra grande) */
+section .h2>.ltw{text-shadow:1px 1px 0 var(--ext),2px 2px 0 var(--ink)}
+/* el número de capítulo como sello */
+.eyebrow{display:flex;align-items:center;gap:12px}
+.eyebrow i{display:grid;place-items:center;flex:none;width:42px;height:42px;margin:0;border:2px solid var(--accent);border-radius:50%;color:var(--accent);font:400 14px var(--h);font-style:normal;rotate:-10deg;box-shadow:inset 0 0 0 3px var(--card),inset 0 0 0 4.5px var(--accent)}
+/* subrayado propio de cada mundo */
+section .h2::after{content:"";display:block;margin-top:14px;box-shadow:none;border-radius:0}
+body.theme-kraft section .h2::after,body:not([class*=theme-]) section .h2::after{width:min(240px,62%);height:14px;background:var(--accent);
+ -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 14' preserveAspectRatio='none'%3E%3Cpath d='M3 9c30-6 62-7 96-4s70 5 110-2c10-2 20-2 28 1' fill='none' stroke='%23000' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E") 0 0/100% 100%;
+ mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 14' preserveAspectRatio='none'%3E%3Cpath d='M3 9c30-6 62-7 96-4s70 5 110-2c10-2 20-2 28 1' fill='none' stroke='%23000' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E") 0 0/100% 100%}
+body.theme-cine section .h2::after{width:min(260px,66%);height:7px;background:linear-gradient(#e6b450 0 2px,#0000 2px 5px,#e6b450 5px 7px)}
+body.theme-pc section .h2::after{width:min(260px,66%);height:5px;background:repeating-linear-gradient(90deg,#0a58ca 0 7px,#0000 7px 11px)}
+body.theme-pc .eyebrow i{border-radius:4px;rotate:0deg;background:linear-gradient(#ffe28a,#f2b636);color:#5a3a00;border-color:#b07c10;box-shadow:0 2px 3px rgb(0 0 0/.25)}
+body.theme-hacker section .h2::after{width:22px;height:9px;background:#39ff88;box-shadow:0 0 10px rgb(57 255 136/.7);animation:hkBlink 1s steps(1) infinite}
+body.theme-hacker .eyebrow i{border-radius:3px;rotate:0deg;box-shadow:0 0 10px rgb(57 255 136/.4)}
+body.theme-cine .eyebrow i{box-shadow:inset 0 0 0 3px var(--card),inset 0 0 0 4.5px var(--accent),0 0 14px rgb(230 180 80/.35)}
+
+/* ===== ÍNDICE ===== */
+#indice .wrap{background:none!important;box-shadow:none!important;border:0!important;outline:0!important;padding:0!important}
+#indice .wrap::before,#indice .wrap::after{content:none!important}
+.ix{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ix a{position:relative;display:flex;flex-direction:column;gap:10px;min-height:140px;padding:18px 20px;text-decoration:none;color:var(--text);background:var(--card);border-radius:6px;
+ box-shadow:0 1px 1px rgb(40 22 6/.14),0 8px 16px -8px rgb(40 22 6/.35);transition:translate .2s cubic-bezier(.23,1,.32,1),box-shadow .2s,background-color .2s,color .2s}
+.ix a i{font-style:normal;font:400 13px var(--m);color:var(--accent)}
+.ix a small{font-size:13px;line-height:1.4;color:var(--muted);max-width:24ch}
+.ix a b{margin-top:auto;font:400 clamp(22px,2.1vw,30px)/1 var(--h);text-transform:uppercase}
+@media(hover:hover) and (pointer:fine){.ix a:hover{translate:0 -3px;box-shadow:0 2px 2px rgb(40 22 6/.12),0 16px 26px -10px rgb(40 22 6/.45)}}
+.ix a:active{translate:0 1px}
+.ix a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+@media(max-width:560px){.ix{grid-template-columns:1fr}.ix a{min-height:0}}
+/* taller: fichas de un fichero con su pestaña */
+body.theme-kraft .ix{gap:26px 16px;padding-top:12px}
+body.theme-kraft .ix a{background:repeating-linear-gradient(#0000 0 25px,rgb(156 74 26/.12) 25px 26px) 0 44px/100% 100% no-repeat,#fbf3e0;border-radius:0 6px 6px 6px;color:#2a1c0f}
+body.theme-kraft .ix a i{position:absolute;left:0;top:-22px;height:22px;padding:4px 14px 0;border-radius:6px 6px 0 0;background:#fbf3e0;color:#9c4a1a;font-weight:700}
+body.theme-kraft .ix a:nth-child(4n+2) i,body.theme-kraft .ix a:nth-child(4n+3) i{left:auto;right:18px}
+body.theme-kraft .ix a small{color:#5a4530}
+body.theme-kraft .ix a:nth-child(odd){rotate:-.6deg}body.theme-kraft .ix a:nth-child(even){rotate:.5deg}
+/* cine: boletos con talón */
+body.theme-cine .ix a{background:radial-gradient(circle at 0 50%,#1a0b0d 9px,#0000 9.5px) 100% 50%/18px 100% no-repeat,#f3e6c8;border-left:26px solid #b3261e;border-radius:4px;color:#2a1c0f}
+body.theme-cine .ix a i{position:absolute;left:-26px;top:0;bottom:0;width:26px;display:grid;place-items:center;color:#fff2df;writing-mode:vertical-rl;font-size:12px;letter-spacing:.2em}
+body.theme-cine .ix a small{color:#5a4530}body.theme-cine .ix a b{font-family:'Rye',serif;color:#8e1f1a}
+/* computadora 2000: menú de inicio */
+body.theme-pc .ix{grid-template-columns:1fr 1fr;gap:0;background:#fff;border:2px solid #0a3fb5;border-radius:8px 8px 4px 4px;overflow:hidden;padding-top:46px;position:relative}
+body.theme-pc .ix::before{content:"Gabriel Solís";position:absolute;left:0;right:0;top:0;height:46px;padding:12px 16px;background:linear-gradient(#3d95ff,#0a62e8 30%,#0050d8 70%,#0a3fb5);color:#fff;font:700 16px Tahoma,sans-serif;text-shadow:1px 1px 0 #0a2a7a}
+body.theme-pc .ix a{flex-direction:row;align-items:center;gap:12px;min-height:0;padding:12px 14px;border-radius:0;background:none;box-shadow:none;color:#14171f;flex-wrap:wrap}
+body.theme-pc .ix a:nth-child(odd){background:#f4f7fc;border-right:1px solid #d6dff0}
+body.theme-pc .ix a i{display:grid;place-items:center;width:34px;height:34px;border-radius:4px;background:linear-gradient(#ffe28a,#f2b636);color:#5a3a00;font:700 13px Tahoma,sans-serif;border:1px solid #b07c10}
+body.theme-pc .ix a b{order:-1;flex:1;margin:0;font:700 15px Tahoma,sans-serif;text-transform:none}
+body.theme-pc .ix a small{width:100%;padding-left:46px;margin-top:-8px;font:12px Tahoma,sans-serif;color:#55606f}
+body.theme-pc .ix a i{order:0}body.theme-pc .ix a b{order:1}body.theme-pc .ix a small{order:2}
+@media(hover:hover) and (pointer:fine){body.theme-pc .ix a:hover{background:#316ac5;color:#fff;translate:0 0}body.theme-pc .ix a:hover small{color:#dbe6ff}}
+@media(max-width:560px){body.theme-pc .ix{grid-template-columns:1fr}}
+/* hacker: listado de directorios */
+body.theme-hacker .ix{grid-template-columns:1fr;gap:0;background:#020604;border:1px solid #1f4d3a;border-radius:6px;padding:40px 0 10px;position:relative;font-family:var(--m)}
+body.theme-hacker .ix::before{content:"$ ls -la ~/portafolio";position:absolute;left:16px;top:12px;color:#7fd4a6;font:13px var(--m)}
+body.theme-hacker .ix a{flex-direction:row;align-items:baseline;gap:16px;min-height:0;padding:7px 16px;border-radius:0;background:none;box-shadow:none;color:#39ff88}
+body.theme-hacker .ix a i{color:#4f9a74;font:13px var(--m)}body.theme-hacker .ix a i::before{content:"drwxr-xr-x  "}
+body.theme-hacker .ix a b{order:0;margin:0;font:700 15px var(--m);text-transform:lowercase;min-width:13ch}body.theme-hacker .ix a b::after{content:"/"}
+body.theme-hacker .ix a small{order:1;max-width:none;color:#7fd4a6;font:13px var(--m)}body.theme-hacker .ix a small::before{content:"# "}
+@media(hover:hover) and (pointer:fine){body.theme-hacker .ix a:hover{background:#39ff88;color:#020604;translate:0 0}body.theme-hacker .ix a:hover i,body.theme-hacker .ix a:hover small{color:#020604}}
+@media(max-width:560px){body.theme-hacker .ix a i::before{content:""}body.theme-hacker .ix a{flex-wrap:wrap;gap:4px 12px}}
+
+/* ===== LÍNEA DE TIEMPO (Trayectoria y Formación) ===== */
+.tl{display:flex;flex-direction:column}
+.tl-r{display:grid;grid-template-columns:118px 1fr;gap:20px;padding:22px 0;border-top:1px solid color-mix(in srgb,var(--text) 22%,#0000)}
+.tl-r:last-child{border-bottom:1px solid color-mix(in srgb,var(--text) 22%,#0000)}
+.tl-d{font:12px/1.5 var(--m);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding-top:6px}
+.tl-t{font:400 clamp(20px,2vw,27px)/1.1 var(--h);text-transform:uppercase;margin:0 0 6px}
+.tl-o{font:500 14px var(--d);color:var(--accent);margin-bottom:10px}
+.tl-b p{color:var(--muted);margin:0 0 10px}
+.tl-b ul{margin:0 0 10px;padding-left:18px;color:var(--muted)}.tl-b li{margin-bottom:5px}
+.tl-g{margin-top:6px}
+@media(max-width:560px){.tl-r{grid-template-columns:1fr;gap:6px}.tl-d{padding-top:0}}
+body.theme-hacker .tl-d::before{content:"[ "}body.theme-hacker .tl-d::after{content:" ]"}
+body.theme-pc .tl-r{border-color:#aca899}
+
+/* ===== SERVICIOS Y SOBRE MÍ: sin cajas ===== */
+.rows{display:flex;flex-direction:column;margin-bottom:6px}
+.rw{display:grid;grid-template-columns:44px 1fr;gap:14px;padding:16px 0;border-top:1px solid color-mix(in srgb,var(--text) 20%,#0000)}
+.rw:last-child{border-bottom:1px solid color-mix(in srgb,var(--text) 20%,#0000)}
+.rw i{font-style:normal;font-size:26px;line-height:1.2}
+.rw h3{font:400 clamp(18px,1.7vw,23px)/1.15 var(--h);margin:0 0 6px}
+.rw p{color:var(--muted);margin:0}
+#about .lead{font:500 clamp(19px,1.8vw,24px)/1.45 var(--d);color:var(--text);margin-bottom:16px}
+#about p{color:var(--muted);margin-bottom:12px}
+.likes{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0;padding:0}
+.likes li{display:flex;align-items:center;gap:8px;padding:7px 13px;border:2px solid var(--ink);border-radius:99px;background:var(--panel2);font:13px var(--m);color:var(--text)}
+
+/* ===== CONTACTO: correo en grande y enlaces ===== */
+#contact .ct{background:none!important;border:0!important;box-shadow:none!important;padding:0!important;text-align:left}
+.ct-lead{color:var(--muted);max-width:52ch;margin:-12px 0 20px}
+.ct-mail{display:block;font:700 clamp(22px,2.5vw,36px)/1.15 var(--d);color:var(--text);text-decoration:none;word-break:break-all;margin-bottom:14px;background:linear-gradient(var(--accent),var(--accent)) 0 100%/0 3px no-repeat;transition:background-size .35s cubic-bezier(.23,1,.32,1)}
+@media(hover:hover) and (pointer:fine){.ct-mail:hover{background-size:100% 3px}}
+.ct-links{display:flex;flex-wrap:wrap;gap:8px 18px;margin-bottom:26px}
+.ct-links a,.ct-links button{font:13px var(--m);color:var(--text);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--accent)}
+@media(hover:hover) and (pointer:fine){.ct-links a:hover,.ct-links button:hover{color:var(--accent)}}
+#contact .cf{max-width:520px}
+
+/* ===== FIRMA que se dibuja sola al final del contacto ===== */
+.sign{margin-top:30px;padding-top:18px;border-top:1px dashed color-mix(in srgb,var(--text) 30%,#0000);max-width:440px}
+.sign svg{display:block;width:100%;height:auto;overflow:visible}
+.sign text{font:italic 600 84px var(--s);fill:#0000;stroke:var(--accent);stroke-width:1.3;stroke-dasharray:1600;stroke-dashoffset:1600}
+.sign path{fill:none;stroke:var(--accent);stroke-width:2.4;stroke-linecap:round;stroke-dasharray:560;stroke-dashoffset:560}
+.vi .sign text,html:not(.stag) .sign text{animation:sgDraw 2.6s cubic-bezier(.45,0,.2,1) .35s forwards}
+.vi .sign path,html:not(.stag) .sign path{animation:sgLine .9s cubic-bezier(.45,0,.2,1) 2.5s forwards}
+@keyframes sgDraw{80%{stroke-dashoffset:0;fill:#0000}100%{stroke-dashoffset:0;fill:var(--text)}}
+@keyframes sgLine{to{stroke-dashoffset:0}}
+.sg-k,.sg-f{display:block;font:11px var(--m);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sg-k::before{content:"Firmado por"}.sg-f::before{content:"Guatemala · 2026"}
+@media(prefers-reduced-motion:reduce){.sign text{stroke-dashoffset:0;fill:var(--text);animation:none!important}.sign path{stroke-dashoffset:0;animation:none!important}}
+/* taller: pluma en tinta color óxido */
+body.theme-kraft .sign text{stroke:#7a2e10}body.theme-kraft .sign path{stroke:#7a2e10}
+body.theme-kraft .sg-k::before{content:"De puño y letra"}body.theme-kraft .sg-f::before{content:"Hecho a mano en Guatemala · commit a commit"}
+/* cine: créditos finales en dorado */
+body.theme-cine .sign text{stroke:#e6b450;filter:drop-shadow(0 0 8px rgb(230 180 80/.45))}body.theme-cine .sign path{stroke:#e6b450}
+@keyframes sgDrawCine{80%{stroke-dashoffset:0;fill:#0000}100%{stroke-dashoffset:0;fill:#f6e7cf}}
+body.theme-cine .vi .sign text{animation-name:sgDrawCine}
+body.theme-cine .sg-k::before{content:"Dirigido y producido por"}body.theme-cine .sg-f::before{content:"Una producción de Guatemala · 2026"}
+/* computadora 2000: firma digital con certificado */
+body.theme-pc .sign text{font:italic 700 74px Tahoma,Verdana,sans-serif;stroke:#0a58ca}body.theme-pc .sign path{stroke:#0a58ca}
+body.theme-pc .sg-k::before{content:"Firma digital"}body.theme-pc .sg-f::before{content:"✓ Certificado válido · emitido en Guatemala, 2026"}
+body.theme-pc .sg-f{color:#2e7d23;font-weight:700}
+/* hacker: bloque de firma verificada */
+body.theme-hacker .sign{border-top:0;font-family:var(--m)}
+body.theme-hacker .sign text{font:700 64px var(--m);stroke:#39ff88;filter:drop-shadow(0 0 6px rgb(57 255 136/.55))}body.theme-hacker .sign path{stroke:#39ff88;stroke-dasharray:6 6 560}
+@keyframes sgDrawHk{80%{stroke-dashoffset:0;fill:#0000}100%{stroke-dashoffset:0;fill:#39ff88}}
+body.theme-hacker .vi .sign text{animation-name:sgDrawHk}
+body.theme-hacker .sg-k,body.theme-hacker .sg-f{text-transform:none;letter-spacing:.02em;color:#7fd4a6}
+body.theme-hacker .sg-k::before{content:"-----BEGIN SIGNATURE-----"}body.theme-hacker .sg-f::before{content:"-----END SIGNATURE-----   firma verificada ✓"}
+/* ===== PANELES COMPACTOS Y ANIMADOS ===== */
+section:not(#hero):not(#love):not(#final) .wrap{padding:26px 26px 28px}
+@media(min-width:1000px){html.has3d section:not(#hero):not(#orden) .wrap{width:min(520px,38vw)}html.has3d #orden .wrap{width:min(720px,48vw)}}
+@media(max-width:760px){section:not(#hero):not(#love) .wrap{padding:20px 16px 22px}}
+section .h2{margin-bottom:24px}section .h2 em{font-size:clamp(34px,3.8vw,56px)}
+.tl-r{grid-template-columns:96px 1fr;gap:14px;padding:13px 0}
+.tl-t{font-size:clamp(16px,1.55vw,21px);margin-bottom:3px}.tl-o{font-size:13px;margin-bottom:0}
+.rw{padding:11px 0;grid-template-columns:36px 1fr;gap:10px}.rw i{font-size:22px}.rw h3{font-size:clamp(16px,1.45vw,19px);margin-bottom:3px}.rw p{font-size:14px}
+#about .lead{font-size:clamp(17px,1.5vw,21px)}#about p{font-size:15px}
+.ix{gap:10px}.ix a{min-height:112px;padding:14px 16px}.ix a b{font-size:clamp(19px,1.7vw,25px)}
+body.theme-kraft .ix{gap:24px 12px}
+.steps{gap:10px;margin-top:18px}.steps div{padding:12px 12px 12px 50px;font-size:13px}
+/* entradas desplegables de la línea de tiempo */
+.tl-r.tg-on{cursor:pointer}
+.tl-r.tg-on .tl-t{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.tl-r.tg-on .tl-t::after{content:"+";flex:none;font:400 20px/1 var(--m);color:var(--accent);transition:rotate .3s cubic-bezier(.23,1,.32,1)}
+.tl-r.open .tl-t::after{rotate:45deg}
+.tl-x{display:grid;grid-template-rows:0fr;transition:grid-template-rows .38s cubic-bezier(.23,1,.32,1),opacity .3s;opacity:0}
+.tl-x>div{overflow:hidden;min-height:0}.tl-x>div>:first-child{margin-top:10px}
+.tl-r.open .tl-x{grid-template-rows:1fr;opacity:1}
+@media(hover:hover) and (pointer:fine){.tl-r.tg-on:hover{background:color-mix(in srgb,var(--accent) 6%,#0000)}}
+.tl-r:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+/* el panel entra deslizándose y su contenido aparece en cascada */
+html.stag.has3d section:not(#hero):not(#love):not(#final) .wrap{opacity:0;translate:-46px 0;transition:opacity .5s ease,translate .7s cubic-bezier(.23,1,.32,1)}
+html.stag.has3d section:not(#hero):not(#love):not(#final) .wrap.vi{opacity:1;translate:0 0}
+html.stag .si{opacity:0;translate:0 14px;transition:opacity .4s ease,translate .5s cubic-bezier(.23,1,.32,1);transition-delay:calc(var(--d,0)*55ms + 120ms)}
+html.stag .vi .si,html.stag .si.vi{opacity:1;translate:0 0}
+@media(hover:hover) and (pointer:fine){.rw{transition:translate .25s cubic-bezier(.23,1,.32,1)}.rw:hover{translate:5px 0}.rw:hover i{animation:rwIcon .5s ease}
+ .likes li{transition:translate .2s cubic-bezier(.23,1,.32,1)}.likes li:hover{translate:0 -3px}}
+@keyframes rwIcon{30%{rotate:-12deg;scale:1.15}60%{rotate:8deg}}
+@media(prefers-reduced-motion:reduce){html.stag section .wrap,html.stag .si{opacity:1!important;translate:none!important;transition:none!important}.tl-x{transition:none}}
+/* ===== LOGO ===== */
+.brand{display:flex;align-items:center;text-decoration:none}
+.logo{display:block;width:46px;height:46px;border-radius:50%;transition:rotate .5s cubic-bezier(.34,1.56,.64,1),filter .3s}
+@media(hover:hover) and (pointer:fine){.brand:hover .logo{rotate:-14deg}}
+.brand:active .logo{scale:.94}
+.fb1 b{display:flex;align-items:center;gap:12px}.fb1 .logo{width:44px;height:44px}
+.in-logo{display:block;width:74px;height:74px;margin:0 auto 10px;border-radius:50%;box-shadow:0 6px 14px rgb(0 0 0/.35)}
+.ci-mq .in-logo{width:60px;height:60px;filter:sepia(.4) saturate(1.3) drop-shadow(0 0 10px rgb(255 200 110/.6))}
+.pc-boot .in-logo{width:86px;height:86px;margin-bottom:4px}
+/* cada mundo tiñe el logo a su manera */
+body.theme-cine .logo{filter:sepia(.35) saturate(1.25) drop-shadow(0 0 8px rgb(230 180 80/.55))}
+body.theme-pc .logo{border-radius:8px;filter:drop-shadow(1px 2px 2px rgb(0 0 0/.35))}
+body.theme-hacker .logo{filter:grayscale(1) sepia(1) hue-rotate(78deg) saturate(3.2) brightness(.95) drop-shadow(0 0 8px rgb(57 255 136/.55))}
+/* ===== EL GUARDIÁN DEL TALLER ===== */
+.pet-lead{color:var(--muted);margin:-10px 0 18px;max-width:50ch}
+.pet{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.pet-c{font:12px var(--m);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}.pet-c b{font:400 20px var(--h);color:var(--text);margin-left:4px;display:inline-block}
+.pet-c b.bump{animation:petBump .4s cubic-bezier(.34,1.56,.64,1)}@keyframes petBump{50%{scale:1.5;color:var(--accent)}}
+.pet-w{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:6px 14px}
+.pet-w li{display:flex;gap:8px;align-items:center;font:13px var(--m);color:var(--muted)}
+.pet-tip{margin:14px 0 0;font:13px var(--m);color:var(--accent)}
+#petB.pp{animation:petPress .35s cubic-bezier(.34,1.56,.64,1)}@keyframes petPress{40%{scale:.92}}
+.paw{position:fixed;z-index:70;pointer-events:none;font-size:22px;animation:pawUp 1s cubic-bezier(.23,1,.32,1) forwards}
+@keyframes pawUp{from{opacity:1;translate:0 0;scale:.6}to{opacity:0;translate:var(--dx) -90px;scale:1.2}}
+@media(prefers-reduced-motion:reduce){.paw,.pet-c b.bump,#petB.pp{animation:none}}
+/* ===== ARMARIO DEL GUARDIÁN (junto a la terminal) ===== */
+#wardB{position:fixed;left:72px;bottom:64px;z-index:58;width:46px;height:46px;border-radius:50%;border:3px solid var(--ink);background:var(--panel2);color:var(--text);font-size:20px;cursor:pointer;
+ box-shadow:2px 3px 0 var(--ink);transition:translate .16s cubic-bezier(.23,1,.32,1),box-shadow .12s,opacity .45s}
+@media(hover:hover) and (pointer:fine){#wardB:hover{translate:0 -2px;box-shadow:2px 5px 0 var(--ink)}}
+#wardB:active{translate:2px 2px;box-shadow:0 0 0 var(--ink)}
+#ward{position:fixed;left:16px;bottom:122px;z-index:62;width:min(310px,calc(100vw - 32px));padding:14px 14px 12px;border:3px solid var(--ink);border-radius:10px;background:var(--panel2);color:var(--text);box-shadow:4px 5px 0 var(--ink);
+ opacity:0;translate:0 10px;scale:.97;transform-origin:0 100%;pointer-events:none;transition:opacity .16s,translate .22s cubic-bezier(.23,1,.32,1),scale .22s cubic-bezier(.23,1,.32,1)}
+#ward.on{opacity:1;translate:0 0;scale:1;pointer-events:auto}
+#ward h4{margin:0 0 10px;font:400 16px var(--h);display:flex;justify-content:space-between;align-items:center}
+#ward h4 button{font:11px var(--m);color:var(--muted);background:none;border:0;cursor:pointer;text-decoration:underline}
+#ward fieldset{border:0;margin:0 0 10px;padding:0}#ward legend{font:10px var(--m);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+#ward .wr{display:flex;flex-wrap:wrap;gap:6px}
+#ward .wr button{font:12px var(--m);color:var(--text);background:var(--card);border:2px solid var(--ink);border-radius:99px;padding:5px 10px;cursor:pointer;transition:background-color .15s,color .15s,translate .12s}
+#ward .wr button[aria-pressed=true]{background:var(--accent);color:var(--btnp)}
+#ward .wr button:active{translate:1px 1px}
+#ward .wauto{display:block;width:100%;margin-top:4px;font:12px var(--m);padding:8px;border-radius:6px;border:2px dashed var(--border);background:none;color:var(--text);cursor:pointer}
+#ward .wauto[aria-pressed=true]{border-style:solid;border-color:var(--accent);color:var(--accent)}
+html:not(.has3d) #wardB,html:not(.has3d) #ward{display:none}
+body.finale #wardB,body.finale #ward{opacity:0!important;pointer-events:none!important}
+@media(max-width:560px){#wardB{left:70px;bottom:64px}}
+body.theme-pc #ward{border-radius:8px 8px 3px 3px;border:3px solid #0a3fb5;border-top:0;padding-top:42px;background:#ece9d8;box-shadow:2px 3px 8px rgb(0 0 0/.4)}
+body.theme-pc #ward h4{position:absolute;left:0;right:0;top:0;height:32px;padding:0 10px;border-radius:7px 7px 0 0;background:linear-gradient(#3d95ff,#0a62e8 30%,#0050d8 70%,#0a3fb5);color:#fff;font:700 13px Tahoma,sans-serif}
+body.theme-pc #ward h4 button{color:#fff}body.theme-pc #ward .wr button{border-radius:3px;border:1px solid #003c74;background:linear-gradient(#fff,#ecebe6 70%,#d6d0c5);color:#14171f}
+body.theme-pc #ward .wr button[aria-pressed=true]{background:#316ac5;color:#fff}body.theme-pc #wardB{border-radius:6px}
+body.theme-hacker #ward{background:#020604;border:1px solid #39ff88;box-shadow:0 0 24px -6px rgb(57 255 136/.6);font-family:var(--m)}
+body.theme-hacker #ward .wr button{background:none;border:1px solid #1f4d3a;color:#39ff88}body.theme-hacker #ward .wr button[aria-pressed=true]{background:#39ff88;color:#020604}
+body.theme-hacker #wardB{border:1px solid #39ff88;background:#020604;box-shadow:0 0 16px rgb(57 255 136/.5)}
+body.theme-cine #ward{background:#1b0f08;border:3px solid #d4a84a;box-shadow:0 0 0 4px #1a0b0d,0 14px 30px #000a}
+body.theme-cine #wardB{border-color:#d4a84a;background:#1b0f08}
+body.theme-kraft #ward{background:repeating-linear-gradient(#0000 0 25px,rgb(156 74 26/.1) 25px 26px),#f3ead4}
+@media(prefers-reduced-motion:reduce){#ward{transition:opacity .1s}}
+/* probador 3D del armario */
+#ward .wpv{position:relative;height:190px;margin:0 0 12px;border-radius:8px;overflow:hidden;background:radial-gradient(ellipse at 50% 35%,color-mix(in srgb,var(--accent) 22%,var(--card)),var(--card) 70%);border:2px solid color-mix(in srgb,var(--ink) 40%,#0000)}
+#ward .wpv canvas{display:block;width:100%;height:100%}
+#ward .wpv small{position:absolute;left:10px;bottom:8px;font:10px var(--m);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+#ward{max-height:calc(100vh - 140px);overflow:auto}
+body.theme-cine #ward .wpv{background:radial-gradient(ellipse at 50% 20%,rgb(255 220 150/.35),#1a0b0d 70%)}
+body.theme-pc #ward .wpv{background:linear-gradient(#2a6fd6,#9fd0ff 70%,#4fa83a 70%);border-radius:3px}
+body.theme-hacker #ward .wpv{background:radial-gradient(ellipse at 50% 40%,rgb(57 255 136/.18),#020604 70%);border-color:#1f4d3a}
 </style>
 </head>
 <body>
@@ -791,9 +1020,9 @@ body.theme-hacker #term.min #ttg::before{content:">_";font:700 15px var(--m);col
 (function(){
  var H=document.documentElement,I=document.getElementById('intro'),St=document.getElementById('inStage'),Sk=document.getElementById('inSkip');if(!I)return;
  var TPL={
-  kraft:'<div class="in-glow"></div><div class="in-sh"><div class="in-sign"><small>TALLER</small><b>GABRIEL SOLÍS</b><em>Reparaciones de código · desde 2026</em></div><div class="in-tag">ABIERTO</div><i class="in-hd"></i></div><div class="in-dark"></div><div class="in-bulb"></div>',
-  cine:'<div class="ci-cur l"></div><div class="ci-cur r"></div><div class="ci-val"></div><div class="ci-mq"><small>ESTRENO</small><b>GABRIEL SOLÍS</b><small>PORTAFOLIO · 2026</small></div>',
-  pc:'<div class="pc-scr"><pre class="in-txt"></pre><div class="pc-boot"><b>Gabriel<span>Solís</span></b><small>Portafolio · edición 2000</small><i><u></u></i></div></div>',
+  kraft:'<div class="in-glow"></div><div class="in-sh"><div class="in-sign"><img class="in-logo" src="logo-160.png" alt=""><small>TALLER</small><b>GABRIEL SOLÍS</b><em>Reparaciones de código · desde 2026</em></div><div class="in-tag">ABIERTO</div><i class="in-hd"></i></div><div class="in-dark"></div><div class="in-bulb"></div>',
+  cine:'<div class="ci-cur l"></div><div class="ci-cur r"></div><div class="ci-val"></div><div class="ci-mq"><img class="in-logo" src="logo-160.png" alt=""><small>ESTRENO</small><b>GABRIEL SOLÍS</b><small>PORTAFOLIO · 2026</small></div>',
+  pc:'<div class="pc-scr"><pre class="in-txt"></pre><div class="pc-boot"><img class="in-logo" src="logo-160.png" alt=""><b>Gabriel<span>Solís</span></b><small>Portafolio · edición 2000</small><i><u></u></i></div></div>',
   hacker:'<div class="hk-scr"><pre class="in-txt"></pre></div>'};
  var LINES={pc:['GS BIOS 2000   (C) 2026 Gabriel Solís','','Procesador: Estudiante de Ingeniería USAC ...... OK','Memoria: 6 lenguajes ............................ OK','Unidad C: 4 proyectos ........................... OK','','C:\\> PORTAFOLIO.EXE_'],
   hacker:['$ ssh gabriel@trikis.nl','> conectando al taller............ ok','> descifrando portafolio  [██████████] 100%','> acceso concedido. bienvenido._']};
@@ -823,7 +1052,7 @@ body.theme-hacker #term.min #ttg::before{content:">_";font:700 15px var(--m);col
 </script>
 
 <header><nav>
-  <div class="brand"><i></i> GS</div>
+  <a class="brand" href="#hero" aria-label="Gabriel Solís · inicio"><img class="logo" src="logo-160.png" alt="" width="46" height="46"></a>
   <div class="links" id="links">
     <a href="#projects">Proyectos</a><a href="#servicios">Servicios</a><a href="#about">Sobre mí</a><a href="#skills">Stack</a><a href="#experiencia">Trayectoria</a><a href="#tarjeta">Extras</a><a href="#contact">Contacto</a>
   </div>
@@ -851,6 +1080,20 @@ body.theme-hacker #term.min #ttg::before{content:">_";font:700 15px var(--m);col
     <svg class="c-nut"><use href="#s-nut" width="100%" height="100%"/></svg>
     <span class="sc-hand">commit a commit</span>
   </div>
+</div></section>
+
+<section id="indice"><div class="wrap reveal" data-t="INDICE">
+  <div class="eyebrow"><i>00</i>— Empieza aquí</div><h2 class="h2 x3d">Elige por dónde <em>empezar</em></h2>
+  <nav class="ix" aria-label="Índice del portafolio">
+    <a href="#projects"><i>01</i><small>Tiendas, una app de escritorio y este mismo sitio.</small><b>Proyectos</b></a>
+    <a href="#servicios"><i>02</i><small>Sitios, tiendas con WhatsApp y paneles.</small><b>Servicios</b></a>
+    <a href="#about"><i>03</i><small>Quién soy, qué me gusta y mi compañero.</small><b>Sobre mí</b></a>
+    <a href="#skills"><i>04</i><small>Lenguajes y herramientas que uso.</small><b>Stack</b></a>
+    <a href="#experiencia"><i>05</i><small>Práctica y lo que aprendí construyendo.</small><b>Trayectoria</b></a>
+    <a href="#formacion"><i>06</i><small>USAC, cursos y certificaciones.</small><b>Formación</b></a>
+    <a href="#orden"><i>07</i><small>Arma tu proyecto en un minuto.</small><b>Tu orden</b></a>
+    <a href="#contact"><i>✉</i><small>Correo, WhatsApp, GitHub y CV.</small><b>Contacto</b></a>
+  </nav>
 </div></section>
 
 <section id="love"><div class="wrap">
@@ -904,10 +1147,10 @@ body.theme-hacker #term.min #ttg::before{content:">_";font:700 15px var(--m);col
 
 <section id="servicios"><svg aria-hidden="true" class="deco d-wrench" style="right:30px;top:-60px;transform:rotate(18deg)"><use href="#s-wrench" width="100%" height="100%"/></svg><div class="wrap reveal" data-t="SERVICIOS">
   <div class="eyebrow"><i>02</i>— Servicios</div><h2 class="h2 x3d">Lo que puedo <em>hacer por ti</em></h2>
-  <div class="grid" style="margin-top:0">
-    <div class="card" data-tilt><div style="font-size:24px">🌐</div><h3>Sitios web y landing pages</h3><p>Páginas rápidas, adaptables a móvil y publicadas en Vercel, listas para compartir.</p></div>
-    <div class="card" data-tilt><div style="font-size:24px">🛍️</div><h3>Tiendas con pedido por WhatsApp</h3><p>Catálogo con filtros, carrito que arma el pedido y lo envía por WhatsApp, pensado para negocios pequeños con envío a domicilio.</p></div>
-    <div class="card" data-tilt><div style="font-size:24px">🗄️</div><h3>Panel de administración</h3><p>Subes productos con fotos, marca, precio y talla desde un panel propio conectado a Supabase, sin tocar código.</p></div>
+  <div class="rows">
+    <div class="rw"><i>🌐</i><div><h3>Sitios web y landing pages</h3><p>Páginas rápidas, adaptables a móvil y publicadas en Vercel, listas para compartir.</p></div></div>
+    <div class="rw"><i>🛍️</i><div><h3>Tiendas con pedido por WhatsApp</h3><p>Catálogo con filtros, carrito que arma el pedido y lo envía por WhatsApp, pensado para negocios pequeños con envío a domicilio.</p></div></div>
+    <div class="rw"><i>🗄️</i><div><h3>Panel de administración</h3><p>Subes productos con fotos, marca, precio y talla desde un panel propio conectado a Supabase, sin tocar código.</p></div></div>
   </div>
   <div class="steps">
     <div><b>Conversamos</b>Me cuentas la idea y lo que necesitas.</div>
@@ -921,13 +1164,18 @@ body.theme-hacker #term.min #ttg::before{content:">_";font:700 15px var(--m);col
 
 <section id="about"><svg aria-hidden="true" class="deco d-wrench" style="left:-26px;bottom:-40px;transform:rotate(-24deg)"><use href="#s-wrench" width="100%" height="100%"/></svg><svg aria-hidden="true" class="deco d-compass" style="right:36px;top:-38px"><use href="#s-compass" width="100%" height="100%"/></svg><div class="wrap reveal" data-t="SOBRE_MI">
   <div class="eyebrow"><i>03</i>— Quién soy</div><h2 class="h2 x3d">Aprendiendo a <em>construir</em></h2>
-  <div class="ah">
-    <div>
-      <p>Soy <strong>Luis Gabriel Solís García</strong>, estudiante de primer año de Ingeniería en Sistemas en la <strong>Universidad de San Carlos de Guatemala (USAC)</strong>. Me apasiona aprender sobre programación y todavía estoy descubriendo qué camino quiero tomar dentro del desarrollo — por ahora, disfruto cada cosa nueva que aprendo.</p>
-      <p>Fuera del código, me gusta ver películas y series, jugar y aprovechar el tiempo libre explorando cosas nuevas, dentro y fuera de la pantalla.</p>
-    </div>
-    <div class="card" data-tilt><ul class="ql"><li><span>💻</span>Programación</li><li><span>🎬</span>Películas y series</li><li><span>🎮</span>Videojuegos</li><li><span>🧭</span>Descubrir cosas nuevas</li></ul></div>
-  </div>
+  <p class="lead">Soy <strong>Luis Gabriel Solís García</strong>, estudiante de primer año de Ingeniería en Sistemas en la <strong>Universidad de San Carlos de Guatemala (USAC)</strong>.</p>
+  <p>Me apasiona aprender sobre programación y todavía estoy descubriendo qué camino quiero tomar dentro del desarrollo — por ahora, disfruto cada cosa nueva que aprendo.</p>
+  <p>Fuera del código, me gusta ver películas y series, jugar y aprovechar el tiempo libre explorando cosas nuevas, dentro y fuera de la pantalla.</p>
+  <ul class="likes" aria-label="Lo que me gusta"><li><span>💻</span>Programación</li><li><span>🎬</span>Películas y series</li><li><span>🎮</span>Videojuegos</li><li><span>🧭</span>Descubrir cosas nuevas</li></ul>
+</div></section>
+
+<section id="mascota"><div class="wrap reveal" data-t="GUARDIAN">
+  <div class="eyebrow"><i>🐾</i>— El guardián del taller</div><h2 class="h2 x3d">Te presento a mi <em>compañero</em></h2>
+  <p class="pet-lead">Es el perro de mi logo. Vigila la mesa, sigue tu cursor con la mirada y te acompaña por cada capítulo del portafolio. En cada mundo se viste distinto.</p>
+  <div class="pet"><button class="btn p" id="petB" type="button">🐾 Acariciarlo</button><span class="pet-c">Caricias: <b id="petN">0</b></span></div>
+  <ul class="pet-w"><li><span>🔧</span>Taller · casco, pañuelo y chaleco</li><li><span>🎬</span>Cine · boina, lentes y chamarra de cuero</li><li><span>💾</span>Computadora · audífonos, gafete y camiseta</li><li><span>💻</span>Hacker · máscara anónima y sudadera</li></ul>
+  <p class="pet-tip">¿Quieres vestirlo tú? Usa el botón 🐾 de abajo a la izquierda, junto a la terminal.</p>
 </div></section>
 
 <section id="skills"><svg aria-hidden="true" class="deco d-nut" style="right:-26px;bottom:-30px"><use href="#s-nut" width="100%" height="100%"/></svg><div class="wrap reveal" data-t="STACK">
@@ -950,47 +1198,41 @@ body.theme-hacker #term.min #ttg::before{content:">_";font:700 15px var(--m);col
 
 <section id="experiencia"><div class="wrap reveal" data-t="TRAYECTORIA">
   <div class="eyebrow"><i>05</i>— Trayectoria práctica</div><h2 class="h2 x3d">Mi <em>experiencia</em></h2>
-  <div class="card" data-tilt>
-    <div class="ih"><div><div class="it">Apoyo en Desarrollo Web &amp; Redes</div><div class="is">Empresa de Servicios de Redes y Telecomunicaciones</div></div><span class="pill">Práctica / Aprendizaje</span></div><div style="margin:2px 0 12px"><span class="tg">Maquetación web</span><span class="tg">Redes y telecomunicaciones</span><span class="tg">Trabajo en equipo</span></div>
-    <p>Desempeñé un rol de apoyo en un entorno técnico enfocado en infraestructura de redes, colaborando directamente con un desarrollador experimentado en el diseño y maquetación de una página web.</p>
-    <ul><li>Colaboración mano a mano en la estructuración y maquetación de componentes web.</li><li>Comprensión práctica sobre el flujo de trabajo en proyectos reales y dinámicas de aprendizaje continuo.</li><li>Contacto directo con el entorno técnico de redes y entornos digitales corporativos.</li></ul>
-  </div>
-
-  <div class="card learn" data-tilt>
-    <div class="ih"><div><div class="it">Lo que aprendí construyendo mis proyectos</div><div class="is">Optimizador · Tienda en línea · Portafolio</div></div><span class="pill">Proyectos propios</span></div>
-    <div class="lg2">
-      <div><h3>⚡ Optimizador (Tauri 2 + Rust)</h3><ul>
-        <li>Armar una app de escritorio: interfaz web comunicada con un motor en Rust mediante comandos.</li>
-        <li>Leer métricas reales de Windows (CPU por núcleo, memoria, GPU, disco y red) con contadores de rendimiento.</li>
-        <li>Tocar el sistema con cuidado: registro, PowerShell y winget, siempre con respaldo para poder deshacer.</li>
-        <li>Manejar permisos de administrador y pedirlos con un botón en la propia app.</li>
-        <li>Escribir pruebas del lado de Rust con <code>cargo test</code> y organizar el código en módulos.</li></ul></div>
-      <div><h3>🛍️ Tienda en línea</h3><ul>
-        <li>Base de datos y almacenamiento de fotos con Supabase, y publicación en GitHub Pages con dominio propio.</li>
-        <li>Pensar el producto desde quien compra: filtros por marca y talla, carrito y pedido por WhatsApp.</li>
-        <li>Construir un panel de administración para que el negocio se actualice solo.</li></ul></div>
-      <div><h3>🧰 En general</h3><ul>
-        <li>Dividir un proyecto grande en piezas pequeñas y probarlas una por una.</li>
-        <li>Usar Git y GitHub como diario del trabajo, commit a commit.</li>
-        <li>Pensar en el usuario: avisos claros, ayudas y cambios reversibles.</li></ul></div>
-    </div>
-    <div style="margin-top:6px"><span class="tg w">Rust</span><span class="tg w">Tauri 2</span><span class="tg">Windows (PDH, registro)</span><span class="tg">PowerShell</span><span class="tg">winget</span><span class="tg">Supabase</span><span class="tg">GitHub Pages</span></div>
+  <div class="tl">
+    <article class="tl-r"><div class="tl-d">Práctica<br>y aprendizaje</div><div class="tl-b"><h3 class="tl-t">Apoyo en desarrollo web y redes</h3><div class="tl-o">Empresa de servicios de redes y telecomunicaciones</div>
+      <p>Desempeñé un rol de apoyo en un entorno técnico enfocado en infraestructura de redes, colaborando directamente con un desarrollador experimentado en el diseño y maquetación de una página web.</p>
+      <ul><li>Colaboración mano a mano en la estructuración y maquetación de componentes web.</li><li>Comprensión práctica sobre el flujo de trabajo en proyectos reales y dinámicas de aprendizaje continuo.</li><li>Contacto directo con el entorno técnico de redes y entornos digitales corporativos.</li></ul>
+      <div class="tl-g"><span class="tg">Maquetación web</span><span class="tg">Redes y telecomunicaciones</span><span class="tg">Trabajo en equipo</span></div></div></article>
+    <article class="tl-r"><div class="tl-d">Proyecto<br>propio</div><div class="tl-b"><h3 class="tl-t">⚡ Optimizador · Tauri 2 + Rust</h3><div class="tl-o">Lo que aprendí construyéndolo</div><ul>
+      <li>Armar una app de escritorio: interfaz web comunicada con un motor en Rust mediante comandos.</li>
+      <li>Leer métricas reales de Windows (CPU por núcleo, memoria, GPU, disco y red) con contadores de rendimiento.</li>
+      <li>Tocar el sistema con cuidado: registro, PowerShell y winget, siempre con respaldo para poder deshacer.</li>
+      <li>Manejar permisos de administrador y pedirlos con un botón en la propia app.</li>
+      <li>Escribir pruebas del lado de Rust con <code>cargo test</code> y organizar el código en módulos.</li></ul>
+      <div class="tl-g"><span class="tg w">Rust</span><span class="tg w">Tauri 2</span><span class="tg">Windows (PDH, registro)</span><span class="tg">PowerShell</span><span class="tg">winget</span></div></div></article>
+    <article class="tl-r"><div class="tl-d">Proyecto<br>propio</div><div class="tl-b"><h3 class="tl-t">🛍️ Tienda en línea</h3><div class="tl-o">Lo que aprendí construyéndola</div><ul>
+      <li>Base de datos y almacenamiento de fotos con Supabase, y publicación en GitHub Pages con dominio propio.</li>
+      <li>Pensar el producto desde quien compra: filtros por marca y talla, carrito y pedido por WhatsApp.</li>
+      <li>Construir un panel de administración para que el negocio se actualice solo.</li></ul>
+      <div class="tl-g"><span class="tg">Supabase</span><span class="tg">GitHub Pages</span></div></div></article>
+    <article class="tl-r"><div class="tl-d">En<br>general</div><div class="tl-b"><h3 class="tl-t">🧰 Cómo trabajo</h3><div class="tl-o">Optimizador · Tienda en línea · Portafolio</div><ul>
+      <li>Dividir un proyecto grande en piezas pequeñas y probarlas una por una.</li>
+      <li>Usar Git y GitHub como diario del trabajo, commit a commit.</li>
+      <li>Pensar en el usuario: avisos claros, ayudas y cambios reversibles.</li></ul></div></article>
   </div>
 </div></section>
 
 <section id="formacion"><div class="wrap reveal" data-t="FORMACION">
   <div class="eyebrow"><i>06</i>— Formación académica y cursos</div><h2 class="h2 x3d">Mi <em>formación</em></h2>
-  <div class="fm">
-    <div><h3 class="fm-t">🎓 Educación</h3>
-      <div class="card" data-tilt><div class="ih"><div><div class="it">Ingeniería en Ciencias y Sistemas</div><div class="is">Universidad de San Carlos de Guatemala (USAC)</div></div><span class="pill">En curso</span></div><div style="margin:2px 0 12px"><span class="tg">Lógica</span><span class="tg">Matemáticas</span><span class="tg">Fundamentos de computación</span></div><p>Estudiante universitario enfocado en fortalecer bases sólidas de lógica, matemáticas y fundamentos de ciencias de la computación.</p></div>
-      <div class="card" data-tilt><div class="ih"><div><div class="it">Cursos de Computación Avanzada</div><div class="is">Formación Académica y Complementaria</div></div><span class="pill">Completado</span></div><div style="margin:2px 0 12px"><span class="tg">Informática</span><span class="tg">Software avanzado</span><span class="tg">Introducción al desarrollo</span></div><p>Cursos enfocados en habilidades de informática, uso avanzado de software, resolución práctica de problemas técnicos e introducción al desarrollo.</p></div>
-    </div>
-    <div><h3 class="fm-t">🏅 Certificaciones</h3>
-      <div class="cg">
-        <div class="card" data-tilt><span style="font-size:26px">🏅</span><div><h3>Excel Inicia — Evaluación Técnica</h3><small>USAC</small><code>Septiembre 2025</code></div></div>
-        <div class="card" data-tilt><span style="font-size:26px">🎓</span><div><h3>Estrategias de Aprendizaje y Estudio</h3><small>Taller Académico USAC</small><code>Octubre 2025</code></div></div>
-      </div>
-    </div>
+  <div class="tl">
+    <article class="tl-r"><div class="tl-d">🎓 En curso</div><div class="tl-b"><h3 class="tl-t">Ingeniería en Ciencias y Sistemas</h3><div class="tl-o">Universidad de San Carlos de Guatemala (USAC)</div>
+      <p>Estudiante universitario enfocado en fortalecer bases sólidas de lógica, matemáticas y fundamentos de ciencias de la computación.</p>
+      <div class="tl-g"><span class="tg">Lógica</span><span class="tg">Matemáticas</span><span class="tg">Fundamentos de computación</span></div></div></article>
+    <article class="tl-r"><div class="tl-d">🎓 Completado</div><div class="tl-b"><h3 class="tl-t">Cursos de Computación Avanzada</h3><div class="tl-o">Formación académica y complementaria</div>
+      <p>Cursos enfocados en habilidades de informática, uso avanzado de software, resolución práctica de problemas técnicos e introducción al desarrollo.</p>
+      <div class="tl-g"><span class="tg">Informática</span><span class="tg">Software avanzado</span><span class="tg">Introducción al desarrollo</span></div></div></article>
+    <article class="tl-r"><div class="tl-d">🏅 Septiembre<br>2025</div><div class="tl-b"><h3 class="tl-t">Excel Inicia — Evaluación técnica</h3><div class="tl-o">USAC · certificación</div></div></article>
+    <article class="tl-r"><div class="tl-d">🏅 Octubre<br>2025</div><div class="tl-b"><h3 class="tl-t">Estrategias de aprendizaje y estudio</h3><div class="tl-o">Taller académico USAC · certificación</div></div></article>
   </div>
 </div></section>
 
@@ -1060,19 +1302,25 @@ body.theme-hacker #term.min #ttg::before{content:">_";font:700 15px var(--m);col
 </div></section>
 
 <section id="contact"><div class="stamp deco" aria-hidden="true">GUATEMALA<br>★ 2026 ★<br>PORTAFOLIO</div><svg aria-hidden="true" class="deco d-wrench" style="left:36px;top:-62px;transform:rotate(-20deg)"><use href="#s-wrench" width="100%" height="100%"/></svg><div class="wrap reveal" data-t="CONTACTO">
-  <div class="card ct" data-tilt><h2>¿Hablamos?</h2><p>Estoy abierto a conectar, aprender y colaborar en proyectos. Cuéntame tu idea y te respondo por el canal que prefieras.</p>
+  <div class="ct">
+    <div class="eyebrow"><i>✉</i>— Contacto</div><h2 class="h2 x3d">Escríbeme y <em>hablemos</em></h2>
+    <p class="ct-lead">Estoy abierto a conectar, aprender y colaborar en proyectos. Cuéntame tu idea y te respondo por el canal que prefieras.</p>
+    <a class="ct-mail" href="mailto:gabrielsolis8002@icloud.com" data-type="gabrielsolis8002@icloud.com">gabrielsolis8002@icloud.com</a>
+    <div class="ct-links"><a href="https://wa.me/50234405335" target="_blank" rel="noopener">WhatsApp · +502 3440-5335 ↗</a><a href="https://github.com/Trikis67" target="_blank" rel="noopener">GitHub ↗</a><a href="CV-Luis-Gabriel-Solis-Garcia.pdf" data-cv>Currículum</a><button type="button" id="cpy">Copiar correo</button></div>
     <form class="cf" id="cf" onsubmit="return false">
       <input id="cfn" placeholder="Tu nombre" maxlength="60" autocomplete="name" aria-label="Tu nombre">
       <textarea id="cfm" placeholder="Cuéntame brevemente tu idea o proyecto…" maxlength="600" rows="3" aria-label="Mensaje"></textarea>
       <div class="row" style="justify-content:flex-start"><button class="btn p" id="cfw" type="button">💬 Enviar por WhatsApp</button><button class="btn" id="cfe" type="button">✉ Enviar por correo</button></div>
     </form>
-    <div class="row"><a class="btn" href="https://github.com/Trikis67" target="_blank" rel="noopener" data-mag>GitHub ↗</a><a class="btn" href="mailto:gabrielsolis8002@icloud.com" data-mag>gabrielsolis8002@icloud.com</a><button class="btn" id="cpy" type="button">📋 Copiar correo</button><a class="btn" href="https://wa.me/50234405335" target="_blank" rel="noopener" data-mag>+502 3440-5335</a></div></div>
-</div></section>
+    <div class="sign" aria-hidden="true"><small class="sg-k"></small><svg viewBox="0 0 560 120" role="presentation"><text x="6" y="88">Gabriel Solís</text><path d="M18 104c90-10 190-12 300-6s150 4 210-8"/></svg><small class="sg-f"></small></div>
+  </div>
+</div>
+</section>
 
 <section id="final" aria-label="La mesa de trabajo completa"><div class="wrap"><h2 class="sr">La mesa de trabajo completa</h2></div></section>
 <a class="fin-top" id="finTop" href="#hero" aria-label="Volver al inicio"><b>↑</b><span>Volver al inicio</span></a>
 
-<footer><div class="ft"><div class="fb1"><b>Gabriel Solís</b><p>Hecho a mano, commit a commit.</p></div>
+<footer><div class="ft"><div class="fb1"><b><img class="logo" src="logo-160.png" alt="" width="44" height="44">Gabriel Solís</b><p>Hecho a mano, commit a commit.</p></div>
  <nav class="fn" aria-label="Pie"><a href="#about">Sobre mí</a><a href="#skills">Stack</a><a href="#projects">Proyectos</a><a href="#contact">Contacto</a></nav>
  <nav class="fn"><a href="https://github.com/Trikis67" target="_blank" rel="noopener">GitHub ↗</a><a href="mailto:gabrielsolis8002@icloud.com">Correo</a><a href="CV-Luis-Gabriel-Solis-Garcia.pdf" data-cv>CV</a></nav></div>
  <div class="fc">© 2026 Gabriel Solís · <a href="#hero">↑ Inicio</a></div></footer>
@@ -1402,6 +1650,55 @@ ti.addEventListener('keydown',e=>{if(e.key!=='Enter')return;const raw=ti.value.t
  document.getElementById('tvSave').addEventListener('click',()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([vcf],{type:'text/vcard'}));a.download='Gabriel-Solis.vcf';document.body.append(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500);typeof toast==='function'&&toast('Contacto descargado ✔')});
  document.getElementById('tvShare').addEventListener('click',async()=>{const d={title:'Gabriel Solís — Portafolio',text:'Desarrollador web en Guatemala',url:'https://trikis.nl/'};
   try{if(navigator.share){await navigator.share(d)}else{await navigator.clipboard.writeText(d.url);typeof toast==='function'&&toast('Enlace copiado ✔')}}catch(e){}})})();
+</script>
+<script>
+/* ===== Paneles compactos y animados: la línea de tiempo se despliega y el contenido entra en cascada ===== */
+(function(){
+ /* entradas desplegables: título, lugar y fecha a la vista; el resto al tocar */
+ document.querySelectorAll('.tl').forEach(tl=>{tl.querySelectorAll('.tl-r').forEach((r,i)=>{const b=r.querySelector('.tl-b'),o=b&&b.querySelector('.tl-o');if(!o||!o.nextElementSibling)return;
+  const x=document.createElement('div');x.className='tl-x';const inner=document.createElement('div');while(o.nextSibling)inner.append(o.nextSibling);x.append(inner);b.append(x);
+  r.classList.add('tg-on');r.tabIndex=0;r.setAttribute('role','button');const set=v=>{r.classList.toggle('open',v);r.setAttribute('aria-expanded',String(v))};set(i===0);
+  const tog=e=>{if(e.target.closest('a,button'))return;set(!r.classList.contains('open'))};r.addEventListener('click',tog);r.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();tog(e)}})})});
+ if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+ /* cascada: cada elemento entra un poco después del anterior */
+ const groups=['.rows','.tl','.ix','.likes','.steps','.ct-links','.ow-ch'];
+ groups.forEach(sel=>document.querySelectorAll(sel).forEach(g=>[...g.children].forEach((c,i)=>{c.classList.add('si');c.style.setProperty('--d',i)})));
+ document.documentElement.classList.add('stag');
+ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vi');io.unobserve(e.target)}}),{rootMargin:'0px 0px -12% 0px'});
+ document.querySelectorAll('section:not(#hero) .wrap').forEach(w=>io.observe(w));
+ /* el correo del contacto se escribe solo la primera vez que se ve */
+ {const m=document.querySelector('.ct-mail[data-type]');if(m){const full=m.dataset.type;const o2=new IntersectionObserver(es=>{if(!es[0].isIntersecting)return;o2.disconnect();let i=0;m.textContent='';(function t(){m.textContent=full.slice(0,++i);if(i<full.length)setTimeout(t,32)})()},{threshold:.6});o2.observe(m)}}
+ /* seguridad: si algo no se vio al cargar (por ejemplo, al saltar con un enlace), se muestra igual */
+ addEventListener('hashchange',()=>setTimeout(()=>document.querySelectorAll('section .wrap').forEach(w=>{const r=w.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0)w.classList.add('vi')}),400));
+})();
+</script>
+<script>
+/* ===== El guardián: botón de caricias (salta, mueve la cola y ladra) ===== */
+(function(){const b=document.getElementById('petB'),n=document.getElementById('petN');if(!b)return;let c=0;try{c=+localStorage.getItem('gsPet')||0}catch(e){}n.textContent=c;
+ b.addEventListener('click',e=>{c++;n.textContent=c;try{localStorage.setItem('gsPet',c)}catch(x){}n.classList.remove('bump');void n.offsetWidth;n.classList.add('bump');b.classList.remove('pp');void b.offsetWidth;b.classList.add('pp');
+  window.gsPet&&gsPet();const w=(document.body.className.match(/theme-(\w+)/)||[])[1];window.gsSfx&&gsSfx(['cine','pc','hacker'].includes(w)?w:'kraft','bark');
+  const r=b.getBoundingClientRect();for(let i=0;i<3;i++){const p=document.createElement('span');p.className='paw';p.textContent='🐾';p.style.left=(r.left+r.width/2-11+(i-1)*18)+'px';p.style.top=(r.top-6)+'px';p.style.setProperty('--dx',((i-1)*26)+'px');p.style.animationDelay=(i*90)+'ms';document.body.append(p);setTimeout(()=>p.remove(),1300)}})})();
+</script>
+<script>
+/* ===== Armario del guardián: vístelo a tu gusto (o con la ropa del mundo) ===== */
+(function(){if(!document.documentElement)return;
+ const SLOTS=[['head','Cabeza',[['none','Nada'],['casco','⛑️ Casco'],['boina','🎨 Boina'],['gorra','🧢 Gorra'],['copa','🎩 Copa'],['corona','👑 Corona'],['audifonos','🎧 Audífonos'],['capucha','🥷 Capucha'],['vaquero','🤠 Vaquero'],['chef','👨‍🍳 Chef'],['lana','🧶 Gorro de lana'],['birrete','🎓 Birrete'],['fiesta','🥳 Fiesta']]],
+  ['face','Cara',[['none','Nada'],['anon','🎭 Máscara anónima'],['cubrebocas','😷 Cubrebocas'],['bandana','🤠 Bandana'],['payaso','🔴 Nariz de payaso']]],
+  ['eyes','Ojos',[['none','Nada'],['redondos','👓 Redondos'],['sol','🕶️ De sol'],['monoculo','🧐 Monóculo'],['visor','🟩 Visor'],['lentes3d','🎬 Lentes 3D'],['pixel','👾 Pixelados'],['vr','🥽 Realidad virtual']]],
+  ['neck','Cuello',[['none','Nada'],['panuelo','🔺 Pañuelo'],['bufanda','🧣 Bufanda'],['corbatin','🎀 Corbatín'],['cadena','📿 Cadena'],['gafete','🪪 Gafete'],['medalla','🏅 Medalla'],['picos','⛓️ Collar de picos']]],
+  ['body','Cuerpo',[['none','Nada'],['hoodie','🧥 Sudadera'],['bata','🥼 Bata'],['chaleco','🦺 Chaleco'],['chamarra','🧥 Chamarra de cuero'],['camiseta','👕 Camiseta GS'],['capa','🦸 Capa']]]];
+ const b=document.createElement('button');b.id='wardB';b.type='button';b.setAttribute('aria-label','Vestir al guardián');b.setAttribute('aria-expanded','false');b.textContent='🐾';
+ const p=document.createElement('div');p.id='ward';p.setAttribute('role','dialog');p.setAttribute('aria-label','Armario del guardián');
+ p.innerHTML='<h4>Vestir al guardián<button type="button" data-x>cerrar</button></h4><div class="wpv"><canvas id="wpvC" aria-hidden="true"></canvas><small>Gira solo · elige abajo</small></div>'+SLOTS.map(([k,n,items])=>`<fieldset><legend>${n}</legend><div class="wr" data-s="${k}">${items.map(([id,l])=>`<button type="button" data-id="${id}" aria-pressed="false">${l}</button>`).join('')}</div></fieldset>`).join('')+'<button type="button" class="wauto" aria-pressed="true">↺ Ropa del mundo (automática)</button>';
+ document.body.append(b,p);
+ const sync=()=>{if(!window.gsWard)return;const st=gsWard.get(),c=st.current;p.querySelectorAll('.wr').forEach(r=>r.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(c[r.dataset.s]===x.dataset.id))));p.querySelector('.wauto').setAttribute('aria-pressed',String(st.mode==='auto'))};
+ const open=v=>{p.classList.toggle('on',v);b.setAttribute('aria-expanded',String(v));if(v){sync();window.gsWardPreview&&gsWardPreview(p.querySelector('#wpvC'))}else window.gsWardPreviewOff&&gsWardPreviewOff()};
+ b.addEventListener('click',e=>{e.stopPropagation();open(!p.classList.contains('on'))});
+ p.addEventListener('click',e=>{e.stopPropagation();const x=e.target.closest('button');if(!x)return;if(x.hasAttribute('data-x'))return open(false);
+  if(x.classList.contains('wauto')){window.gsWard&&gsWard.auto()}else{const r=x.closest('.wr');window.gsWard&&gsWard.set(r.dataset.s,x.dataset.id)}sync()});
+ document.addEventListener('click',()=>open(false));addEventListener('keydown',e=>{if(e.key==='Escape')open(false)});
+ new MutationObserver(()=>{if(p.classList.contains('on'))setTimeout(sync,50)}).observe(document.body,{attributes:true,attributeFilter:['class']});
+})();
 </script>
 <script src="sonido.js"></script>
 <script src="taller3d.js"></script>

@@ -74,16 +74,17 @@
  /* ---------- sonido de las intros (lo llama el motor de intros de index.html) ---------- */
  const rattle=(n,dt,f0,f1,v)=>{for(let i=0;i<n;i++)burst(.03,'bandpass',f0+(f1-f0)*i/n,v*(.7+Math.random()*.6),2.5,now()+i*dt)};
  const SFX={
-  kraft:{cover(){rattle(18,.035,1500,700,.06);setTimeout(()=>{tone('sine',70,.3,.2,now(),40);burst(.08,'lowpass',400,.2)},650)},
+  bark:null,
+  kraft:{bark(){[0,.16].forEach(d=>{tone('sawtooth',420,.14,.06,now()+d,180);burst(.09,'bandpass',900,.07,1.5,now()+d)})},cover(){rattle(18,.035,1500,700,.06);setTimeout(()=>{tone('sine',70,.3,.2,now(),40);burst(.08,'lowpass',400,.2)},650)},
    open(){[0,.09,.22].forEach(t=>{tone('square',120,.05,.02,now()+t);burst(.01,'highpass',3000,.04,1,now()+t)});const h=osc('sawtooth',60),hg=gain(0),hf=filt('lowpass',300);h.connect(hf).connect(hg).connect(master);hg.gain.setValueAtTime(0,now()+.3);hg.gain.linearRampToValueAtTime(.025,now()+.4);hg.gain.linearRampToValueAtTime(0,now()+2.4);h.start();h.stop(now()+2.5);
     setTimeout(()=>rattle(40,.042,700,1700,.05),420);setTimeout(()=>{tone('sine',90,.25,.12,now(),50)},2300)}},
-  cine:{cover(){const n=src(false),f=filt('lowpass',700),g=gain(0);n.connect(f).connect(g).connect(master);g.gain.linearRampToValueAtTime(.13,now()+.45);g.gain.linearRampToValueAtTime(0,now()+.9);n.start();n.stop(now()+1)},
+  cine:{bark(){[0,.18].forEach(d=>{tone('sawtooth',380,.18,.05,now()+d,170);burst(.12,'bandpass',800,.05,1.2,now()+d);tone('sawtooth',380,.18,.015,now()+d+.12,170)})},cover(){const n=src(false),f=filt('lowpass',700),g=gain(0);n.connect(f).connect(g).connect(master);g.gain.linearRampToValueAtTime(.13,now()+.45);g.gain.linearRampToValueAtTime(0,now()+.9);n.start();n.stop(now()+1)},
    open(){const n=src(false),f=filt('bandpass',1200,1),g=gain(0),l=osc('square',24),lg=gain(.04);l.connect(lg).connect(g.gain);n.connect(f).connect(g).connect(master);g.gain.linearRampToValueAtTime(.05,now()+.6);g.gain.linearRampToValueAtTime(0,now()+2.4);n.start();l.start();n.stop(now()+2.5);l.stop(now()+2.5);
     burst(.02,'highpass',2500,.12);[[262,0],[330,.18],[392,.36],[523,.6]].forEach(([fr,t])=>tone('triangle',fr,1.2-t,.05,now()+.3+t))}},
-  pc:{cover(){tone('sine',80,.25,.14,now(),40);tone('sine',15600,.5,.012)},type(){tone('square',1000,.012,.012)},
+  pc:{bark(){[0,.14].forEach(d=>{tone('square',520,.09,.05,now()+d,260);tone('square',260,.06,.03,now()+d+.06)})},cover(){tone('sine',80,.25,.14,now(),40);tone('sine',15600,.5,.012)},type(){tone('square',1000,.012,.012)},
    boot(){for(let i=0;i<6;i++)burst(.008,'highpass',2600,.06,1,now()+i*.07+Math.random()*.03);[523,659,784,988,1046].forEach((fr,i)=>tone('sine',fr,.9-i*.1,.05,now()+.45+i*.13))},
    open(){tone('sine',2200,.45,.06,now(),60);burst(.05,'lowpass',300,.1,1,now()+.4)}},
-  hacker:{cover(){for(let i=0;i<6;i++)tone('square',150+Math.random()*1800,.03,.035,now()+i*.04)},type(){burst(.01,'highpass',4200,.05);tone('square',2900+Math.random()*500,.01,.012)},
+  hacker:{bark(){[0,.12,.24].forEach((d,i)=>tone('square',[700,520,880][i],.07,.035,now()+d))},cover(){for(let i=0;i<6;i++)tone('square',150+Math.random()*1800,.03,.035,now()+i*.04)},type(){burst(.01,'highpass',4200,.05);tone('square',2900+Math.random()*500,.01,.012)},
    open(){for(let i=0;i<8;i++){tone('square',200+Math.random()*2400,.03,.03,now()+i*.045);burst(.02,'highpass',3000,.04,1,now()+i*.045)}[523,659,784,1046].forEach((fr,i)=>tone('square',fr,.18,.025,now()+.45+i*.07))}}};
  let lastType=0;window.gsSfx=(w,phase)=>{if(!ctx||!want)return;const s=SFX[w]&&SFX[w][phase];if(!s)return;if(phase==='type'){const n=performance.now();if(n-lastType<45)return;lastType=n}try{s()}catch(e){}};
  /* ---------- encendido ---------- */
