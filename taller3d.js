@@ -212,7 +212,7 @@ const dosTex=tex(512,384,(g,w,h)=>{const sky=g.createLinearGradient(0,0,0,h*.7);
  g.fillStyle='#4fa83a';g.beginPath();g.moveTo(0,h*.62);g.quadraticCurveTo(w*.35,h*.42,w,h*.6);g.lineTo(w,h);g.lineTo(0,h);g.fill();g.fillStyle='rgba(255,255,255,.75)';g.beginPath();g.ellipse(w*.72,h*.2,60,16,0,0,TAU);g.ellipse(w*.8,h*.24,44,12,0,0,TAU);g.fill();
  g.fillStyle='#ece9d8';g.fillRect(110,70,300,170);const tb=g.createLinearGradient(0,70,0,98);tb.addColorStop(0,'#0058e6');tb.addColorStop(.5,'#3a93ff');tb.addColorStop(1,'#0050d0');g.fillStyle=tb;g.fillRect(110,70,300,28);
  g.fillStyle='#e04343';g.fillRect(384,74,20,20);g.fillStyle='#fff';g.font='bold 16px Tahoma,Verdana,sans-serif';g.fillText('GABRIEL.EXE',120,90);g.fillText('×',389,90);
- g.fillStyle='#14171f';g.font='16px Tahoma,Verdana,sans-serif';['Desarrollador web','Estudiante USAC','4 proyectos · 6 lenguajes'].forEach((s,i)=>g.fillText(s,126,128+i*30));
+ g.fillStyle='#14171f';g.font='16px Tahoma,Verdana,sans-serif';['Desarrollador web','Estudiante USAC','6 proyectos · 6 lenguajes'].forEach((s,i)=>g.fillText(s,126,128+i*30));
  const bar=g.createLinearGradient(0,h-34,0,h);bar.addColorStop(0,'#3a7bf0');bar.addColorStop(1,'#1d4fc4');g.fillStyle=bar;g.fillRect(0,h-34,w,34);
  g.fillStyle='#3c9a2e';g.beginPath();g.roundRect?g.roundRect(0,h-34,110,34,[0,14,14,0]):g.rect(0,h-34,110,34);g.fill();g.fillStyle='#fff';g.font='italic bold 18px Tahoma,sans-serif';g.fillText('inicio',26,h-11);
  g.fillStyle='#bfe0ff';g.font='13px Tahoma,sans-serif';g.fillText('12:00',w-50,h-12);[[24,24],[24,84]].forEach(([x,y])=>{g.fillStyle='#ffe28a';g.fillRect(x+8,y,28,24);g.fillStyle='#fff';g.font='11px Tahoma';g.fillText(y<50?'Mis proyectos':'Papelera',x-6,y+40)})});
@@ -326,6 +326,25 @@ put(PG,calBlk,0,0,.3).userData.key='agenda';
 const waPh=grp(box(1.15,.12,2.2,dark),topPlane(1.0,1.95,waTex,.125,true));put(PG,waPh,2.1,.7,-.35);
 put(PG,pencil(0xb3261e,2.2),-1.8,1.1,.9);
 shot('#projects .pc.agd',calBlk,{az:.4,el:.78,d:6.2,fy:.7});
+/* Triki Radar: una pantalla de radar con su barrido y las bases de una licitación bajo la lupa */
+const PRD=cluster(15,9);
+const scopeTex=tex(256,256,(g,w)=>{g.fillStyle='#04160d';g.fillRect(0,0,w,w);g.strokeStyle='rgba(80,255,160,.45)';g.lineWidth=2;[38,76,114].forEach(r=>{g.beginPath();g.arc(w/2,w/2,r,0,TAU);g.stroke()});
+ g.strokeStyle='rgba(80,255,160,.25)';g.beginPath();g.moveTo(w/2,6);g.lineTo(w/2,w-6);g.moveTo(6,w/2);g.lineTo(w-6,w/2);g.stroke();
+ [[172,88,6],[98,150,5],[152,188,4],[78,72,4],[190,150,3]].forEach(([x,y,r])=>{g.fillStyle='rgba(157,255,200,.35)';g.beginPath();g.arc(x,y,r*2.4,0,TAU);g.fill();g.fillStyle='#b8ffd8';g.beginPath();g.arc(x,y,r,0,TAU);g.fill()})});
+const basesTex=paper(300,420,'#fbfaf6',(g,w,h)=>{g.fillStyle='#2b2b2b';g.font=`22px ${F.m}`;g.fillText('BASES DE LICITACIÓN',24,44);g.font=`15px ${F.m}`;g.fillStyle='#666';g.fillText('NOG 3261···· · pág. 4',24,70);
+ for(let i=0;i<13;i++){const y=100+i*22,ww=rnd(160,250);if(i===3||i===7||i===10){g.fillStyle='rgba(232,97,58,.28)';g.fillRect(20,y-12,ww+8,18)}g.fillStyle='#bdbab2';g.fillRect(24,y-6,ww,6)}
+ g.fillStyle='#1f6b3c';g.font=`700 18px ${F.d}`;g.fillText('✓ Leído por la IA',24,h-28)});
+const radar=new T.Group();
+{radar.add(box(2.6,.5,2.6,M(0x2a2622,.5,.3)));const bz=new T.Mesh(new T.CylinderGeometry(1.15,1.2,.16,48),M(0xb9bec4,.3,.85));bz.position.y=.58;radar.add(bz);
+ const sc=new T.Mesh(new T.CircleGeometry(1.02,48),M(0xffffff,.4,0,{map:scopeTex,emissive:0xffffff,emissiveMap:scopeTex,emissiveIntensity:.9}));sc.rotation.x=-Math.PI/2;sc.position.y=.665;sc.userData.ns=true;radar.add(sc);
+ const sw=new T.Group();sw.position.y=.672;const wd=new T.Mesh(new T.CircleGeometry(1.0,32,0,.75),new T.MeshBasicMaterial({color:0x5dffa8,transparent:true,opacity:.32,depthWrite:false,blending:T.AdditiveBlending,side:T.DoubleSide}));wd.rotation.x=-Math.PI/2;wd.userData.ns=true;sw.add(wd);radar.add(sw);radar.userData.spin=sw;
+ [-.7,.7].forEach(x=>{const k=cyl(.13,.14,.12,M(0x111,.4),0,20);k.rotation.x=Math.PI/2;k.position.set(x,.28,1.32);radar.add(k)});
+ const led=new T.Mesh(new T.SphereGeometry(.06,10,8),M(0xe8613a,.3,0,{emissive:0xe8613a,emissiveIntensity:1.4}));led.position.set(0,.3,1.31);led.userData.ns=true;radar.add(led);leds.push(led)}
+put(PRD,radar,0,0,.2).userData.key='radar';spinners.push([radar,1.4]);
+put(PRD,sheet(1.9,2.6,basesTex,.06,.03),2.4,.5,-.3);
+{const lp=new T.Group(),rm=new T.Mesh(new T.TorusGeometry(.42,.06,12,32),M(0x2a2622,.4,.4));rm.rotation.x=Math.PI/2;rm.position.y=.12;const gl=new T.Mesh(new T.CircleGeometry(.4,28),M(0xdff4ff,.05,0,{transparent:true,opacity:.25}));gl.rotation.x=-Math.PI/2;gl.position.y=.12;gl.userData.ns=true;
+ const hd=new T.Mesh(new T.CylinderGeometry(.07,.08,.8,12),M(0x6b4224,.6));hd.rotation.z=Math.PI/2;hd.position.set(.82,.1,0);lp.add(rm,gl,hd);put(PRD,lp,2.3,.1,.6)}
+shot('#projects .pc.rad',radar,{az:-.4,el:.85,d:6.2,fy:.5});
 const PA=cluster(27,-4);
 const adminTex=tex(512,320,(g,w,h)=>{g.fillStyle='#f6f5f2';g.fillRect(0,0,w,h);g.fillStyle='#1d1a17';g.fillRect(0,0,120,h);g.fillStyle='#d9cfa8';g.font=`20px ${F.m}`;['Productos','Fotos','Marcas','Pedidos'].forEach((t,i)=>g.fillText(t,14,48+i*40));
  g.fillStyle='#111';g.font=`700 24px ${F.d}`;g.fillText('Panel de administración',140,40);
@@ -860,7 +879,7 @@ if(matchMedia('(hover:hover) and (pointer:fine)').matches){
  const key={};tools.forEach(o=>{if(o.userData.key)key[o.userData.key]=o});
  const first=sel=>{const s=shots.find(x=>x.sel===sel);if(!s||!s.obj)return null;return tools.includes(s.obj)?s.obj:s.obj.children.find(c=>tools.includes(c))};
  document.querySelectorAll('section .card').forEach(card=>{const sec=card.closest('section');if(!sec)return;const tx=card.textContent;
-  const o=sec.id==='projects'?(/Rack/.test(tx)?key.rack:/Optimizador/.test(tx)?key.opt:/Agenda de citas/.test(tx)?key.agenda:/Panel de administraci/.test(tx)?key.admin:/Este portafolio/.test(tx)?key.site:null):first('#'+sec.id);if(!o)return;
+  const o=sec.id==='projects'?(/Rack/.test(tx)?key.rack:/Triki Radar/.test(tx)?key.radar:/Optimizador/.test(tx)?key.opt:/Agenda de citas/.test(tx)?key.agenda:/Panel de administraci/.test(tx)?key.admin:/Este portafolio/.test(tx)?key.site:null):first('#'+sec.id);if(!o)return;
   const pick=()=>{let c=o;while(c&&!CHAP.includes(c))c=c.parent;return c&&VMAIN[worldName]&&VMAIN[worldName].get(c)||o};card.addEventListener('pointerenter',()=>{focus=pick()});card.addEventListener('pointerleave',()=>{focus=null})})}
 
 /* ---------- el hero se arma: las piezas caen sobre la mesa una tras otra ---------- */

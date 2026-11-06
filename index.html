@@ -1126,8 +1126,35 @@ body.theme-oeste #ward .wpv{background:linear-gradient(#f7b165,#e8743f 62%,#a858
  .pc.feat .vis{padding:18px 12px}
 }
 @media(max-width:560px){#wardB{left:58px}}
+@media(max-width:760px){html:not(.has3d) #snd{left:58px}}
 /* Oeste: el texto del inicio sobre una hoja para que se lea encima de la madera */
 html.has3d body.theme-oeste .hero .hg>div:first-child{background:color-mix(in srgb,var(--panel) 92%,#0000);border:2px solid #3b2314;border-radius:6px;padding:26px 26px 22px;box-shadow:inset 0 0 40px rgb(120 60 10/.25),6px 6px 0 #3b2314}
+/* ===== Triki Radar: vista ilustrativa del panel de licitaciones ===== */
+.rd{width:100%;max-width:440px;background:#f7f5f0;color:#1d1b18;border:3px solid var(--ink);border-radius:10px;box-shadow:6px 6px 0 var(--ink);overflow:hidden;font:11.5px/1.4 "Alegreya Sans",system-ui,sans-serif}
+.rd-bar{display:flex;align-items:center;gap:5px;background:#e8e6e1;padding:7px 10px;border-bottom:2px solid var(--ink)}.rd-bar i{width:8px;height:8px;border-radius:50%;background:#bbb}.rd-bar b{margin-left:6px;font:400 10.5px var(--m);color:#555}
+.rd-top{display:flex;justify-content:space-between;align-items:center;padding:9px 14px;border-bottom:1px solid #e4e0d8}.rd-top em{font-style:normal;color:#7a756c;font-size:10.5px}
+.rd-logo{display:flex;align-items:center;gap:7px;font:600 13px "Newsreader",Georgia,serif}
+.rd-logo i{width:16px;height:16px;border-radius:50%;border:2px solid #1d1b18;position:relative;overflow:hidden;background:conic-gradient(from 0deg,#e8613a55,#0000 70deg)}
+.rd-logo i::after{content:"";position:absolute;inset:4px;border-radius:50%;background:#e8613a}
+.rd-h{display:flex;justify-content:space-between;align-items:center;padding:12px 14px 4px}.rd-h b{font:600 22px/1 "Newsreader",Georgia,serif}
+.rd-ia{background:#1d1b18;color:#fff;border-radius:7px;padding:5px 10px;font-size:10.5px;font-weight:700}
+.rd-tabs{display:flex;gap:14px;padding:6px 14px 0;border-bottom:1px solid #e4e0d8}.rd-tabs u{text-decoration:none;padding:5px 2px 7px;color:#7a756c;font-size:11px}.rd-tabs u.on{color:#1d1b18;box-shadow:inset 0 -2px 0 #e8613a}
+.rd-n{padding:8px 14px;color:#5c574f;font-size:10.5px}.rd-n b{color:#1d1b18}
+.rd-l{display:flex;flex-direction:column}
+.rd-r{display:grid;grid-template-columns:38px 1fr;gap:8px;padding:9px 14px;border-top:1px solid #ebe7df}
+.rd-s{text-align:center}.rd-s b{display:block;font:600 22px/1 "Newsreader",Georgia,serif}.rd-s small{color:#8a857c;font-size:9px;letter-spacing:.1em}
+.rd-ok{display:inline-block;background:#dcefe2;color:#1f6b3c;border-radius:5px;padding:1px 7px;font-size:9.5px;font-weight:700;margin-right:6px}.rd-ok.rv{background:#fde2cf;color:#9a4a12}
+.rd-r code{font:9.5px var(--m);color:#6d685f}
+.rd-r p{margin:3px 0 2px;font-weight:700;font-size:11.5px;line-height:1.3}.rd-r small{display:block;color:#6d685f;font-size:10px;line-height:1.35}
+.rd .app-cap{background:#efece6;color:#7a756c;border-top:1px solid #e0dcd4}
+@media (prefers-reduced-motion:no-preference){
+ .rd.play .rd-logo i{animation:rdSweep 2.4s linear infinite}@keyframes rdSweep{to{rotate:360deg}}
+ .rd.play .rd-r{opacity:0;translate:0 10px;animation:rdIn .45s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i)*.45s + .35s)}
+ .rd.play .rd-ia{animation:rdPulse 2.6s 1.8s ease-in-out infinite}@keyframes rdPulse{50%{box-shadow:0 0 0 4px #e8613a44}}
+}
+@keyframes rdIn{to{opacity:1;translate:0 0}}
+body.theme-cine .rd,body.theme-hacker .rd{box-shadow:6px 6px 0 #000}
+@media(max-width:560px){.rd{font-size:11px}.rd-h b{font-size:19px}.rd-top em{display:none}}
 </style>
 </head>
 <body>
@@ -1161,7 +1188,7 @@ html.has3d body.theme-oeste .hero .hg>div:first-child{background:color-mix(in sr
   pc:'<div class="pc-scr"><pre class="in-txt"></pre><div class="pc-boot"><img class="in-logo" src="logo-160.png" alt=""><b>Gabriel<span>Solís</span></b><small>Portafolio · edición 2000</small><i><u></u></i></div></div>',
   hacker:'<div class="hk-scr"><pre class="in-txt"></pre></div>',
   oeste:'<div class="ow-sky"></div><div class="ow-mesa"></div><div class="ow-d l"></div><div class="ow-d r"></div><div class="ow-sg"><img class="in-logo" src="logo-160.png" alt=""><small>SALOON</small><b>Gabriel Solís</b><small>BIENVENIDO, FORASTERO</small></div><i class="ow-tw"></i>'};
- var LINES={pc:['GS BIOS 2000   (C) 2026 Gabriel Solís','','Procesador: Estudiante de Ingeniería USAC ...... OK','Memoria: 6 lenguajes ............................ OK','Unidad C: 4 proyectos ........................... OK','','C:\\> PORTAFOLIO.EXE_'],
+ var LINES={pc:['GS BIOS 2000   (C) 2026 Gabriel Solís','','Procesador: Estudiante de Ingeniería USAC ...... OK','Memoria: 6 lenguajes ............................ OK','Unidad C: 6 proyectos ........................... OK','','C:\\> PORTAFOLIO.EXE_'],
   hacker:['$ ssh gabriel@trikis.nl','> conectando al taller............ ok','> descifrando portafolio  [██████████] 100%','> acceso concedido. bienvenido._']};
  var worldOf=function(n){return n==='cine'||n==='pc'||n==='hacker'||n==='oeste'?n:'kraft'};
  var busy=false,skip=false,timers=[];
@@ -1256,6 +1283,24 @@ html.has3d body.theme-oeste .hero .hg>div:first-child{background:color-mix(in sr
       <div class="shop-g"><div><span class="im"></span><b>Náutica</b><small>L · XL</small></div><div><span class="im"></span><b>Marca</b><small>M</small></div><div><span class="im"></span><b>Marca</b><small>XL</small></div><div><span class="im"></span><b>Náutica</b><small>L</small></div></div>
       <div class="shop-w">💬 Pedir por WhatsApp</div></div></div>
   </div>
+  <div class="card pc feat rad">
+    <div><span class="tg w">● En línea</span><span class="tg">IA · Claude</span><span class="tg">Next.js 16</span><span class="tg">TypeScript</span><span class="tg">Supabase</span>
+      <h3>📡 Triki Radar · licitaciones con IA</h3><p>Radar de licitaciones públicas de Guatemala. Vigila Guatecompras dos veces al día, detecta cada cambio en las convocatorias, lee las bases en PDF con IA y le dice a cada empresa en cuáles le conviene ofertar y por qué.</p>
+      <ul class="fl2"><li>Revisa unas 37 mil licitaciones del mes y explica en español qué cambió en cada una</li><li>Filtra las que le sirven a cada empresa según lo que vende, su zona y sus montos</li><li>La IA lee las bases y extrae monto, cierre, visita técnica, requisitos y garantías, con la página de cada dato</li><li>Puntaje de encaje por criterios con reglas fijas: la IA no inventa números</li><li>Entrada sin contraseña y datos protegidos por empresa</li></ul>
+      <div class="row"><a class="btn p" href="https://radar.trikis.nl" target="_blank" rel="noopener">Ver en vivo ↗</a><a class="btn" href="https://github.com/Trikis67/Proyecto-con-ia-integrado" target="_blank" rel="noopener">GitHub ↗</a><button class="btn" onclick="openModal('radar')">Detalles</button></div></div>
+    <div class="vis"><div class="rd" aria-hidden="true">
+      <div class="rd-bar"><i></i><i></i><i></i><b>radar.trikis.nl</b></div>
+      <div class="rd-top"><span class="rd-logo"><i></i>Triki Radar</span><em>↻ Revisado hace 41 min</em></div>
+      <div class="rd-h"><b>Licitaciones</b><span class="rd-ia">✦ Evaluar con IA</span></div>
+      <div class="rd-tabs"><u class="on">Para Climas del Sur</u><u>Todas</u></div>
+      <div class="rd-n"><b>42</b> vigentes coinciden · aire acondicionado, mini split…</div>
+      <div class="rd-l">
+        <div class="rd-r" style="--i:0"><div class="rd-s"><b data-to="83">83</b><small>IA</small></div><div><span class="rd-ok">Te conviene</span><code>NOG 3261····</code><p>Aire acondicionado mini split de 1 tonelada con instalación</p><small>✦ Es justo lo tuyo y está en tu zona; revisa las bases antes de ofertar.</small></div></div>
+        <div class="rd-r" style="--i:1"><div class="rd-s"><b data-to="81">81</b><small>IA</small></div><div><span class="rd-ok">Te conviene</span><code>NOG 3245····</code><p>Mantenimiento correctivo de aire acondicionado · Escuintla</p><small>✦ En tu zona; ojo con la visita técnica del 06/11.</small></div></div>
+        <div class="rd-r" style="--i:2"><div class="rd-s"><b data-to="67">67</b><small>IA</small></div><div><span class="rd-ok rv">Revisar</span><code>NOG 3259····</code><p>Reparación del aire acondicionado de vehículo institucional</p><small>✦ Es tu rubro, pero faltan el monto y el cierre.</small></div></div>
+      </div>
+      <div class="app-cap">Vista previa ilustrativa</div></div></div>
+  </div>
   <div class="card pc feat opt">
     <div><span class="tg w">● v0.2</span><span class="tg">App de escritorio</span><span class="tg">Tauri 2</span><span class="tg">Rust</span><span class="tg">JavaScript</span>
       <h3>⚡ Optimizador para Windows</h3><p>App de escritorio para ver qué ocupa espacio, vigilar el rendimiento y optimizar la PC. Todo lo que cambia se puede deshacer.</p>
@@ -1342,7 +1387,7 @@ html.has3d body.theme-oeste .hero .hg>div:first-child{background:color-mix(in sr
     <div class="bar"><b>☕ Java</b><div><i data-f="35"></i></div></div>
     <div class="bar"><b>🐍 Python</b><div><i data-f="30"></i></div></div>
     <div class="bar"><b>🛠️ Herramientas &amp; Despliegue (Git / Vercel)</b><div><i data-f="45"></i></div></div>
-    <div style="margin:2px 0 16px"><small style="color:var(--muted2);font:11px var(--m);letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:8px">Nuevo en mi stack</small><span class="tg w">🦀 Rust</span><span class="tg w">Tauri 2 · apps de escritorio</span><span class="tg">Supabase</span><span class="tg">GitHub Pages</span></div>
+    <div style="margin:2px 0 16px"><small style="color:var(--muted2);font:11px var(--m);letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:8px">Nuevo en mi stack</small><span class="tg w">🦀 Rust</span><span class="tg w">Tauri 2 · apps de escritorio</span><span class="tg w">✦ API de Claude</span><span class="tg w">Next.js · TypeScript</span><span class="tg">Supabase</span><span class="tg">GitHub Pages</span></div>
     <div class="note">// tecnologías utilizadas en proyectos reales y formación en curso.</div>
   </div>
   <div class="grid">
@@ -1366,6 +1411,13 @@ html.has3d body.theme-oeste .hero .hg>div:first-child{background:color-mix(in sr
       <li>Manejar permisos de administrador y pedirlos con un botón en la propia app.</li>
       <li>Escribir pruebas del lado de Rust con <code>cargo test</code> y organizar el código en módulos.</li></ul>
       <div class="tl-g"><span class="tg w">Rust</span><span class="tg w">Tauri 2</span><span class="tg">Windows (PDH, registro)</span><span class="tg">PowerShell</span><span class="tg">winget</span></div></div></article>
+    <article class="tl-r"><div class="tl-d">Proyecto<br>propio</div><div class="tl-b"><h3 class="tl-t">📡 Triki Radar · IA y datos abiertos</h3><div class="tl-o">Lo que aprendí construyéndolo</div><ul>
+      <li>Usar la API de Claude con salida estructurada (zod) para que cada análisis tenga siempre los mismos campos.</li>
+      <li>Diseñar el puntaje para que la IA no invente datos: reglas fijas por criterio y el código decide el veredicto.</li>
+      <li>Tratar el texto de un PDF como contenido y no como instrucciones (defensa contra prompt injection).</li>
+      <li>Detectar cambios con huellas SHA-256 y automatizar el recolector con GitHub Actions.</li>
+      <li>Seguridad por empresa con RLS en Supabase y costos de IA medidos y con límite diario.</li></ul>
+      <div class="tl-g"><span class="tg w">Next.js 16</span><span class="tg w">API de Claude</span><span class="tg">TypeScript</span><span class="tg">Supabase</span><span class="tg">GitHub Actions</span></div></div></article>
     <article class="tl-r"><div class="tl-d">Proyecto<br>propio</div><div class="tl-b"><h3 class="tl-t">📅 Agenda de citas · bot de WhatsApp</h3><div class="tl-o">Lo que aprendí construyéndolo</div><ul>
       <li>Recibir mensajes con un webhook y validar la firma que manda Meta.</li>
       <li>Leer los horarios ocupados de Google Calendar y crear eventos con una cuenta de servicio.</li>
@@ -1377,7 +1429,7 @@ html.has3d body.theme-oeste .hero .hg>div:first-child{background:color-mix(in sr
       <li>Pensar el producto desde quien compra: filtros por marca y talla, carrito y pedido por WhatsApp.</li>
       <li>Construir un panel de administración para que el negocio se actualice solo.</li></ul>
       <div class="tl-g"><span class="tg">Supabase</span><span class="tg">GitHub Pages</span></div></div></article>
-    <article class="tl-r"><div class="tl-d">En<br>general</div><div class="tl-b"><h3 class="tl-t">🧰 Cómo trabajo</h3><div class="tl-o">Optimizador · Bot de citas · Tienda en línea · Portafolio</div><ul>
+    <article class="tl-r"><div class="tl-d">En<br>general</div><div class="tl-b"><h3 class="tl-t">🧰 Cómo trabajo</h3><div class="tl-o">Triki Radar · Optimizador · Bot de citas · Tienda en línea · Portafolio</div><ul>
       <li>Dividir un proyecto grande en piezas pequeñas y probarlas una por una.</li>
       <li>Usar Git y GitHub como diario del trabajo, commit a commit.</li>
       <li>Pensar en el usuario: avisos claros, ayudas y cambios reversibles.</li></ul></div></article>
@@ -1513,6 +1565,7 @@ const roles=["Desarrollador web","Tiendas y catálogos con WhatsApp","Estudiante
 
 /* Modales */
 const MD={rack:['El Rack de las Playeras','Tienda en línea pensada para vender por WhatsApp: catálogo con filtros por marca y talla (las marcas se agrupan juntas), publicaciones con varias fotos, una misma foto disponible en varias tallas, y un carrito que arma el pedido y lo envía por WhatsApp. Solo hay envío a domicilio. Publicada en GitHub Pages con dominio propio.',['HTML5','CSS3','JavaScript','Supabase','GitHub Pages','WhatsApp']],
+ radar:['Triki Radar · licitaciones públicas con IA','Aplicación web hecha con Next.js 16, TypeScript y Supabase. Un recolector baja los datos abiertos de Guatecompras dos veces al día con GitHub Actions, guarda una huella de cada licitación y, cuando cambia, compara campo por campo para explicar qué cambió. Cada empresa llena su perfil (qué vende, zonas y montos) y ve solo las licitaciones que le sirven, con un puntaje estimado. Cuando la persona sube las bases en PDF, la IA de Claude extrae monto, cierre, visita técnica, requisitos y garantías con la página de cada dato, y califica el encaje por criterios con reglas fijas para no inventar números. Tiene entrada sin contraseña, reglas de seguridad por empresa (RLS), límite de usos de IA al día y 17 pruebas automáticas.',['Next.js 16','React 19','TypeScript','Supabase','API de Claude','zod','GitHub Actions','Vercel']],
  agenda:['Agenda de citas por WhatsApp','Bot hecho en Node.js con la API oficial de WhatsApp (Meta) y Google Calendar. El cliente escribe "hola", elige servicio, día y hora con números, y la cita queda en el calendario del encargado. Si el encargado bloquea un horario en su calendario, el bot ya no lo ofrece. Avisa al encargado de cada cita nueva o cancelada y manda un recordatorio al cliente antes de la cita. Todo el negocio (nombre, horario, servicios y duración) se cambia en un solo archivo.',['Node.js','Express','WhatsApp Cloud API','Google Calendar API','Luxon','node-cron']],
  opt:['Optimizador para Windows','App de escritorio hecha con Tauri 2: la interfaz es HTML, CSS y JavaScript y el motor está en Rust. Mide el rendimiento en tiempo real, analiza el disco con un mapa tipo WizTree, limpia archivos temporales y cachés, y aplica ajustes de juegos, sistema, privacidad y servicios con ayudas (?) y recomendaciones según tu equipo. Guarda un respaldo en %LOCALAPPDATA% para deshacerlo todo. Necesita permisos de administrador para muchas funciones. Versión actual: v0.2.',['Tauri 2','Rust','JavaScript','sysinfo + PDH','PowerShell','winget']],
  admin:['Panel de administración','Zona privada para subir y gestionar camisas: marca (escrita o elegida de las existentes), precio, talla y varias fotos por publicación. Productos y fotos viven en Supabase, así que la tienda se actualiza sin tocar el código.',['Supabase','JavaScript','Storage de fotos','Códigos #']]};
@@ -1739,7 +1792,7 @@ ti.addEventListener('keydown',e=>{if(e.key!=='Enter')return;const raw=ti.value.t
  let q=0;const upd=()=>{q=0;const h=H.scrollHeight-innerHeight;bar.style.transform='scaleX('+(h>0?Math.min(1,scrollY/h):0).toFixed(4)+')'};
  addEventListener('scroll',()=>{if(!q)q=requestAnimationFrame(upd)},{passive:true});upd();
  const st=document.createElement('div');st.className='stats';
- st.innerHTML=[[1,'año en la USAC'],[6,'lenguajes'],[5,'proyectos'],[2,'certificados']].map(a=>`<div><b data-n="${a[0]}">0</b><small>${a[1]}</small></div>`).join('');$('.hero .row').after(st);
+ st.innerHTML=[[1,'año en la USAC'],[6,'lenguajes'],[6,'proyectos'],[2,'certificados']].map(a=>`<div><b data-n="${a[0]}">0</b><small>${a[1]}</small></div>`).join('');$('.hero .row').after(st);
  const count=el=>{const n=+el.dataset.n,s=performance.now();(function f(){const k=Math.min(1,(performance.now()-s)/1200);el.textContent=Math.round(n*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})()};
  const run=()=>{st.querySelectorAll('[data-n]').forEach(count)};
  if(H.classList.contains('bb'))new MutationObserver((m,o)=>{if(!H.classList.contains('bb')){o.disconnect();setTimeout(run,300)}}).observe(H,{attributes:true,attributeFilter:['class']});else setTimeout(run,300);
@@ -1870,6 +1923,12 @@ ti.addEventListener('keydown',e=>{if(e.key!=='Enter')return;const raw=ti.value.t
 (function(){const w=document.querySelector('.wa');if(!w||!('IntersectionObserver' in window))return;let t=0,vis=false;
  const run=()=>{w.classList.remove('play');void w.offsetWidth;w.classList.add('play');clearTimeout(t);t=setTimeout(()=>{if(vis)run()},11000)};
  new IntersectionObserver(e=>{vis=e[0].isIntersecting;if(vis)run();else clearTimeout(t)},{threshold:.35}).observe(w)})();
+</script>
+<script>
+/* Triki Radar: las filas entran y el puntaje sube cuando la tarjeta se ve */
+(function(){const w=document.querySelector('.rd');if(!w||!('IntersectionObserver' in window))return;const red=matchMedia('(prefers-reduced-motion:reduce)').matches;let done=false;
+ new IntersectionObserver(e=>{if(!e[0].isIntersecting||done)return;done=true;w.classList.add('play');if(red)return;
+  w.querySelectorAll('[data-to]').forEach((b,i)=>{const to=+b.dataset.to,t0=performance.now()+350+i*450;b.textContent='0';const st=n=>{const k=Math.min(1,Math.max(0,(n-t0)/700));b.textContent=Math.round(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(st)};requestAnimationFrame(st)})},{threshold:.35}).observe(w)})();
 </script>
 </body>
 </html>
