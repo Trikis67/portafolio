@@ -1166,12 +1166,33 @@ body.theme-cine .rd,body.theme-hacker .rd{box-shadow:6px 6px 0 #000}
 .app-gauge b{font:400 20px var(--h);color:#efe8d6}
 .app-hs>div:last-child b{display:block;font:400 12px var(--h);color:#efe8d6}.app-hs small{display:block;color:#9a907a;font-size:9.5px;margin:2px 0 5px}
 .app-hs i{display:inline-block;font-style:normal;font-size:9px;padding:2px 6px;border-radius:3px;margin:0 4px 2px 0;border:1px solid}
-.app-hs i.ok{color:#86a35e;border-color:#86a35e66}.app-hs i.wa{color:#e0863a;border-color:#e0863a66}
+.app-hs i.ok{color:#86a35e;border-color:#86a35e66}.app-hs i.wn{color:#e0863a;border-color:#e0863a66}
 .app-main{gap:9px}.opt .app-tm{min-height:70px}
 .opt .app-body{grid-template-columns:118px 1fr}.app-nav .app-brand b{font-size:11px}.app-nav em{font-size:7.5px;letter-spacing:.08em;white-space:nowrap;overflow:hidden}
-.app-hs i.ok,.app-hs i.wa{background:#0000!important;box-shadow:none!important}
+.app-hs i.ok,.app-hs i.wn{background:#0000!important;box-shadow:none!important}
 @media(max-width:560px){.opt .app-body{grid-template-columns:92px 1fr}.app-nav .app-brand{justify-content:center}.app-nav .app-brand span{display:none}.app-nav .app-brand img{width:30px;height:30px}.app-nav em{font-size:7px;letter-spacing:.04em}
  .app-hs{grid-template-columns:1fr;justify-items:center;text-align:center}.app-gauge{width:56px;height:56px}.app-hs i{white-space:nowrap}}
+/* ===== Animaciones de las vistas previas (tienda y Optimizador); el chat y el radar ya tenían la suya ===== */
+.shop{position:relative}
+.shop-g>div{transition:border-color .25s,box-shadow .25s,translate .25s}
+.shop-g>div.add{border-color:#25d366;box-shadow:0 0 0 2px #25d36655;translate:0 -2px}
+.shop-f u{transition:background .25s,color .25s}
+.shop-top em{transition:scale .25s}.shop-top em.bump{scale:1.25}
+.shop-w{transition:scale .2s,box-shadow .2s}.shop-w.go{scale:.96;box-shadow:0 0 0 4px #25d36655}
+.shop-t{position:absolute;left:50%;bottom:58px;translate:-50% 12px;opacity:0;background:#111;color:#fff;font:600 11px var(--d);padding:7px 12px;border-radius:99px;white-space:nowrap;transition:opacity .35s,translate .35s;pointer-events:none}
+.shop-t.on{opacity:1;translate:-50% 0}
+.shop.play .shop-g>div{animation:pvIn .45s cubic-bezier(.2,.8,.2,1) both}
+.shop.play .shop-g>div:nth-child(2){animation-delay:.12s}.shop.play .shop-g>div:nth-child(3){animation-delay:.24s}.shop.play .shop-g>div:nth-child(4){animation-delay:.36s}
+@keyframes pvIn{from{opacity:0;translate:0 10px}}
+.opt .app-g span::after{transition:width .9s cubic-bezier(.4,0,.2,1)}
+.opt .app-nav u{transition:background .3s,color .3s,box-shadow .3s}
+.opt .app-gauge{transition:none}
+.opt .app-tm i{transition:opacity .4s,scale .4s}
+.opt .app.play .app-tm i{animation:pvPop .5s cubic-bezier(.2,1.2,.4,1) both}
+.opt .app.play .app-tm i:nth-child(2){animation-delay:.1s}.opt .app.play .app-tm i:nth-child(3){animation-delay:.2s}.opt .app.play .app-tm i:nth-child(4){animation-delay:.3s}.opt .app.play .app-tm i:nth-child(5){animation-delay:.4s}
+@keyframes pvPop{from{opacity:0;scale:.85}}
+.opt .app-hs i{transition:opacity .4s,translate .4s}.opt .app-hs i.h{opacity:0;translate:0 4px}
+@media (prefers-reduced-motion:reduce){.shop.play .shop-g>div,.opt .app.play .app-tm i{animation:none}}
 </style>
 </head>
 <body>
@@ -1298,7 +1319,7 @@ body.theme-cine .rd,body.theme-hacker .rd{box-shadow:6px 6px 0 #000}
       <div class="shop-top"><span>El Rack de las Playeras</span><em>🛒 2</em></div>
       <div class="shop-f"><u class="on">Todas</u><u>Náutica</u><u>XL</u><u>L</u><u>M</u></div>
       <div class="shop-g"><div><span class="im"></span><b>Náutica</b><small>L · XL</small></div><div><span class="im"></span><b>Marca</b><small>M</small></div><div><span class="im"></span><b>Marca</b><small>XL</small></div><div><span class="im"></span><b>Náutica</b><small>L</small></div></div>
-      <div class="shop-w">💬 Pedir por WhatsApp</div></div></div>
+      <div class="shop-w">💬 Pedir por WhatsApp</div><div class="shop-t">✓ Pedido listo · se abre WhatsApp</div></div></div>
   </div>
   <div class="card pc feat rad">
     <div><span class="tg w">● En línea</span><span class="tg">IA · Claude</span><span class="tg">Next.js 16</span><span class="tg">TypeScript</span><span class="tg">Supabase</span>
@@ -1327,7 +1348,7 @@ body.theme-cine .rd,body.theme-hacker .rd{box-shadow:6px 6px 0 #000}
       <div class="app-bar"><i></i><i></i><i></i><b>Optimizador · v0.3</b></div>
       <div class="app-body"><div class="app-nav"><div class="app-brand"><img src="optimizador-logo.png" alt="" width="30" height="30"><span><b>Optimizador</b><small>por Trikis</small></span></div><em>Rendimiento</em><u class="on">Monitor</u><u>RAM</u><u>Optimización</u><em>Almacenamiento</em><u>Disco</u><u>Limpieza</u><em>Mantenimiento</em><u>Salud</u><u>Drivers</u><u>Historial</u></div>
        <div class="app-main"><div class="app-g"><div><small>CPU</small><span style="--w:62%"></span></div><div><small>RAM</small><span style="--w:48%"></span></div><div><small>GPU</small><span style="--w:35%"></span></div></div>
-        <div class="app-hs"><div class="app-gauge" style="--v:79"><b>79</b></div><div><b>Salud del sistema</b><small>8 revisiones · 2 por revisar</small><i class="ok">SSD · Bien</i><i class="wa">Espacio libre · Revisar</i></div></div>
+        <div class="app-hs"><div class="app-gauge" style="--v:79"><b>79</b></div><div><b>Salud del sistema</b><small>8 revisiones · 2 por revisar</small><i class="ok">SSD · Bien</i><i class="wn">Espacio libre · Revisar</i></div></div>
         <div class="app-tm"><i style="grid-area:a;background:#c4573a">Juegos</i><i style="grid-area:b;background:#d19a3c">Videos</i><i style="grid-area:c;background:#6f9a3a">Windows</i><i style="grid-area:d;background:#4a7fb0">Apps</i><i style="grid-area:e;background:#8c6fb0">Otros</i></div></div></div>
       <div class="app-cap">Vista previa ilustrativa</div></div></div>
   </div>
@@ -1942,7 +1963,7 @@ ti.addEventListener('keydown',e=>{if(e.key!=='Enter')return;const raw=ti.value.t
 <script src="taller3d.js"></script>
 <script>
 /* chat del bot de citas: se escribe cuando se ve y se repite cada tanto */
-(function(){const w=document.querySelector('.wa');if(!w||!('IntersectionObserver' in window))return;let t=0,vis=false;
+(function(){const w=document.querySelector('.pc.agd .wa');if(!w||!('IntersectionObserver' in window))return;let t=0,vis=false;
  const run=()=>{w.classList.remove('play');void w.offsetWidth;w.classList.add('play');clearTimeout(t);t=setTimeout(()=>{if(vis)run()},11000)};
  new IntersectionObserver(e=>{vis=e[0].isIntersecting;if(vis)run();else clearTimeout(t)},{threshold:.35}).observe(w)})();
 </script>
@@ -1951,6 +1972,31 @@ ti.addEventListener('keydown',e=>{if(e.key!=='Enter')return;const raw=ti.value.t
 (function(){const w=document.querySelector('.rd');if(!w||!('IntersectionObserver' in window))return;const red=matchMedia('(prefers-reduced-motion:reduce)').matches;let done=false;
  new IntersectionObserver(e=>{if(!e[0].isIntersecting||done)return;done=true;w.classList.add('play');if(red)return;
   w.querySelectorAll('[data-to]').forEach((b,i)=>{const to=+b.dataset.to,t0=performance.now()+350+i*450;b.textContent='0';const st=n=>{const k=Math.min(1,Math.max(0,(n-t0)/700));b.textContent=Math.round(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(st)};requestAnimationFrame(st)})},{threshold:.35}).observe(w)})();
+</script>
+<script>
+/* vistas previas que se mueven solas mientras se ven: la tienda arma un pedido; el Optimizador mide y revisa la salud */
+(function(){if(!('IntersectionObserver' in window))return;const red=matchMedia('(prefers-reduced-motion:reduce)').matches;
+ const loop=(el,run,every)=>{let vis=false,t=[];const go=()=>{t.forEach(clearTimeout);t=[];if(!vis)return;run(t);t.push(setTimeout(go,every))};
+  new IntersectionObserver(e=>{vis=e[0].isIntersecting;if(vis)go();else{t.forEach(clearTimeout);t=[]}},{threshold:.35}).observe(el)};
+ /* tienda: filtra por XL, agrega dos playeras, el carrito sube y se manda el pedido */
+ const sh=document.querySelector('.pc.feat .shop');
+ if(sh&&!red){const chips=[...sh.querySelectorAll('.shop-f u')],cards=[...sh.querySelectorAll('.shop-g>div')],cart=sh.querySelector('.shop-top em'),btn=sh.querySelector('.shop-w'),toast=sh.querySelector('.shop-t');
+  loop(sh,t=>{const at=(ms,f)=>t.push(setTimeout(f,ms));sh.classList.remove('play');void sh.offsetWidth;sh.classList.add('play');
+   chips.forEach((c,i)=>c.classList.toggle('on',i===0));cards.forEach(c=>c.classList.remove('add'));cart.textContent='🛒 0';toast.classList.remove('on');btn.classList.remove('go');
+   at(900,()=>{chips[0].classList.remove('on');chips[2]&&chips[2].classList.add('on')});
+   [[1800,0,'🛒 1'],[2900,2,'🛒 2']].forEach(([ms,k,txt])=>at(ms,()=>{cards[k]&&cards[k].classList.add('add');cart.textContent=txt;cart.classList.add('bump');setTimeout(()=>cart.classList.remove('bump'),250)}));
+   at(4100,()=>btn.classList.add('go'));at(4400,()=>{btn.classList.remove('go');toast.classList.add('on')});at(6600,()=>toast.classList.remove('on'))},8200)}
+ /* Optimizador: las barras miden, la salud sube hasta 79 y el menú pasa de Monitor a Salud */
+ const ap=document.querySelector('.pc.opt .app');
+ if(ap&&!red){const bars=[...ap.querySelectorAll('.app-g span')],nav=[...ap.querySelectorAll('.app-nav u')],g=ap.querySelector('.app-gauge'),gb=g.querySelector('b'),chips=[...ap.querySelectorAll('.app-hs i')];
+  const base=bars.map(b=>parseFloat(b.style.getPropertyValue('--w'))||50);let tick=null;
+  const setNav=n=>nav.forEach(u=>u.classList.toggle('on',u.textContent===n));
+  loop(ap,t=>{const at=(ms,f)=>t.push(setTimeout(f,ms));ap.classList.remove('play');void ap.offsetWidth;ap.classList.add('play');setNav('Monitor');chips.forEach(c=>c.classList.add('h'));g.style.setProperty('--v',0);gb.textContent='0';
+   clearInterval(tick);tick=setInterval(()=>{if(!ap.isConnected)return clearInterval(tick);bars.forEach((b,i)=>b.style.setProperty('--w',Math.max(8,Math.min(95,base[i]+(Math.random()*36-18)))+'%'))},900);t.push(setTimeout(()=>clearInterval(tick),9400));
+   at(2600,()=>setNav('Salud'));
+   at(3000,()=>{const t0=performance.now();const st=n=>{const k=Math.min(1,(n-t0)/1200),v=Math.round(79*(1-Math.pow(1-k,3)));g.style.setProperty('--v',v);gb.textContent=v;if(k<1)requestAnimationFrame(st)};requestAnimationFrame(st)});
+   at(4300,()=>chips[0]&&chips[0].classList.remove('h'));at(4700,()=>chips[1]&&chips[1].classList.remove('h'));at(7600,()=>setNav('Limpieza'))},9600)}
+})();
 </script>
 </body>
 </html>
