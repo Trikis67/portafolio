@@ -1155,6 +1155,23 @@ html.has3d body.theme-oeste .hero .hg>div:first-child{background:color-mix(in sr
 @keyframes rdIn{to{opacity:1;translate:0 0}}
 body.theme-cine .rd,body.theme-hacker .rd{box-shadow:6px 6px 0 #000}
 @media(max-width:560px){.rd{font-size:11px}.rd-h b{font-size:19px}.rd-top em{display:none}}
+/* Optimizador v0.3: marca, secciones y salud del sistema en la vista previa */
+.app-nav .app-brand{display:flex;align-items:center;gap:7px;padding:4px 10px 8px;border-bottom:1px solid #3a352b;margin-bottom:4px}
+.app-nav .app-brand img{width:30px;height:30px;flex:none}
+.app-nav .app-brand b{display:block;font:400 12px var(--h);color:#efe8d6;line-height:1}.app-nav .app-brand small{font:9px var(--m);color:#d19a3c}
+.app-nav em{font:normal 8.5px var(--m);letter-spacing:.14em;text-transform:uppercase;color:#6b6252;padding:6px 12px 2px}
+.app-nav u{padding:4px 12px}
+.app-hs{display:grid;grid-template-columns:62px 1fr;gap:10px;align-items:center;background:#201d17;border:1px solid #3a352b;border-radius:6px;padding:8px}
+.app-gauge{width:62px;height:62px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,#201d17 0 56%,#0000 57%),conic-gradient(#d19a3c calc(var(--v)*1%),#3a352b 0)}
+.app-gauge b{font:400 20px var(--h);color:#efe8d6}
+.app-hs>div:last-child b{display:block;font:400 12px var(--h);color:#efe8d6}.app-hs small{display:block;color:#9a907a;font-size:9.5px;margin:2px 0 5px}
+.app-hs i{display:inline-block;font-style:normal;font-size:9px;padding:2px 6px;border-radius:3px;margin:0 4px 2px 0;border:1px solid}
+.app-hs i.ok{color:#86a35e;border-color:#86a35e66}.app-hs i.wa{color:#e0863a;border-color:#e0863a66}
+.app-main{gap:9px}.opt .app-tm{min-height:70px}
+.opt .app-body{grid-template-columns:118px 1fr}.app-nav .app-brand b{font-size:11px}.app-nav em{font-size:7.5px;letter-spacing:.08em;white-space:nowrap;overflow:hidden}
+.app-hs i.ok,.app-hs i.wa{background:#0000!important;box-shadow:none!important}
+@media(max-width:560px){.opt .app-body{grid-template-columns:92px 1fr}.app-nav .app-brand{justify-content:center}.app-nav .app-brand span{display:none}.app-nav .app-brand img{width:30px;height:30px}.app-nav em{font-size:7px;letter-spacing:.04em}
+ .app-hs{grid-template-columns:1fr;justify-items:center;text-align:center}.app-gauge{width:56px;height:56px}.app-hs i{white-space:nowrap}}
 </style>
 </head>
 <body>
@@ -1302,14 +1319,15 @@ body.theme-cine .rd,body.theme-hacker .rd{box-shadow:6px 6px 0 #000}
       <div class="app-cap">Vista previa ilustrativa</div></div></div>
   </div>
   <div class="card pc feat opt">
-    <div><span class="tg w">● v0.2</span><span class="tg">App de escritorio</span><span class="tg">Tauri 2</span><span class="tg">Rust</span><span class="tg">JavaScript</span>
-      <h3>⚡ Optimizador para Windows</h3><p>App de escritorio para ver qué ocupa espacio, vigilar el rendimiento y optimizar la PC. Todo lo que cambia se puede deshacer.</p>
-      <ul class="fl2"><li>Monitor en tiempo real: CPU por núcleo, memoria, GPU, disco y red</li><li>Analizador de disco tipo WizTree (mapa de archivos más grandes)</li><li>Limpieza de temporales, caché de shaders y navegadores, sin tocar tu historial ni contraseñas</li><li>Ajustes de juegos, sistema y privacidad con respaldo para revertirlos</li><li>Instala con winget herramientas como Mem Reduct, HWiNFO y CrystalDiskInfo</li></ul>
-      <div class="row"><a class="btn p" href="https://github.com/Trikis67/Optimizador" target="_blank" rel="noopener">Ver en GitHub ↗</a><button class="btn" onclick="openModal('opt')">Detalles</button></div></div>
+    <div><span class="tg w">● v0.3</span><span class="tg">App de escritorio</span><span class="tg">Tauri 2</span><span class="tg">Rust</span><span class="tg">JavaScript</span><span class="tg">Instalador propio</span>
+      <h3>⚡ Optimizador para Windows · por Trikis</h3><p>App de escritorio para vigilar el rendimiento, revisar la salud de la PC, liberar espacio y optimizarla. Todo lo que cambia se puede deshacer y queda anotado.</p>
+      <ul class="fl2"><li>Monitor en tiempo real: CPU por núcleo, memoria, GPU, disco y red, con lista de procesos</li><li>Salud del sistema: puntaje general, estado de los discos (SMART), batería, pantallazos azules y reparación de Windows</li><li>Drivers: guía de errores de dispositivos y limpieza de drivers viejos que pueden ocupar decenas de GB</li><li>Optimización para gaming y para PCs de bajos recursos, con respaldo para revertir cada ajuste</li><li>Historial de cambios, analizador de disco tipo WizTree y limpieza segura</li><li>Instalador en español con la marca Trikis; se abre como administrador</li></ul>
+      <div class="row"><a class="btn p" href="https://github.com/Trikis67/Optimizador/releases/latest" target="_blank" rel="noopener">Descargar v0.3 ↗</a><a class="btn" href="https://github.com/Trikis67/Optimizador" target="_blank" rel="noopener">GitHub ↗</a><button class="btn" onclick="openModal('opt')">Detalles</button></div></div>
     <div class="vis"><div class="app" aria-hidden="true">
-      <div class="app-bar"><i></i><i></i><i></i><b>Optimizador</b></div>
-      <div class="app-body"><div class="app-nav"><u class="on">Monitor</u><u>RAM</u><u>Optimización</u><u>Disco</u><u>Limpieza</u><u>Drivers</u><u>Herramientas</u></div>
+      <div class="app-bar"><i></i><i></i><i></i><b>Optimizador · v0.3</b></div>
+      <div class="app-body"><div class="app-nav"><div class="app-brand"><img src="optimizador-logo.png" alt="" width="30" height="30"><span><b>Optimizador</b><small>por Trikis</small></span></div><em>Rendimiento</em><u class="on">Monitor</u><u>RAM</u><u>Optimización</u><em>Almacenamiento</em><u>Disco</u><u>Limpieza</u><em>Mantenimiento</em><u>Salud</u><u>Drivers</u><u>Historial</u></div>
        <div class="app-main"><div class="app-g"><div><small>CPU</small><span style="--w:62%"></span></div><div><small>RAM</small><span style="--w:48%"></span></div><div><small>GPU</small><span style="--w:35%"></span></div></div>
+        <div class="app-hs"><div class="app-gauge" style="--v:79"><b>79</b></div><div><b>Salud del sistema</b><small>8 revisiones · 2 por revisar</small><i class="ok">SSD · Bien</i><i class="wa">Espacio libre · Revisar</i></div></div>
         <div class="app-tm"><i style="grid-area:a;background:#c4573a">Juegos</i><i style="grid-area:b;background:#d19a3c">Videos</i><i style="grid-area:c;background:#6f9a3a">Windows</i><i style="grid-area:d;background:#4a7fb0">Apps</i><i style="grid-area:e;background:#8c6fb0">Otros</i></div></div></div>
       <div class="app-cap">Vista previa ilustrativa</div></div></div>
   </div>
@@ -1409,7 +1427,9 @@ body.theme-cine .rd,body.theme-hacker .rd{box-shadow:6px 6px 0 #000}
       <li>Leer métricas reales de Windows (CPU por núcleo, memoria, GPU, disco y red) con contadores de rendimiento.</li>
       <li>Tocar el sistema con cuidado: registro, PowerShell y winget, siempre con respaldo para poder deshacer.</li>
       <li>Manejar permisos de administrador y pedirlos con un botón en la propia app.</li>
-      <li>Escribir pruebas del lado de Rust con <code>cargo test</code> y organizar el código en módulos.</li></ul>
+      <li>Escribir pruebas del lado de Rust con <code>cargo test</code> y organizar el código en módulos.</li>
+      <li>Hacer un instalador propio con NSIS y un manifiesto para que la app se abra como administrador.</li>
+      <li>Leer la salud del equipo: SMART de los discos, batería, eventos de pantallazos azules y reparación con DISM y SFC.</li></ul>
       <div class="tl-g"><span class="tg w">Rust</span><span class="tg w">Tauri 2</span><span class="tg">Windows (PDH, registro)</span><span class="tg">PowerShell</span><span class="tg">winget</span></div></div></article>
     <article class="tl-r"><div class="tl-d">Proyecto<br>propio</div><div class="tl-b"><h3 class="tl-t">📡 Triki Radar · IA y datos abiertos</h3><div class="tl-o">Lo que aprendí construyéndolo</div><ul>
       <li>Usar la API de Claude con salida estructurada (zod) para que cada análisis tenga siempre los mismos campos.</li>
@@ -1567,7 +1587,7 @@ const roles=["Desarrollador web","Tiendas y catálogos con WhatsApp","Estudiante
 const MD={rack:['El Rack de las Playeras','Tienda en línea pensada para vender por WhatsApp: catálogo con filtros por marca y talla (las marcas se agrupan juntas), publicaciones con varias fotos, una misma foto disponible en varias tallas, y un carrito que arma el pedido y lo envía por WhatsApp. Solo hay envío a domicilio. Publicada en GitHub Pages con dominio propio.',['HTML5','CSS3','JavaScript','Supabase','GitHub Pages','WhatsApp']],
  radar:['Triki Radar · licitaciones públicas con IA','Aplicación web hecha con Next.js 16, TypeScript y Supabase. Un recolector baja los datos abiertos de Guatecompras dos veces al día con GitHub Actions, guarda una huella de cada licitación y, cuando cambia, compara campo por campo para explicar qué cambió. Cada empresa llena su perfil (qué vende, zonas y montos) y ve solo las licitaciones que le sirven, con un puntaje estimado. Cuando la persona sube las bases en PDF, la IA de Claude extrae monto, cierre, visita técnica, requisitos y garantías con la página de cada dato, y califica el encaje por criterios con reglas fijas para no inventar números. Tiene entrada sin contraseña, reglas de seguridad por empresa (RLS), límite de usos de IA al día y 17 pruebas automáticas.',['Next.js 16','React 19','TypeScript','Supabase','API de Claude','zod','GitHub Actions','Vercel']],
  agenda:['Agenda de citas por WhatsApp','Bot hecho en Node.js con la API oficial de WhatsApp (Meta) y Google Calendar. El cliente escribe "hola", elige servicio, día y hora con números, y la cita queda en el calendario del encargado. Si el encargado bloquea un horario en su calendario, el bot ya no lo ofrece. Avisa al encargado de cada cita nueva o cancelada y manda un recordatorio al cliente antes de la cita. Todo el negocio (nombre, horario, servicios y duración) se cambia en un solo archivo.',['Node.js','Express','WhatsApp Cloud API','Google Calendar API','Luxon','node-cron']],
- opt:['Optimizador para Windows','App de escritorio hecha con Tauri 2: la interfaz es HTML, CSS y JavaScript y el motor está en Rust. Mide el rendimiento en tiempo real, analiza el disco con un mapa tipo WizTree, limpia archivos temporales y cachés, y aplica ajustes de juegos, sistema, privacidad y servicios con ayudas (?) y recomendaciones según tu equipo. Guarda un respaldo en %LOCALAPPDATA% para deshacerlo todo. Necesita permisos de administrador para muchas funciones. Versión actual: v0.2.',['Tauri 2','Rust','JavaScript','sysinfo + PDH','PowerShell','winget']],
+ opt:['Optimizador para Windows','App de escritorio hecha con Tauri 2: la interfaz es HTML, CSS y JavaScript y el motor está en Rust. Mide el rendimiento en tiempo real, analiza el disco con un mapa tipo WizTree, limpia archivos temporales y cachés, y aplica ajustes de juegos, sistema, privacidad y servicios con ayudas (?) y recomendaciones según tu equipo. Guarda un respaldo en %LOCALAPPDATA% para deshacerlo todo. La versión 0.3 trae la identidad de Trikis, un instalador propio en español que la abre como administrador, una sección de Salud del sistema (puntaje, SMART de los discos, batería, pantallazos azules, DISM y SFC), limpieza de drivers viejos del DriverStore, guía de errores de dispositivos, historial de todo lo que hace la app y ajustes para PCs de bajos recursos. Versión actual: v0.3.',['Tauri 2','Rust','JavaScript','sysinfo + PDH','PowerShell','winget','NSIS']],
  admin:['Panel de administración','Zona privada para subir y gestionar camisas: marca (escrita o elegida de las existentes), precio, talla y varias fotos por publicación. Productos y fotos viven en Supabase, así que la tienda se actualiza sin tocar el código.',['Supabase','JavaScript','Storage de fotos','Códigos #']]};
 function openModal(k){const d=MD[k];$('#mt').textContent=d[0];$('#md').textContent=d[1];$('#mg').innerHTML=d[2].map(t=>`<span class="tg">${t}</span>`).join('');$('#pm').classList.add('open')}
 function openCv(){const f=$('#cvf'),ok=!/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)&&navigator.pdfViewerEnabled!==false;

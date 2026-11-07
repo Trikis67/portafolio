@@ -304,7 +304,7 @@ const phone=put(PR,grp(box(1.7,.16,3.3,dark),topPlane(1.5,3.05,shopTex,.165,true
 put(PR,sheet(1.35,2.5,receiptTex,.05),2.1,.6,.3);
 shot('#projects',phone,{az:.5,el:.95,d:6.2});
 const PO=cluster(20,2);
-const chip=grp(box(1.6,.2,1.6,dark),topPlane(1.2,1.2,tex(128,128,(g,w)=>{g.fillStyle='#24211d';g.fillRect(0,0,w,w);g.fillStyle='#d9cfa8';g.font=`20px ${F.m}`;g.textAlign='center';g.fillText('RUST',w/2,54);g.fillText('OPT v0.2',w/2,84)}),.205));
+const chip=grp(box(1.6,.2,1.6,dark),topPlane(1.2,1.2,tex(128,128,(g,w)=>{g.fillStyle='#24211d';g.fillRect(0,0,w,w);g.fillStyle='#d9cfa8';g.font=`20px ${F.m}`;g.textAlign='center';g.fillText('RUST',w/2,54);g.fillText('OPT v0.3',w/2,84)}),.205));
 for(let i=0;i<7;i++)[[-.86,1],[.86,1],[-.86,0],[.86,0]].forEach(([o,ax])=>{const p=box(ax?.18:.08,.05,ax?.08:.18,brass,.06);p.position[ax?'x':'z']=o;p.position[ax?'z':'x']=-.6+i*.2;chip.add(p)});
 put(PO,chip,0,0,.35).userData.key='opt';put(PO,nut(.3),1.6,.9,.5);put(PO,gear(.7,10),-1.5,-.6);
 shot('#projects .pc.opt',chip,{az:-.45,el:.9,d:5.4});
@@ -508,7 +508,7 @@ const BUILD={
    put(g,ph,0,0,.2);put(g,sheet(3.6,2.4,envTex,.03),-2.6,1.4,-.12);return ph}},
  cine:{
   PR:g=>{const e=easel(1.7,2.5,shopTex,0xd4a84a);put(g,e,0,0,-.1);return e},
-  PO:g=>{const c=grp(cyl(1.1,1.1,.34,M(0x9aa0a6,.3,.85)),disc(.95,lbl('OPTIMIZADOR\nv0.2 · Rust','#2b2b2b','#e6b450',`26px ${F.m}`,256,256),.345));put(g,c,0,0,.3);put(g,grp(cyl(1.1,1.1,.3,M(0x9aa0a6,.3,.85))),1.6,1.4);return c},
+  PO:g=>{const c=grp(cyl(1.1,1.1,.34,M(0x9aa0a6,.3,.85)),disc(.95,lbl('OPTIMIZADOR\nv0.3 · Rust','#2b2b2b','#e6b450',`26px ${F.m}`,256,256),.345));put(g,c,0,0,.3);put(g,grp(cyl(1.1,1.1,.3,M(0x9aa0a6,.3,.85))),1.6,1.4);return c},
   PA:g=>{const scr=easel(3.4,2.0,adminTex,0x151515,.7);put(g,scr,0,-.8);
    const pj=new T.Group();pj.add(box(1.1,.7,1.5,M(0x2a2a2a,.45,.4),.5));const lens=cyl(.22,.26,.4,M(0x111,.2,.6),0);lens.rotation.x=Math.PI/2;lens.position.set(0,.55,-.9);pj.add(lens);
    [-.32,.32].forEach(z=>{const r=cyl(.42,.42,.06,M(0x9aa0a6,.3,.85),0);r.rotation.z=Math.PI/2;r.position.set(0,1.3,z);pj.add(r)});put(g,pj,.3,2.9,Math.PI);
