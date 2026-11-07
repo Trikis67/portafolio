@@ -756,12 +756,17 @@ MASC.scale.setScalar(.92);MASC.position.set(2.6,0,2.4);
 let petT=-1,petN=0,earT=0,mYaw=0;const mPrev=new T.Vector3(),mSpot=new T.Vector3(),vR=new T.Vector3(),vF=new T.Vector3();
 window.gsPet=()=>{petT=performance.now()};
 function mascotDress(w){wearNow();rug.material.map=RUGS[w]||RUGS.kraft;rug.material.needsUpdate=true}
+const mNdc=new T.Vector2(),mRay=new T.Raycaster(),mPlane=new T.Plane(new T.Vector3(0,1,0),0),mHit=new T.Vector3();
 function mascotFrame(now,t,kf,ck){
  /* dónde se pone: en su capítulo, en su alfombra; en los demás, junto al objeto que se está viendo */
  const atHome=ck&&ck.sec&&ck.sec.id==='mascota';
  const atHero=ck&&ck.sec&&ck.sec.id==='hero';
- if(atHome){mSpot.copy(MHHOME)}else if(atHero){const hs=worldName==="cine"?[3.6,3.7]:[4.2,2.2];mSpot.set(hs[0],0,hs[1])}else{C.getWorldDirection(vF);vF.y=0;vF.normalize();vR.set(-vF.z,0,vF.x);mSpot.copy(cur.f).addScaledVector(vR,cur.d*(mob?.16:.36)).addScaledVector(vF,cur.d*.08);mSpot.y=0}
- if(cur.d>40||(!atHome&&!atHero&&(cur.d<9||mob)))mSpot.copy(MHHOME);
+ /* en los capítulos se sienta en una esquina de abajo de la pantalla (sobre la mesa) y se hace más chico cuando la cámara está cerca */
+ let mSc=1;
+ if(atHome){mSpot.copy(MHHOME)}else if(atHero){const hs=worldName==="cine"?[3.6,3.7]:[4.2,2.2];mSpot.set(hs[0],0,hs[1])}
+ else{mNdc.set(mob?.5:.62,mob?-.42:-.5);mRay.setFromCamera(mNdc,C);if(mRay.ray.intersectPlane(mPlane,mHit)){mSpot.copy(mHit);mSpot.y=0}mSc=Math.max(.42,Math.min(1,cur.d/13))}
+ if(cur.d>40||(mob&&!atHome&&!atHero))mSpot.copy(MHHOME);
+ MASC.scale.setScalar(MASC.scale.x+(mSc-MASC.scale.x)*kf(3));
  mPrev.copy(MASC.position);MASC.position.x+=(mSpot.x-MASC.position.x)*kf(1.7);MASC.position.z+=(mSpot.z-MASC.position.z)*kf(1.7);
  const sp=Math.hypot(MASC.position.x-mPrev.x,MASC.position.z-mPrev.z),run=sp>.02;
  /* orientación: hacia donde corre; quieto, mira a la cámara */
