@@ -1193,6 +1193,46 @@ body.theme-cine .rd,body.theme-hacker .rd{box-shadow:6px 6px 0 #000}
 @keyframes pvPop{from{opacity:0;scale:.85}}
 .opt .app-hs i{transition:opacity .4s,translate .4s}.opt .app-hs i.h{opacity:0;translate:0 4px}
 @media (prefers-reduced-motion:reduce){.shop.play .shop-g>div,.opt .app.play .app-tm i{animation:none}}
+/* ===== Tk Play: vista previa animada del reproductor ===== */
+.tkp{position:relative;width:100%;max-width:460px;background:radial-gradient(ellipse at 20% 0%,#7a2a1c 0%,#3a1a12 38%,#1a110c 75%);color:#f3e6d2;border:3px solid var(--ink);border-radius:10px;box-shadow:6px 6px 0 var(--ink);overflow:hidden;font:11.5px/1.35 "Alegreya Sans",system-ui,sans-serif;--tk:#e0644a}
+.tk-bar{display:flex;align-items:center;gap:5px;background:#1a110c;padding:7px 10px;border-bottom:2px solid var(--ink)}.tk-bar i{width:8px;height:8px;border-radius:50%;background:#5a4636}.tk-bar b{margin-left:8px;font:400 11px var(--m);color:#cdb89a}
+.tk-body{display:grid;grid-template-columns:1.05fr 1fr;gap:12px;padding:14px 14px 10px}
+.tk-now{display:flex;flex-direction:column;align-items:center;text-align:center;min-width:0}
+.tk-art{position:relative;width:118px;height:118px;margin-bottom:8px}
+.tk-cov{position:absolute;inset:0;border-radius:8px;background:linear-gradient(135deg,var(--tk),#7c3aed 120%);box-shadow:0 10px 24px -8px #000c;display:grid;place-items:center;transition:background 1s}
+.tk-cov b{font-size:40px;color:#fff8;font-family:var(--h)}
+.tk-vin{position:absolute;top:9px;right:-26px;width:100px;height:100px;border-radius:50%;background:repeating-radial-gradient(circle,#111 0 2px,#1d1d1d 2px 4px);box-shadow:inset 0 0 0 34px #0000,0 4px 10px #0008}
+.tk-vin::after{content:"";position:absolute;inset:36px;border-radius:50%;background:var(--tk);box-shadow:0 0 0 3px #111;transition:background 1s}
+.tk-t{font:400 15px/1.15 'Newsreader',Georgia,serif;font-weight:600;color:#fbf1e2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.tk-a{color:#c9b39a;font-size:10.5px}
+.tk-viz{display:flex;align-items:center;gap:2px;height:30px;margin:8px 0 6px}
+.tk-viz i{width:3px;height:30%;border-radius:2px;background:var(--tk);opacity:.85;transition:background 1s}
+.tk-pr{display:flex;align-items:center;gap:6px;width:100%}.tk-pr small{font-size:9px;color:#a8917a}.tk-pr span{flex:1;height:3px;border-radius:2px;background:#ffffff26;overflow:hidden}.tk-pr u{display:block;height:100%;width:35%;background:var(--tk);transition:background 1s}
+.tk-ctl{display:flex;align-items:center;gap:12px;margin-top:8px}.tk-ctl i{font-style:normal;color:#cdb89a;font-size:12px}
+.tk-ctl em{font-style:normal;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--tk);color:#fff;font-size:10px;box-shadow:0 0 0 3px #00000040;transition:background 1s}
+.tk-ly{background:#1a110cb3;border:1px solid #ffffff14;border-radius:10px;padding:9px 10px;min-width:0;display:flex;flex-direction:column}
+.tk-tabs{display:flex;gap:6px;margin-bottom:8px}.tk-tabs u{text-decoration:none;font:700 8.5px var(--d);letter-spacing:.08em;text-transform:uppercase;padding:3px 7px;border-radius:99px;color:#a8917a}.tk-tabs u.on{background:#3a2418;color:#f3c9a0}
+.tk-ly p{margin:0 0 6px;font:600 12px/1.25 var(--d);color:#f3e6d266;transition:color .35s,scale .35s,translate .35s;transform-origin:0 50%}
+.tk-ly p.on{color:#fff;scale:1.06;translate:2px 0}.tk-ly p.on::before{content:"♪ ";color:var(--tk)}
+.tk-eng{margin-top:auto;position:relative;height:22px;border:1px solid #ffffff22;border-radius:7px;font:600 9.5px var(--d);overflow:hidden}
+.tk-eng i{position:absolute;left:8px;top:50%;width:6px;height:6px;margin-top:-3px;border-radius:50%;background:#ff3b5c;transition:background .4s}
+.tk-eng span{position:absolute;left:20px;top:4px;transition:opacity .4s,translate .4s}.tk-eng .b{opacity:0;translate:0 8px}
+.tkp.sp .tk-eng i{background:#1ed760}.tkp.sp .tk-eng .a{opacity:0;translate:0 -8px}.tkp.sp .tk-eng .b{opacity:1;translate:0 0}
+.tk-pet{position:absolute;right:10px;bottom:30px;width:44px;height:44px;filter:drop-shadow(0 4px 6px #0008)}
+.tkp .app-cap{background:#1a110c;color:#a8917a;border-top:1px solid #000}
+@media (prefers-reduced-motion:no-preference){
+ .tkp.play .tk-vin{animation:tkSpin 2.4s linear infinite}
+ .tkp.play .tk-viz i{animation:tkBar .9s ease-in-out infinite alternate;animation-delay:calc(var(--i)*-.07s)}
+ .tkp.play .tk-viz i:nth-child(3n){animation-duration:.7s}.tkp.play .tk-viz i:nth-child(4n){animation-duration:1.1s}
+ .tkp.play .tk-pet{animation:tkPet .46s ease-in-out infinite alternate}
+ .tkp.play .tk-ctl em{animation:tkPulse 1.6s ease-in-out infinite}
+}
+@keyframes tkSpin{to{rotate:360deg}}
+@keyframes tkBar{from{height:12%}to{height:100%}}
+@keyframes tkPet{from{translate:0 0;rotate:-6deg}to{translate:0 -5px;rotate:6deg}}
+@keyframes tkPulse{50%{box-shadow:0 0 0 6px #00000030}}
+@media(max-width:560px){.tk-body{grid-template-columns:1fr}.tk-ly{display:none}.tk-art{width:104px;height:104px}}
+body.theme-cine .tkp,body.theme-hacker .tkp{box-shadow:6px 6px 0 #000}
 </style>
 </head>
 <body>
@@ -1226,7 +1266,7 @@ body.theme-cine .rd,body.theme-hacker .rd{box-shadow:6px 6px 0 #000}
   pc:'<div class="pc-scr"><pre class="in-txt"></pre><div class="pc-boot"><img class="in-logo" src="logo-160.png" alt=""><b>Gabriel<span>Solís</span></b><small>Portafolio · edición 2000</small><i><u></u></i></div></div>',
   hacker:'<div class="hk-scr"><pre class="in-txt"></pre></div>',
   oeste:'<div class="ow-sky"></div><div class="ow-mesa"></div><div class="ow-d l"></div><div class="ow-d r"></div><div class="ow-sg"><img class="in-logo" src="logo-160.png" alt=""><small>SALOON</small><b>Gabriel Solís</b><small>BIENVENIDO, FORASTERO</small></div><i class="ow-tw"></i>'};
- var LINES={pc:['GS BIOS 2000   (C) 2026 Gabriel Solís','','Procesador: Estudiante de Ingeniería USAC ...... OK','Memoria: 6 lenguajes ............................ OK','Unidad C: 6 proyectos ........................... OK','','C:\\> PORTAFOLIO.EXE_'],
+ var LINES={pc:['GS BIOS 2000   (C) 2026 Gabriel Solís','','Procesador: Estudiante de Ingeniería USAC ...... OK','Memoria: 6 lenguajes ............................ OK','Unidad C: 7 proyectos ........................... OK','','C:\\> PORTAFOLIO.EXE_'],
   hacker:['$ ssh gabriel@trikis.nl','> conectando al taller............ ok','> descifrando portafolio  [██████████] 100%','> acceso concedido. bienvenido._']};
  var worldOf=function(n){return n==='cine'||n==='pc'||n==='hacker'||n==='oeste'?n:'kraft'};
  var busy=false,skip=false,timers=[];
@@ -1371,6 +1411,29 @@ body.theme-cine .rd,body.theme-hacker .rd{box-shadow:6px 6px 0 #000}
       <div class="wa-in"><span>Escribe un mensaje</span><em>➤</em></div>
       <div class="app-cap">Vista previa ilustrativa</div></div></div>
   </div>
+  <div class="card pc feat tk">
+    <div><span class="tg w">● Nuevo · v0.1</span><span class="tg">App de escritorio</span><span class="tg">Electron</span><span class="tg">TypeScript</span><span class="tg">Spotify SDK</span><span class="tg">YouTube Music</span>
+      <h3>🎧 Tk Play · reproductor de música</h3><p>Un reproductor de escritorio con interfaz propia para YouTube Music y Spotify. Toma los colores de cada carátula, muestra la letra sincronizada y se puede personalizar con temas, mods, mascotas y extensiones.</p>
+      <ul class="fl2"><li>Dos motores: el reproductor oficial de YouTube Music en una ventana oculta y el SDK de Spotify Premium dentro de la app</li><li>Letras sincronizadas estilo karaoke, con salto a cualquier línea</li><li>Ecualizador de 10 bandas, refuerzo de graves, normalización y fundidos</li><li>Tienda con más de 100 artículos: 40 temas, 55 mods, 14 mascotas y 9 extensiones, más un kit para crear los tuyos</li><li>Discord ("Escuchando…"), teclas multimedia, bandeja del sistema e importación de playlists</li></ul>
+      <div class="row"><a class="btn p" href="https://github.com/Trikis67/Tk-Play/releases/latest" target="_blank" rel="noopener">Descargar ↗</a><a class="btn" href="https://github.com/Trikis67/Tk-Play" target="_blank" rel="noopener">GitHub ↗</a><button class="btn" onclick="openModal('tk')">Detalles</button></div></div>
+    <div class="vis"><div class="tkp" aria-hidden="true">
+      <div class="tk-bar"><i></i><i></i><i></i><b>Tk Play</b></div>
+      <div class="tk-body">
+        <div class="tk-now">
+          <div class="tk-art"><span class="tk-vin"></span><span class="tk-cov"><b>♪</b></span></div>
+          <b class="tk-t">Canción de ejemplo</b><small class="tk-a">Artista · Álbum</small>
+          <div class="tk-viz"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i><i style="--i:7"></i><i style="--i:8"></i><i style="--i:9"></i><i style="--i:10"></i><i style="--i:11"></i><i style="--i:12"></i><i style="--i:13"></i><i style="--i:14"></i><i style="--i:15"></i><i style="--i:16"></i><i style="--i:17"></i><i style="--i:18"></i><i style="--i:19"></i><i style="--i:20"></i><i style="--i:21"></i><i style="--i:22"></i><i style="--i:23"></i><i style="--i:24"></i><i style="--i:25"></i><i style="--i:26"></i><i style="--i:27"></i></div>
+          <div class="tk-pr"><small>1:12</small><span><u></u></span><small>3:24</small></div>
+          <div class="tk-ctl"><i>⟲</i><i>⏮</i><em>❚❚</em><i>⏭</i><i>♡</i></div>
+        </div>
+        <div class="tk-ly"><div class="tk-tabs"><u class="on">Letra</u><u>A continuación</u></div>
+          <p style="--i:0">Primera línea de la letra</p><p style="--i:1">suena con el color de la portada</p><p style="--i:2">y cada palabra se ilumina</p><p style="--i:3">justo cuando la cantas</p><p style="--i:4">al ritmo de la canción</p>
+          <div class="tk-eng"><i></i><span class="a">Motor: YouTube Music</span><span class="b">Motor: Spotify</span></div>
+        </div>
+      </div>
+      <img class="tk-pet" src="tkplay-logo.png" alt="" width="44" height="44">
+      <div class="app-cap">Vista previa ilustrativa</div></div></div>
+  </div>
   <div class="pj">
     <div class="card" data-tilt>
       <span class="tg w">● En uso</span><span class="tg">Supabase</span><span class="tg">Panel admin</span><span class="tg">Fotos</span>
@@ -1426,7 +1489,7 @@ body.theme-cine .rd,body.theme-hacker .rd{box-shadow:6px 6px 0 #000}
     <div class="bar"><b>☕ Java</b><div><i data-f="35"></i></div></div>
     <div class="bar"><b>🐍 Python</b><div><i data-f="30"></i></div></div>
     <div class="bar"><b>🛠️ Herramientas &amp; Despliegue (Git / Vercel)</b><div><i data-f="45"></i></div></div>
-    <div style="margin:2px 0 16px"><small style="color:var(--muted2);font:11px var(--m);letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:8px">Nuevo en mi stack</small><span class="tg w">🦀 Rust</span><span class="tg w">Tauri 2 · apps de escritorio</span><span class="tg w">✦ API de Claude</span><span class="tg w">Next.js · TypeScript</span><span class="tg">Supabase</span><span class="tg">GitHub Pages</span></div>
+    <div style="margin:2px 0 16px"><small style="color:var(--muted2);font:11px var(--m);letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:8px">Nuevo en mi stack</small><span class="tg w">🦀 Rust</span><span class="tg w">Tauri 2 · apps de escritorio</span><span class="tg w">✦ API de Claude</span><span class="tg w">Next.js · TypeScript</span><span class="tg w">Electron</span><span class="tg">Supabase</span><span class="tg">GitHub Pages</span></div>
     <div class="note">// tecnologías utilizadas en proyectos reales y formación en curso.</div>
   </div>
   <div class="grid">
@@ -1452,6 +1515,13 @@ body.theme-cine .rd,body.theme-hacker .rd{box-shadow:6px 6px 0 #000}
       <li>Hacer un instalador propio con NSIS y un manifiesto para que la app se abra como administrador.</li>
       <li>Leer la salud del equipo: SMART de los discos, batería, eventos de pantallazos azules y reparación con DISM y SFC.</li></ul>
       <div class="tl-g"><span class="tg w">Rust</span><span class="tg w">Tauri 2</span><span class="tg">Windows (PDH, registro)</span><span class="tg">PowerShell</span><span class="tg">winget</span></div></div></article>
+    <article class="tl-r"><div class="tl-d">Proyecto<br>propio</div><div class="tl-b"><h3 class="tl-t">🎧 Tk Play · Electron y audio</h3><div class="tl-o">Lo que aprendí construyéndolo</div><ul>
+      <li>Armar una app de escritorio con Electron: proceso principal, ventanas ocultas y comunicación segura con la interfaz.</li>
+      <li>Reproducir contenido con DRM: Widevine, la firma VMP de castlabs y el SDK oficial de Spotify.</li>
+      <li>Procesar el audio con Web Audio: ecualizador de 10 bandas, refuerzo de graves, normalización y fundidos.</li>
+      <li>Sincronizar letras por tiempo y sacar los colores de cada carátula para pintar la interfaz.</li>
+      <li>Diseñar un sistema de temas, mods y extensiones con su propia API y catálogos en JSON.</li></ul>
+      <div class="tl-g"><span class="tg w">Electron</span><span class="tg w">TypeScript</span><span class="tg">Web Audio</span><span class="tg">Spotify SDK</span></div></div></article>
     <article class="tl-r"><div class="tl-d">Proyecto<br>propio</div><div class="tl-b"><h3 class="tl-t">📡 Triki Radar · IA y datos abiertos</h3><div class="tl-o">Lo que aprendí construyéndolo</div><ul>
       <li>Usar la API de Claude con salida estructurada (zod) para que cada análisis tenga siempre los mismos campos.</li>
       <li>Diseñar el puntaje para que la IA no invente datos: reglas fijas por criterio y el código decide el veredicto.</li>
@@ -1470,7 +1540,7 @@ body.theme-cine .rd,body.theme-hacker .rd{box-shadow:6px 6px 0 #000}
       <li>Pensar el producto desde quien compra: filtros por marca y talla, carrito y pedido por WhatsApp.</li>
       <li>Construir un panel de administración para que el negocio se actualice solo.</li></ul>
       <div class="tl-g"><span class="tg">Supabase</span><span class="tg">GitHub Pages</span></div></div></article>
-    <article class="tl-r"><div class="tl-d">En<br>general</div><div class="tl-b"><h3 class="tl-t">🧰 Cómo trabajo</h3><div class="tl-o">Triki Radar · Optimizador · Bot de citas · Tienda en línea · Portafolio</div><ul>
+    <article class="tl-r"><div class="tl-d">En<br>general</div><div class="tl-b"><h3 class="tl-t">🧰 Cómo trabajo</h3><div class="tl-o">Tk Play · Triki Radar · Optimizador · Bot de citas · Tienda en línea · Portafolio</div><ul>
       <li>Dividir un proyecto grande en piezas pequeñas y probarlas una por una.</li>
       <li>Usar Git y GitHub como diario del trabajo, commit a commit.</li>
       <li>Pensar en el usuario: avisos claros, ayudas y cambios reversibles.</li></ul></div></article>
@@ -1606,6 +1676,7 @@ const roles=["Desarrollador web","Tiendas y catálogos con WhatsApp","Estudiante
 
 /* Modales */
 const MD={rack:['El Rack de las Playeras','Tienda en línea pensada para vender por WhatsApp: catálogo con filtros por marca y talla (las marcas se agrupan juntas), publicaciones con varias fotos, una misma foto disponible en varias tallas, y un carrito que arma el pedido y lo envía por WhatsApp. Solo hay envío a domicilio. Publicada en GitHub Pages con dominio propio.',['HTML5','CSS3','JavaScript','Supabase','GitHub Pages','WhatsApp']],
+ tk:['Tk Play · reproductor de música de escritorio','App de escritorio hecha con Electron y TypeScript para Windows, macOS y Linux. Tiene dos motores: el reproductor oficial de YouTube Music en una ventana oculta (con tu cuenta, historial y Premium) y el SDK oficial de Spotify Premium, que reproduce dentro de la app gracias al Electron de castlabs firmado para Widevine (VMP). La interfaz es propia, estilo hi-fi vintage: toma los colores de cada carátula, tiene visualizador, letras sincronizadas (LRCLIB y YouTube Music), ecualizador de 10 bandas y una tienda con más de 100 temas, mods, mascotas y extensiones, con una API para crear y publicar los tuyos. Se integra con Discord, las teclas multimedia y la bandeja del sistema.',['Electron','TypeScript','Spotify Web Playback SDK','YouTube Music','Widevine (castlabs)','Web Audio','LRCLIB']],
  radar:['Triki Radar · licitaciones públicas con IA','Aplicación web hecha con Next.js 16, TypeScript y Supabase. Un recolector baja los datos abiertos de Guatecompras dos veces al día con GitHub Actions, guarda una huella de cada licitación y, cuando cambia, compara campo por campo para explicar qué cambió. Cada empresa llena su perfil (qué vende, zonas y montos) y ve solo las licitaciones que le sirven, con un puntaje estimado. Cuando la persona sube las bases en PDF, la IA de Claude extrae monto, cierre, visita técnica, requisitos y garantías con la página de cada dato, y califica el encaje por criterios con reglas fijas para no inventar números. Tiene entrada sin contraseña, reglas de seguridad por empresa (RLS), límite de usos de IA al día y 17 pruebas automáticas.',['Next.js 16','React 19','TypeScript','Supabase','API de Claude','zod','GitHub Actions','Vercel']],
  agenda:['Agenda de citas por WhatsApp','Bot hecho en Node.js con la API oficial de WhatsApp (Meta) y Google Calendar. El cliente escribe "hola", elige servicio, día y hora con números, y la cita queda en el calendario del encargado. Si el encargado bloquea un horario en su calendario, el bot ya no lo ofrece. Avisa al encargado de cada cita nueva o cancelada y manda un recordatorio al cliente antes de la cita. Todo el negocio (nombre, horario, servicios y duración) se cambia en un solo archivo.',['Node.js','Express','WhatsApp Cloud API','Google Calendar API','Luxon','node-cron']],
  opt:['Optimizador para Windows','App de escritorio hecha con Tauri 2: la interfaz es HTML, CSS y JavaScript y el motor está en Rust. Mide el rendimiento en tiempo real, analiza el disco con un mapa tipo WizTree, limpia archivos temporales y cachés, y aplica ajustes de juegos, sistema, privacidad y servicios con ayudas (?) y recomendaciones según tu equipo. Guarda un respaldo en %LOCALAPPDATA% para deshacerlo todo. La versión 0.3 trae la identidad de Trikis, un instalador propio en español que la abre como administrador, una sección de Salud del sistema (puntaje, SMART de los discos, batería, pantallazos azules, DISM y SFC), limpieza de drivers viejos del DriverStore, guía de errores de dispositivos, historial de todo lo que hace la app y ajustes para PCs de bajos recursos. Versión actual: v0.3.',['Tauri 2','Rust','JavaScript','sysinfo + PDH','PowerShell','winget','NSIS']],
@@ -1835,7 +1906,7 @@ ti.addEventListener('keydown',e=>{if(e.key!=='Enter')return;const raw=ti.value.t
  let q=0;const upd=()=>{q=0;const h=H.scrollHeight-innerHeight;bar.style.transform='scaleX('+(h>0?Math.min(1,scrollY/h):0).toFixed(4)+')'};
  addEventListener('scroll',()=>{if(!q)q=requestAnimationFrame(upd)},{passive:true});upd();
  const st=document.createElement('div');st.className='stats';
- st.innerHTML=[[1,'año en la USAC'],[6,'lenguajes'],[6,'proyectos'],[2,'certificados']].map(a=>`<div><b data-n="${a[0]}">0</b><small>${a[1]}</small></div>`).join('');$('.hero .row').after(st);
+ st.innerHTML=[[1,'año en la USAC'],[6,'lenguajes'],[7,'proyectos'],[2,'certificados']].map(a=>`<div><b data-n="${a[0]}">0</b><small>${a[1]}</small></div>`).join('');$('.hero .row').after(st);
  const count=el=>{const n=+el.dataset.n,s=performance.now();(function f(){const k=Math.min(1,(performance.now()-s)/1200);el.textContent=Math.round(n*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})()};
  const run=()=>{st.querySelectorAll('[data-n]').forEach(count)};
  if(H.classList.contains('bb'))new MutationObserver((m,o)=>{if(!H.classList.contains('bb')){o.disconnect();setTimeout(run,300)}}).observe(H,{attributes:true,attributeFilter:['class']});else setTimeout(run,300);
@@ -1997,6 +2068,17 @@ ti.addEventListener('keydown',e=>{if(e.key!=='Enter')return;const raw=ti.value.t
    at(3000,()=>{const t0=performance.now();const st=n=>{const k=Math.min(1,(n-t0)/1200),v=Math.round(79*(1-Math.pow(1-k,3)));g.style.setProperty('--v',v);gb.textContent=v;if(k<1)requestAnimationFrame(st)};requestAnimationFrame(st)});
    at(4300,()=>chips[0]&&chips[0].classList.remove('h'));at(4700,()=>chips[1]&&chips[1].classList.remove('h'));at(7600,()=>setNav('Limpieza'))},9600)}
 })();
+</script>
+<script>
+/* Tk Play: el disco gira, la letra avanza línea por línea, la barra corre y el color cambia con cada canción */
+(function(){const w=document.querySelector('.pc.tk .tkp');if(!w||!('IntersectionObserver' in window))return;const red=matchMedia('(prefers-reduced-motion:reduce)').matches;
+ const lines=[...w.querySelectorAll('.tk-ly p')],bar=w.querySelector('.tk-pr u'),t1=w.querySelector('.tk-pr small'),tt=w.querySelector('.tk-t'),ta=w.querySelector('.tk-a');
+ const songs=[['Canción de ejemplo','Artista · Álbum','#e0644a'],['Otra canción','Banda de prueba · Sencillo','#7c3aed'],['La del verano','Grupo inventado · En vivo','#1fa2a6']];
+ let vis=false,k=0,step=0,timer=null,sec=72;
+ const paint=()=>{const s=songs[k%songs.length];tt.textContent=s[0];ta.textContent=s[1];w.style.setProperty('--tk',s[2]);w.classList.toggle('sp',k%2===1)};
+ const tick=()=>{if(!vis)return;lines.forEach((l,i)=>l.classList.toggle('on',i===step%lines.length));sec+=2;const p=Math.min(100,sec/204*100);bar.style.width=p+'%';t1.textContent=Math.floor(sec/60)+':'+String(sec%60).padStart(2,'0');
+  step++;if(step%10===0){k++;sec=0;paint()}timer=setTimeout(tick,1300)};
+ new IntersectionObserver(e=>{vis=e[0].isIntersecting;if(vis){w.classList.add('play');paint();if(!red){clearTimeout(timer);tick()}else lines[0].classList.add('on')}else{clearTimeout(timer);w.classList.remove('play')}},{threshold:.35}).observe(w)})();
 </script>
 </body>
 </html>

@@ -212,7 +212,7 @@ const dosTex=tex(512,384,(g,w,h)=>{const sky=g.createLinearGradient(0,0,0,h*.7);
  g.fillStyle='#4fa83a';g.beginPath();g.moveTo(0,h*.62);g.quadraticCurveTo(w*.35,h*.42,w,h*.6);g.lineTo(w,h);g.lineTo(0,h);g.fill();g.fillStyle='rgba(255,255,255,.75)';g.beginPath();g.ellipse(w*.72,h*.2,60,16,0,0,TAU);g.ellipse(w*.8,h*.24,44,12,0,0,TAU);g.fill();
  g.fillStyle='#ece9d8';g.fillRect(110,70,300,170);const tb=g.createLinearGradient(0,70,0,98);tb.addColorStop(0,'#0058e6');tb.addColorStop(.5,'#3a93ff');tb.addColorStop(1,'#0050d0');g.fillStyle=tb;g.fillRect(110,70,300,28);
  g.fillStyle='#e04343';g.fillRect(384,74,20,20);g.fillStyle='#fff';g.font='bold 16px Tahoma,Verdana,sans-serif';g.fillText('GABRIEL.EXE',120,90);g.fillText('×',389,90);
- g.fillStyle='#14171f';g.font='16px Tahoma,Verdana,sans-serif';['Desarrollador web','Estudiante USAC','6 proyectos · 6 lenguajes'].forEach((s,i)=>g.fillText(s,126,128+i*30));
+ g.fillStyle='#14171f';g.font='16px Tahoma,Verdana,sans-serif';['Desarrollador web','Estudiante USAC','7 proyectos · 6 lenguajes'].forEach((s,i)=>g.fillText(s,126,128+i*30));
  const bar=g.createLinearGradient(0,h-34,0,h);bar.addColorStop(0,'#3a7bf0');bar.addColorStop(1,'#1d4fc4');g.fillStyle=bar;g.fillRect(0,h-34,w,34);
  g.fillStyle='#3c9a2e';g.beginPath();g.roundRect?g.roundRect(0,h-34,110,34,[0,14,14,0]):g.rect(0,h-34,110,34);g.fill();g.fillStyle='#fff';g.font='italic bold 18px Tahoma,sans-serif';g.fillText('inicio',26,h-11);
  g.fillStyle='#bfe0ff';g.font='13px Tahoma,sans-serif';g.fillText('12:00',w-50,h-12);[[24,24],[24,84]].forEach(([x,y])=>{g.fillStyle='#ffe28a';g.fillRect(x+8,y,28,24);g.fillStyle='#fff';g.font='11px Tahoma';g.fillText(y<50?'Mis proyectos':'Papelera',x-6,y+40)})});
@@ -326,6 +326,24 @@ put(PG,calBlk,0,0,.3).userData.key='agenda';
 const waPh=grp(box(1.15,.12,2.2,dark),topPlane(1.0,1.95,waTex,.125,true));put(PG,waPh,2.1,.7,-.35);
 put(PG,pencil(0xb3261e,2.2),-1.8,1.1,.9);
 shot('#projects .pc.agd',calBlk,{az:.4,el:.78,d:6.2,fy:.7});
+/* Tk Play: un tocadiscos vintage con su disco girando y unos audífonos */
+const PTK=cluster(29,12);
+const tkCyl=(rt,rb,h,mat,y=h/2,seg=24)=>{const m=new T.Mesh(new T.CylinderGeometry(rt,rb,h,seg),mat);m.position.y=y;return m};
+const tkLbl=tex(128,128,(g,w)=>{g.fillStyle='#e0644a';g.beginPath();g.arc(64,64,62,0,TAU);g.fill();g.fillStyle='#fbf1e2';g.font=`22px ${F.h}`;g.textAlign='center';g.fillText('TK',64,58);g.font=`14px ${F.m}`;g.fillText('PLAY',64,80);g.fillStyle='#111';g.beginPath();g.arc(64,64,5,0,TAU);g.fill()});
+const tt=new T.Group();
+{const wd=M(0x5a351b,.55),gd=M(0xd9a441,.28,.9);tt.add(box(3.4,.45,2.7,wd));const top=box(3.3,.04,2.6,M(0x2a1a10,.6),.47);tt.add(top);
+ const pl=new T.Group();pl.position.set(-.45,.5,0);const pt=new T.Mesh(new T.CylinderGeometry(1.12,1.12,.06,48),M(0x9aa0a6,.3,.8));pl.add(pt);
+ const rec=new T.Mesh(new T.CylinderGeometry(1.05,1.05,.04,48),M(0x0c0c0c,.25,.2));rec.position.y=.05;const lb=new T.Mesh(new T.CircleGeometry(.36,32),M(0xffffff,.6,0,{map:tkLbl}));lb.rotation.x=-Math.PI/2;lb.position.y=.075;
+ for(let r=.5;r<1.02;r+=.09){const gr=new T.Mesh(new T.RingGeometry(r,r+.01,48),new T.MeshBasicMaterial({color:0x2a2a2a,side:T.DoubleSide}));gr.rotation.x=-Math.PI/2;gr.position.y=.072;pl.add(gr)}
+ pl.add(rec,lb);tt.add(pl);tt.userData.spin=pl;
+ const arm=new T.Group();arm.position.set(1.25,.5,-.85);arm.add(tkCyl(.16,.18,.2,gd,.1,20));const ar=tkCyl(.04,.04,1.6,gd,0,10);ar.rotation.x=Math.PI/2;ar.rotation.z=.35;ar.position.set(-.25,.22,.7);arm.add(ar);
+ const hd=box(.18,.08,.3,M(0x111,.4),.18);hd.position.set(-.55,.04,1.45);arm.add(hd);tt.add(arm);
+ [[1.2,.25],[1.2,.75]].forEach(([x,z])=>{const k=tkCyl(.13,.13,.12,M(0xe9dcc0,.4),.52,16);k.position.set(x,0,z);tt.add(k)});
+ const led=new T.Mesh(new T.SphereGeometry(.05,10,8),M(0xe0644a,.3,0,{emissive:0xe0644a,emissiveIntensity:1.6}));led.position.set(1.45,.5,1.15);led.userData.ns=true;tt.add(led);leds.push(led)}
+put(PTK,tt,0,0,.25).userData.key='tk';spinners.push([tt,2.2]);
+{const hp=new T.Group(),bk=M(0x1a110c,.5);const band=new T.Mesh(new T.TorusGeometry(.7,.07,10,36,Math.PI),bk);band.rotation.x=-Math.PI/2;band.position.y=.08;hp.add(band);
+ [-.7,.7].forEach(x=>{const c=tkCyl(.3,.3,.24,M(0xe0644a,.45),.12,24);c.position.x=x;hp.add(c);const pd=tkCyl(.24,.24,.06,M(0x2a1a10,.8),.27,24);pd.position.x=x;hp.add(pd)});put(PTK,hp,2.6,1.4,-.6)}
+shot('#projects .pc.tk',tt,{az:.45,el:.82,d:6.4,fy:.4});
 /* Triki Radar: una pantalla de radar con su barrido y las bases de una licitación bajo la lupa */
 const PRD=cluster(15,9);
 const scopeTex=tex(256,256,(g,w)=>{g.fillStyle='#04160d';g.fillRect(0,0,w,w);g.strokeStyle='rgba(80,255,160,.45)';g.lineWidth=2;[38,76,114].forEach(r=>{g.beginPath();g.arc(w/2,w/2,r,0,TAU);g.stroke()});
@@ -884,7 +902,7 @@ if(matchMedia('(hover:hover) and (pointer:fine)').matches){
  const key={};tools.forEach(o=>{if(o.userData.key)key[o.userData.key]=o});
  const first=sel=>{const s=shots.find(x=>x.sel===sel);if(!s||!s.obj)return null;return tools.includes(s.obj)?s.obj:s.obj.children.find(c=>tools.includes(c))};
  document.querySelectorAll('section .card').forEach(card=>{const sec=card.closest('section');if(!sec)return;const tx=card.textContent;
-  const o=sec.id==='projects'?(/Rack/.test(tx)?key.rack:/Triki Radar/.test(tx)?key.radar:/Optimizador/.test(tx)?key.opt:/Agenda de citas/.test(tx)?key.agenda:/Panel de administraci/.test(tx)?key.admin:/Este portafolio/.test(tx)?key.site:null):first('#'+sec.id);if(!o)return;
+  const o=sec.id==='projects'?(/Rack/.test(tx)?key.rack:/Tk Play/.test(tx)?key.tk:/Triki Radar/.test(tx)?key.radar:/Optimizador/.test(tx)?key.opt:/Agenda de citas/.test(tx)?key.agenda:/Panel de administraci/.test(tx)?key.admin:/Este portafolio/.test(tx)?key.site:null):first('#'+sec.id);if(!o)return;
   const pick=()=>{let c=o;while(c&&!CHAP.includes(c))c=c.parent;return c&&VMAIN[worldName]&&VMAIN[worldName].get(c)||o};card.addEventListener('pointerenter',()=>{focus=pick()});card.addEventListener('pointerleave',()=>{focus=null})})}
 
 /* ---------- el hero se arma: las piezas caen sobre la mesa una tras otra ---------- */
